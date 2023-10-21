@@ -1,6 +1,6 @@
 {
-config = {
-    options.completeopt = ["menu" "menuone" "noselect"];
+  config = {
+    options.completeopt = [ "menu" "menuone" "noselect" ];
 
     plugins = {
       luasnip.enable = true;
@@ -30,7 +30,7 @@ config = {
           "<C-d>" = "cmp.mapping.scroll_docs(-4)";
           "<C-u>" = "cmp.mapping.scroll_docs(4)";
           "<C-e>" = {
-            modes = ["i" "s"];
+            modes = [ "i" "s" ];
             action = "cmp.mapping(function()
             if cmp.visible() then
                 cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
@@ -40,7 +40,7 @@ config = {
         end)";
           };
           "<C-n>" = {
-            modes = ["i" "s"];
+            modes = [ "i" "s" ];
             action = "cmp.mapping(function()
             if cmp.visible() then
                 cmp.select_prev_item({behavior = cmp.SelectBehavior.Select})
@@ -54,9 +54,9 @@ config = {
         };
 
         sources = [
-          {name = "path";}
-          {name = "nvim_lsp";}
-          {name = "luasnip";}
+          { name = "path"; }
+          { name = "nvim_lsp"; }
+          { name = "luasnip"; }
           {
             name = "buffer";
             # Words from other open buffers can also be suggested.
@@ -67,32 +67,33 @@ config = {
       };
     };
     extraConfigLua = ''
-local cmp = require("cmp")
+      local cmp = require("cmp")
 
--- TODO: configur cmp-git
--- cmp.setup.filetype('gitcommit', {
---     sources = cmp.config.sources({
---         { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
---     }, {
---         { name = 'buffer' },
---     })
--- })
+      -- TODO: configur cmp-git
+      -- cmp.setup.filetype('gitcommit', {
+      --     sources = cmp.config.sources({
+      --         { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+      --     }, {
+      --         { name = 'buffer' },
+      --     })
+      -- })
 
-cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-        { name = 'buffer' }
-    }
-})
-
-  cmp.setup.cmdline(':', {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-          { name = 'path' }
-      }, {
-          { name = 'cmdline' }
+      -- TODO: fix cmdline completion
+      cmp.setup.cmdline({ '/', '?' }, {
+          mapping = cmp.mapping.preset.cmdline(),
+          sources = {
+              { name = 'buffer' }
+          }
       })
-  })
+
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = 'path' }
+            }, {
+                { name = 'cmdline' }
+            })
+        })
 
     '';
   };

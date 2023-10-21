@@ -7,6 +7,8 @@
     ./undotree.nix
 
     # code
+    ./lsp.nix
+    ./treesitter.nix
     ./completion.nix
     ./comments.nix
     ./lsp-lines.nix
@@ -15,7 +17,7 @@
     # navigation
     ./telescope.nix
     ./leap.nix
-#    ./harpoon.nix
+    #    ./harpoon.nix
 
     # visuals
     ./colorscheme.nix
@@ -24,6 +26,8 @@
     # TODO: add dressing.nvim
 
     # other
+    ./toggle-term.nix
+    ./todo-comments.nix
     ./extraConfigLua.nix
   ];
 }
