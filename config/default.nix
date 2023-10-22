@@ -1,3 +1,4 @@
+{ ... }:
 {
   # Import all your configuration modules here
   imports = [
@@ -22,8 +23,8 @@
     # visuals
     ./colorscheme.nix
     ./noice.nix
+    ./dressing.nix
     ./lualine.nix
-    # TODO: add dressing.nvim
 
     # other
     ./toggle-term.nix

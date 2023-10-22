@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   config = {
     options.completeopt = [ "menu" "menuone" "noselect" ];
@@ -66,10 +67,12 @@
         ];
       };
     };
+    extraPlugins = [
+      pkgs.vimPlugins.cmp-cmdline
+    ];
     extraConfigLua = ''
       local cmp = require("cmp")
 
-      -- TODO: configur cmp-git
       -- cmp.setup.filetype('gitcommit', {
       --     sources = cmp.config.sources({
       --         { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
