@@ -1,5 +1,5 @@
 {
-  globals.mapleader = "<space>";
+  globals.mapleader = " ";
   keymaps = [
     # {
     #   mode = "t"
