@@ -31,7 +31,6 @@
           "<C-d>" = "cmp.mapping.scroll_docs(-4)";
           "<C-u>" = "cmp.mapping.scroll_docs(4)";
           "<C-e>" = {
-            modes = [ "i" "s" ];
             action = "cmp.mapping(function()
             if cmp.visible() then
                 cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
@@ -41,7 +40,6 @@
         end)";
           };
           "<C-n>" = {
-            modes = [ "i" "s" ];
             action = "cmp.mapping(function()
             if cmp.visible() then
                 cmp.select_prev_item({behavior = cmp.SelectBehavior.Select})
@@ -81,16 +79,35 @@
       --     })
       -- })
 
+      -- NOTE: this needs to be in sync with the nix config
+      local completion_mappings = {
+          ["<C-e>"] = { c = function()
+              if cmp.visible() then
+                    cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
+                else
+                    cmp.complete()
+                end
+            end},
+          ["<C-n>"] = { c = function()
+              if cmp.visible() then
+                  cmp.select_prev_item({behavior = cmp.SelectBehavior.Select})
+              else
+                  cmp.complete()
+              end
+              end},
+            ["<C-a>"] = { c = cmp.mapping.confirm({ select = true }) },
+          }
+
       -- TODO: fix cmdline completion
       cmp.setup.cmdline({ '/', '?' }, {
-          mapping = cmp.mapping.preset.cmdline(),
+          mapping = completion_mappings,
           sources = {
               { name = 'buffer' }
           }
       })
 
         cmp.setup.cmdline(':', {
-            mapping = cmp.mapping.preset.cmdline(),
+            mapping = completion_mappings,
             sources = cmp.config.sources({
                 { name = 'path' }
             }, {
