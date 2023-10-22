@@ -11,6 +11,7 @@
     ./lsp.nix
     ./treesitter.nix
     ./completion.nix
+    ./snippets.nix
     ./comments.nix
     ./lsp-lines.nix
     ./indent-blankline.nix
