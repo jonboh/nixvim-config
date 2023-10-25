@@ -31,6 +31,10 @@
     # other
     ./toggle-term.nix
     ./todo-comments.nix
+    ./neorg.nix
+    ./chatgpt.nix
     ./extraConfigLua.nix
+
+
   ];
 }
