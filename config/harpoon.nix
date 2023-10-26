@@ -3,8 +3,8 @@
     enable = true;
     keymapsSilent = true;
     keymaps = {
-      toggleQuickMenu = "<A-h>";
-      addFile = "<leader><A-h>";
+      toggleQuickMenu = "<A-f>";
+      addFile = "<leader><A-f>";
       navFile = {
         "1" = "<A-n>";
         "2" = "<A-e>";

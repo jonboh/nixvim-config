@@ -20,7 +20,7 @@
     # navigation
     ./telescope.nix
     ./leap.nix
-    #    ./harpoon.nix
+    ./harpoon.nix
 
     # visuals
     ./colorscheme.nix
