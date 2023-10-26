@@ -1,13 +1,22 @@
 {
   globals.mapleader = " ";
   keymaps = [
-    # {
-    #   mode = "t"
-    #   action =
-    #   options = {
-    #       desc = "Make Esc take you out of Terminal mode"
-    #     }
-    # }
+    {
+      mode = "t";
+      key = "<Esc>";
+      action = "<C-\\><C-n>";
+      options = {
+        desc = "Make Esc take you out of Terminal mode";
+      };
+    }
+    {
+      mode = "n";
+      key = "<Esc>";
+      action = "<cmd>nohls<cr><cmd>NoiceDismiss<cr><Esc>";
+      options = {
+        desc = "<Esc>, clear search highlight and dismiss Noice notifications";
+      };
+    }
 
     ## Clear space for leader
     {
