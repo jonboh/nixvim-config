@@ -103,7 +103,7 @@
     }
     {
       mode = "n";
-      key = "<A-Right>";
+      key = "<A-Left>";
       action = "<C-w>h";
       # action = mux.wezterm_move_right;
       options = {
@@ -112,7 +112,7 @@
     }
     {
       mode = "n";
-      key = "<A-Left>";
+      key = "<A-Right>";
       action = "<C-w>l";
       # action = mux.wezterm_move_left;
       options = {
