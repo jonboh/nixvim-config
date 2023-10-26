@@ -104,7 +104,7 @@
     {
       mode = "n";
       key = "<A-Left>";
-      action = "<C-w>h";
+      action = "<C-w>l";
       # action = mux.wezterm_move_left;
       options = {
         desc = "Move window focus left";
