@@ -9,6 +9,7 @@
 
     # code
     ./lsp.nix
+    ./dap.nix
     ./fidget.nix
     ./treesitter.nix
     ./completion.nix
