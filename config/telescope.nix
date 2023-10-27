@@ -1,11 +1,13 @@
 {
- plugins.telescope = {
+  plugins.telescope = {
     enable = true;
     extensions = {
       fzf-native.enable = true;
       file_browser = {
         enable = true;
         path = "%:p:h";
+        hidden = true;
+        # follow-symlinks = false; NOTE:uncomment once follow-symlinks is integrated into nixvim
       };
     };
   };
@@ -30,10 +32,9 @@
       };
     }
     {
-      # TODO: fix this
       mode = "v";
       key = "<leader>s";
-      action = ''"\"zy<cmd>exec "Telescope grep_string search=" . escape(@z, " ")<cr>""'';
+      action = ''"zy<cmd>exec "Telescope grep_string search=" . escape(@z, " ")<cr>'';
       options = {
         silent = true;
         desc = "Find selection";
