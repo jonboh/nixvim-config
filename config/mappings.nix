@@ -81,6 +81,11 @@
         desc = "Go to prev qf item";
       };
     }
+    {
+      mode = "n";
+      key = "<CS-O>";
+      action = "<C-I>";
+    }
 
     ## Windows
     {
