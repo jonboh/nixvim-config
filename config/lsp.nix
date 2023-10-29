@@ -18,6 +18,10 @@
       server.check.command = "clippy";
     };
   };
+  extraConfigLua = ''
+    require('lspconfig').ruff_lsp.setup { }
+    require'lspconfig'.pyright.setup{ }
+  '';
   # TODO: add all keybinds
   keymaps = [
     {
