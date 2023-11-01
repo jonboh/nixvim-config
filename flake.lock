@@ -180,16 +180,16 @@
         "poetry2nix": "poetry2nix"
       },
       "locked": {
-        "lastModified": 1697984316,
-        "narHash": "sha256-g3ONOR6R4j+kFY9wXvyRsSWPKteALDFl+qnJMtEwGq8=",
-        "owner": "jooooscha",
-        "repo": "nixpkgs-vim-extra-plugins",
-        "rev": "a609c831cafba18d952684e9618b74487ae0a108",
+        "lastModified": 1698589074,
+        "narHash": "sha256-GaOGVv6LqzEeUXAXGmQOpMfZwmMH/nxJMaiGIuV3Dqw=",
+        "owner": "NixNeovim",
+        "repo": "NixNeovimPlugins",
+        "rev": "cd72aa8fffae202d82048f9d8b6b71affaeaf1b3",
         "type": "github"
       },
       "original": {
-        "owner": "jooooscha",
-        "repo": "nixpkgs-vim-extra-plugins",
+        "owner": "NixNeovim",
+        "repo": "NixNeovimPlugins",
         "type": "github"
       }
     },

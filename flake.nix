@@ -4,7 +4,7 @@
   inputs = {
     nixvim.url = "github:nix-community/nixvim";
     flake-utils.url = "github:numtide/flake-utils";
-    nixneovimplugins.url = github:jooooscha/nixpkgs-vim-extra-plugins;
+    nixneovimplugins.url = github:NixNeovim/NixNeovimPlugins;
   };
 
   outputs =
