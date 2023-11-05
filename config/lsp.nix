@@ -16,11 +16,12 @@
     rust-tools = {
       enable = true;
       server.check.command = "clippy";
+      server.rustc.source = "discover";
     };
   };
   extraConfigLua = ''
     require('lspconfig').ruff_lsp.setup { }
-    require'lspconfig'.pyright.setup{ }
+    require('lspconfig').pyright.setup{ }
   '';
   # TODO: add all keybinds
   keymaps = [
