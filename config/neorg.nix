@@ -31,6 +31,34 @@
             ':Neorg toggle-concealer<CR>',
             {silent=true}
           )
+          keybinds.map(
+            'norg',
+            'n',
+            '<localleader>f',
+            ':Telescope neorg find_norg_files<CR>',
+            {silent=true}
+          )
+          keybinds.map(
+            'norg',
+            'n',
+            '<localleader>s',
+            ':Telescope neorg find_linkable<CR>',
+            {silent=true}
+          )
+          keybinds.map(
+            'norg',
+            'n',
+            '<localleader>lf',
+            ':Telescope neorg insert_file_link<CR>',
+            {silent=true}
+          )
+          keybinds.map(
+            'norg',
+            'n',
+            '<localleader>ls',
+            ':Telescope neorg insert_link<CR>',
+            {silent=true}
+          )
         end
       '';
     };
