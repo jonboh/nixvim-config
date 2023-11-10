@@ -225,26 +225,30 @@
 
         -- Rust Configuration
 
+        local pickers = require("telescope.pickers")
+        local finders = require("telescope.finders")
+        local conf = require("telescope.config").values
+        local actions = require("telescope.actions")
+        local action_state = require("telescope.actions.state")
         function get_program()
-          return coroutine.create(function(coro)
-            local opts = {}
-            pickers
-              .new(opts, {
-                prompt_title = "Path to executable",
-                finder = finders.new_oneshot_job({ "fd", "--exclude", ".git", "--no-ignore", "--type", "x"}, {}),
-                sorter = conf.generic_sorter(opts),
-                attach_mappings = function(buffer_number)
-                  actions.select_default:replace(function()
-                    actions.close(buffer_number)
-                    coroutine.resume(coro, action_state.get_selected_entry()[1])
-                  end)
-                  return true
-                end,
-              })
-              :find()
-          end)
-        end
-
+              return coroutine.create(function(coro)
+                local opts = {}
+                pickers
+                  .new(opts, {
+                    prompt_title = "Path to executable",
+                    finder = finders.new_oneshot_job({ "fd", "--exclude", ".git", "--no-ignore", "--type", "x"}, {}),
+                    sorter = conf.generic_sorter(opts),
+                    attach_mappings = function(buffer_number)
+                      actions.select_default:replace(function()
+                        actions.close(buffer_number)
+                        coroutine.resume(coro, action_state.get_selected_entry()[1])
+                      end)
+                      return true
+                    end,
+                  })
+                  :find()
+              end)
+            end
 
         local dap = require("dap")
 
@@ -265,7 +269,7 @@
             name = "(lldb) Launch file",
             type = "codelldb",
             request = "launch",
-            program = function() return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file') end,
+            program = get_program,
             miDebuggerPath = get_rust_lldb_path,
             cwd = "''${workspaceFolder}",
             stopOnEntry = true,
@@ -274,7 +278,7 @@
             name = "(gdb) Launch file",
             type = "cppdbg",
             request = "launch",
-            program = function() return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file') end,
+            program = get_program,
             miDebuggerPath = get_rust_gdb_path,
             cwd= vim.fn.getcwd,
             stopAtEntry = true,
@@ -285,7 +289,7 @@
             name = "(lldb) Launch file",
             type = "codelldb",
             request = "launch",
-            program = function() return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file') end,
+            program = get_program,
             cwd = "''${workspaceFolder}",
             stopOnEntry = true,
         },
@@ -293,7 +297,7 @@
             name = "(gdb) Launch file",
             type = "cppdbg",
             request = "launch",
-            program = function() return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file') end,
+            program = get_program,
             cwd= vim.fn.getcwd,
             stopAtEntry = true,
         },
