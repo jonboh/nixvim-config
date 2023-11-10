@@ -121,6 +121,7 @@
     pkgs.vimPlugins.nvim-dap
     pkgs.vimPlugins.nvim-dap-ui
     pkgs.vimPlugins.nvim-dap-virtual-text
+    (pkgs.callPackage ../plugins/nvim-dap-rr.nix { })
   ];
   extraConfigLua = ''
         local dap = require('dap')
@@ -146,6 +147,7 @@
             type = 'executable',
             command = cpptools_path,
         }
+
 
         dapui.setup({
           icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
@@ -278,6 +280,47 @@
             stopAtEntry = true,
         },
     }
+        dap.configurations.cpp = {
+        {
+            name = "(lldb) Launch file",
+            type = "codelldb",
+            request = "launch",
+            program = function() return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file') end,
+            cwd = "''${workspaceFolder}",
+            stopOnEntry = true,
+        },
+        {
+            name = "(gdb) Launch file",
+            type = "cppdbg",
+            request = "launch",
+            program = function() return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file') end,
+            cwd= vim.fn.getcwd,
+            stopAtEntry = true,
+        },
+    }
+        dap.configurations.c = dap.configurations.cpp
+
+        local rr_dap = require("nvim-dap-rr")
+        rr_dap.setup({
+            mappings = {
+                continue = "<F7>",
+                step_over = "<F8>",
+                step_out = "<F9>",
+                step_into = "<F10>",
+                reverse_continue = "<F19>", -- <S-F7>
+                reverse_step_over = "<F20>", -- <S-F8>
+                reverse_step_out = "<F21>", -- <S-F9>
+                reverse_step_into = "<F22>", -- <S-F10>
+                step_over_i = "<F32>", -- <C-F8>
+                step_out_i = "<F33>", -- <C-F8>
+                step_into_i = "<F34>", -- <C-F8>
+                reverse_step_over_i = "<F44>", -- <SC-F8>
+                reverse_step_out_i = "<F45>", -- <SC-F9>
+                reverse_step_into_i = "<F46>", -- <SC-F10>
+            }
+        })
+        table.insert(dap.configurations.rust, rr_dap.get_rust_config())
+        table.insert(dap.configurations.cpp, rr_dap.get_config())
 
   '';
 
