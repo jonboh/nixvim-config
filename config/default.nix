@@ -23,6 +23,7 @@
     ./telescope.nix
     ./leap.nix
     ./harpoon.nix
+    ./smart-splits.nix
 
     # visuals
     ./colorscheme.nix

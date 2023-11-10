@@ -91,42 +91,6 @@
     ## Windows
     {
       mode = "n";
-      key = "<A-Down>";
-      # action = mux.wezterm_move_down;
-      action = "<C-w>j";
-      options = {
-        desc = "Move window focus down";
-      };
-    }
-    {
-      mode = "n";
-      key = "<A-Up>";
-      action = "<C-w>k";
-      # action = mux.wezterm_move_up;
-      options = {
-        desc = "Move window focus up ";
-      };
-    }
-    {
-      mode = "n";
-      key = "<A-Left>";
-      action = "<C-w>h";
-      # action = mux.wezterm_move_right;
-      options = {
-        desc = "Move window focus right";
-      };
-    }
-    {
-      mode = "n";
-      key = "<A-Right>";
-      action = "<C-w>l";
-      # action = mux.wezterm_move_left;
-      options = {
-        desc = "Move window focus left";
-      };
-    }
-    {
-      mode = "n";
       key = "<A-v>";
       action = "<C-W><C-v><C-W><C-l>";
       options = {
