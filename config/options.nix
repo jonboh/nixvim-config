@@ -11,7 +11,7 @@
     # TODO: add clipboard keymaps
     clipboard = {
       # Use system clipboard
-      register = "unnamedplus";
+      register = "";
 
       providers.xclip.enable = true;
     };
