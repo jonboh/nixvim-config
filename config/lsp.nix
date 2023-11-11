@@ -1,4 +1,4 @@
-{
+{ pkgs, ... }: {
   plugins = {
     lsp = {
       enable = true;
@@ -151,5 +151,9 @@
         desc = "Go to previous diagnostic";
       };
     }
+  ];
+
+  extraPlugins = [
+    (pkgs.callPackage ../plugins/nvim-bacon.nix { })
   ];
 }
