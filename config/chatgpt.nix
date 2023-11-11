@@ -6,7 +6,7 @@
     require("chatgpt").setup({
        api_key_cmd = "cat /home/jonboh/.secrets/chatgpt.key",
           openai_params = {
-            model = "gpt-3.5-turbo-16k",
+            model = "gpt-4-1106-preview",
             max_tokens = 500,
           },
       })
