@@ -5,9 +5,9 @@
   ];
 
   extraConfigLua = ''
-        -- recommended mappings
-        -- resizing splits
-        -- these keymaps will also accept a range,
+        require("smart-splits").setup({
+            at_edge = "stop",
+          })
         -- for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)`
         vim.keymap.set('n', '<AC-Left>', require('smart-splits').resize_left)
         vim.keymap.set('n', '<AC-Down>', require('smart-splits').resize_down)
