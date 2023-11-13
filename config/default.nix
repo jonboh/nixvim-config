@@ -6,6 +6,7 @@
     ./mappings.nix
     ./autocmd.nix
     ./undotree.nix
+    ./clipboard.nix
 
     # code
     ./lsp.nix

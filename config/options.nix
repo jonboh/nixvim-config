@@ -8,13 +8,6 @@
       loaded_python_provider = 0; # Python 2
     };
 
-    # TODO: add clipboard keymaps
-    clipboard = {
-      # Use system clipboard
-      register = "";
-
-      providers.xclip.enable = true;
-    };
 
     options = {
       number = true;
