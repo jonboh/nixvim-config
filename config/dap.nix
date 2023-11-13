@@ -1,8 +1,5 @@
 { pkgs, ... }:
 {
-  # TODO: add nvim-dap-rr
-  # TODO: add server configuration for cpptools and codelldb for cpp and rust
-  # TODO: add python configuration
   keymaps = [
     {
       mode = "n";

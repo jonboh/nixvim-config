@@ -151,6 +151,15 @@
         desc = "Go to previous diagnostic";
       };
     }
+    {
+      mode = "n";
+      key = "hs";
+      action = "<cmd>Telescope lsp_workspace_symbols<cr>";
+      options = {
+        silent = true;
+        desc = "Telescope workspace symbols";
+      };
+    }
   ];
 
   extraPlugins = [
