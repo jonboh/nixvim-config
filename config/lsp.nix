@@ -5,6 +5,7 @@
       servers = {
         lua-ls.enable = true;
         rnix-lsp.enable = true;
+        ltex.enable = true;
       };
     };
     lsp-format = {
@@ -15,15 +16,17 @@
 
     rust-tools = {
       enable = true;
-      server.check.command = "clippy";
+      server.check.command = "check";
       server.rustc.source = "discover";
+      # TODO: add server config with clippy
     };
   };
+  # TODO: make sure these extra lsps are installed
   extraConfigLua = ''
     require('lspconfig').ruff_lsp.setup { }
     require('lspconfig').pyright.setup{ }
+    require'lspconfig'.jsonnet_ls.setup{}
   '';
-  # TODO: add all keybinds
   keymaps = [
     {
       mode = "n";
