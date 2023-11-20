@@ -37,8 +37,7 @@
     ./todo-comments.nix
     ./neorg.nix
     ./chatgpt.nix
+    ./markdown-preview.nix
     ./extraConfigLua.nix
-
-
   ];
 }
