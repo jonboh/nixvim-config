@@ -33,6 +33,7 @@
     ./lualine.nix
 
     # other
+    ./notebook.nix
     ./toggle-term.nix
     ./todo-comments.nix
     ./neorg.nix

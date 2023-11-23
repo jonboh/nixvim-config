@@ -123,39 +123,6 @@
     }
     {
       mode = "n";
-      key = "<A-S-Left>";
-      action = "<C-W>5<";
-      options = {
-        desc = "Resize left";
-      };
-    }
-    {
-      mode = "n";
-      key = "<A-S-Right>";
-      action = "<C-W>5>";
-      options = {
-        desc = "Resize right";
-      };
-    }
-    {
-      mode = "n";
-      key = "<A-S-Up>";
-      action = "<C-W>+";
-      options = {
-        desc = "Resize up";
-      };
-    }
-    {
-      mode = "n";
-      key = "<A-S-Down>";
-      action = "<C-W>-";
-      options = {
-        desc = "Resize down";
-      };
-    }
-
-    {
-      mode = "n";
       key = "<leader>r";
       action = ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>";
       options = {
@@ -175,8 +142,5 @@
       key = "$";
       action = "$<Left>";
     }
-
-
-
   ];
 }
