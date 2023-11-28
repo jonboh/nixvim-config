@@ -34,6 +34,7 @@
 
     # other
     ./notebook.nix
+    ./asyncrun.nix
     ./toggle-term.nix
     ./todo-comments.nix
     ./neorg.nix
