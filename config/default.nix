@@ -19,6 +19,7 @@
     ./comments.nix
     ./lsp-lines.nix
     ./indent-blankline.nix
+    ./vimtex.nix
 
     # navigation
     ./telescope.nix
