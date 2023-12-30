@@ -28,8 +28,8 @@
         snippet.expand = "luasnip";
 
         mapping = {
-          "<C-d>" = "cmp.mapping.scroll_docs(-4)";
-          "<C-u>" = "cmp.mapping.scroll_docs(4)";
+          "<C-u>" = "cmp.mapping.scroll_docs(-4)";
+          "<C-d>" = "cmp.mapping.scroll_docs(4)";
           "<C-e>" = {
             action = "cmp.mapping(function()
             if cmp.visible() then
@@ -79,8 +79,10 @@
       --     })
       -- })
 
-      -- NOTE: this needs to be in sync with the nix config
+      -- NOTE: this needs to be in sync with the nix config -- wtf! why?!
       local completion_mappings = {
+          ["<C-u>"] = cmp.mapping.scroll_docs(-4);
+          ["<C-d>"] = cmp.mapping.scroll_docs(4);
           ["<C-e>"] = { c = function()
               if cmp.visible() then
                     cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
