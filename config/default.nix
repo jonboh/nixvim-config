@@ -23,6 +23,7 @@
 
     # navigation
     ./telescope.nix
+    ./nnn.nix
     ./leap.nix
     ./harpoon.nix
     ./smart-splits.nix
