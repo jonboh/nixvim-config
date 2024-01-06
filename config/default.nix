@@ -21,6 +21,10 @@
     ./indent-blankline.nix
     ./vimtex.nix
 
+    # git
+    ./gitsigns.nix
+    ./fugitive.nix
+
     # navigation
     ./telescope.nix
     ./nnn.nix
