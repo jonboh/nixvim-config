@@ -15,7 +15,7 @@
     , flake-utils
     , nixneovimplugins
     , ...
-    } @ inputs:
+    }:
     flake-utils.lib.eachDefaultSystem (system:
     let
       nixvimLib = nixvim.lib.${system};
