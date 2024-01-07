@@ -7,7 +7,7 @@
         enable = true;
         path = "%:p:h";
         hidden = true;
-        # follow-symlinks = false; NOTE:uncomment once follow-symlinks is integrated into nixvim
+        # follow-symlinks = true;
       };
     };
   };

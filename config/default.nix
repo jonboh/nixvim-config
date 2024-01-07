@@ -37,6 +37,8 @@
     ./noice.nix
     ./dressing.nix
     ./lualine.nix
+    ./nabla.nix
+    ./image.nix
 
     # other
     ./notebook.nix

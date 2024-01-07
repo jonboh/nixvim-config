@@ -1,16 +1,16 @@
 {
-  plugins.treesitter = {
-    enable = true;
-    incrementalSelection = {
+  plugins = {
+    treesitter = {
       enable = true;
-      keymaps = {
-        initSelection = "+";
-        nodeIncremental = "+";
-        nodeDecremental = "-";
+      incrementalSelection = {
+        enable = true;
+        keymaps = {
+          initSelection = "+";
+          nodeIncremental = "+";
+          nodeDecremental = "-";
+        };
       };
     };
-  };
-  plugins.treesitter-context = {
-    enable = true;
+    treesitter-context.enable = true;
   };
 }

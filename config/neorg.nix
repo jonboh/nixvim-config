@@ -12,6 +12,9 @@
       #"core.ui.calendar".__empty = null;
       #  "core.completion".config.engine = "nvim-cmp";
       "core.integrations.telescope" = { __empty = null; };
+      "core.integrations.image" = { __empty = null; };
+      # "core.integrations.latex" = { __empty = null; };
+      # "core.integrations.renderer" = { __empty = null; };
 
       "core.keybinds".config.hook.__raw = ''
         function(keybinds)
