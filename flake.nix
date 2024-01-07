@@ -4,7 +4,7 @@
   inputs = {
     nixvim.url = "github:nix-community/nixvim";
     flake-utils.url = "github:numtide/flake-utils";
-    nixneovimplugins.url = github:NixNeovim/NixNeovimPlugins;
+    nixneovimplugins.url = "github:NixNeovim/NixNeovimPlugins";
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     # neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
   };
