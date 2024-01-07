@@ -4,7 +4,7 @@
       enable = true;
       servers = {
         lua-ls.enable = true;
-        rnix-lsp.enable = true;
+        nil_ls.enable = true;
         ltex.enable = true;
       };
     };
