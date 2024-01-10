@@ -103,4 +103,17 @@
         })
     end)
   '';
+
+  extraConfigVim = ''
+    function! OpenNeorgHeader(file, header)
+      " Escape the header for use in a Vim search pattern
+      let escaped_header = escape(a:header, '\/.*$^~[]')
+      " Open the file
+      execute 'edit' a:file
+      " Search for the header
+      " Go to the top of the file
+      execute 'normal! gg'
+      execute 'normal! /' . escaped_header . "\<CR>"
+    endfunction
+  '';
 }
