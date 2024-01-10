@@ -4,7 +4,9 @@
   inputs = {
     nixvim.url = "github:nix-community/nixvim";
     flake-utils.url = "github:numtide/flake-utils";
-    nixneovimplugins.url = github:NixNeovim/NixNeovimPlugins;
+    nixneovimplugins.url = "github:NixNeovim/NixNeovimPlugins";
+    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    # neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
   };
 
   outputs =
@@ -13,10 +15,7 @@
     , flake-utils
     , nixneovimplugins
     , ...
-    } @ inputs:
-    let
-      config = import ./config; # import the module directly
-    in
+    }:
     flake-utils.lib.eachDefaultSystem (system:
     let
       nixvimLib = nixvim.lib.${system};
@@ -24,13 +23,15 @@
         inherit system;
         overlays = [
           nixneovimplugins.overlays.default
+          # inputs.neovim-nightly-overlay.overlay
+          # inputs.neorg-overlay.overlays.default
         ];
 
       };
       nixvim' = nixvim.legacyPackages.${system};
       nvim = nixvim'.makeNixvimWithModule {
         inherit pkgs;
-        module = config;
+        module = import ./config;
       };
     in
     {

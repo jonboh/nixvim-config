@@ -4,7 +4,7 @@
       enable = true;
       servers = {
         lua-ls.enable = true;
-        rnix-lsp.enable = true;
+        nil_ls.enable = true;
         ltex.enable = true;
       };
     };
@@ -134,6 +134,24 @@
       options = {
         silent = true;
         desc = "Open diagnostic float";
+      };
+    }
+    {
+      mode = "n";
+      key = "]e";
+      action = "<cmd>lua vim.diagnostic.goto_next()<cr>";
+      options = {
+        silent = true;
+        desc = "Go to next diagnostic";
+      };
+    }
+    {
+      mode = "n";
+      key = "[e";
+      action = "<cmd>lua vim.diagnostic.goto_prev()<cr>";
+      options = {
+        silent = true;
+        desc = "Go to previous diagnostic";
       };
     }
     {

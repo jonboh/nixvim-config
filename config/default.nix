@@ -21,8 +21,13 @@
     ./indent-blankline.nix
     ./vimtex.nix
 
+    # git
+    ./gitsigns.nix
+    ./fugitive.nix
+
     # navigation
     ./telescope.nix
+    ./nnn.nix
     ./leap.nix
     ./harpoon.nix
     ./smart-splits.nix
@@ -32,6 +37,8 @@
     ./noice.nix
     ./dressing.nix
     ./lualine.nix
+    ./nabla.nix
+    ./image.nix
 
     # other
     ./notebook.nix
