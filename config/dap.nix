@@ -3,7 +3,7 @@
   keymaps = [
     {
       mode = "n";
-      key = "<F36>"; # "<C-F12>"
+      key = "<F35>"; # "<C-F11>"
       action = ''<cmd>lua require("dap").terminate()<cr>'';
       options = {
         silent = true;
@@ -11,7 +11,7 @@
     }
     {
       mode = "n";
-      key = "<F2>";
+      key = "<F1>";
       action = ''<cmd>lua require("dap").run_to_cursor()<cr>'';
       options = {
         silent = true;
@@ -19,7 +19,7 @@
     }
     {
       mode = "v";
-      key = "<F5>";
+      key = "<F4>";
       action = ''<cmd>lua require("dapui").eval(vim.fn.expand("<cword>"))<cr>'';
       options = {
         silent = true;
@@ -27,7 +27,7 @@
     }
     {
       mode = "n";
-      key = "<F5>";
+      key = "<F4>";
       action = ''<cmd>lua require("dapui").eval()<cr>'';
       options = {
         silent = true;
@@ -35,7 +35,7 @@
     }
     {
       mode = "n";
-      key = "<F6>";
+      key = "<F5>";
       action = ''<cmd>lua require("dap").toggle_breakpoint()<cr>'';
       options = {
         silent = true;
@@ -43,7 +43,7 @@
     }
     {
       mode = "n";
-      key = "<F7>";
+      key = "<F6>";
       action = ''<cmd>lua require("dap").continue()<cr>'';
       options = {
         silent = true;
@@ -51,7 +51,7 @@
     }
     {
       mode = "n";
-      key = "<F8>";
+      key = "<F7>";
       action = ''<cmd>lua require("dap").step_over()<cr>'';
       options = {
         silent = true;
@@ -59,7 +59,7 @@
     }
     {
       mode = "n";
-      key = "<F9>";
+      key = "<F8>";
       action = ''<cmd>lua require("dap").step_out()<cr>'';
       options = {
         silent = true;
@@ -67,7 +67,7 @@
     }
     {
       mode = "n";
-      key = "<F10>";
+      key = "<F9>";
       action = ''<cmd>lua require("dap").step_into()<cr>'';
       options = {
         silent = true;
@@ -83,7 +83,7 @@
     }
     {
       mode = "n";
-      key = "<F56>"; # <A-F8>
+      key = "<F55>"; # <A-F8>
       action = ''<cmd>lua require("dap").down()<cr>'';
       options = {
         silent = true;
@@ -91,7 +91,7 @@
     }
     {
       mode = "n";
-      key = "<F57>"; # <A-F9>
+      key = "<F56>"; # <A-F9>
       action = ''<cmd>lua require("dap").up()<cr>'';
       options = {
         silent = true;
@@ -99,7 +99,7 @@
     }
     {
       mode = "n";
-      key = "<F18>"; # <A-F9>
+      key = "<F17>"; # <A-F9>
       action = ''<cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition:"))<cr>'';
       options = {
         silent = true;
@@ -304,20 +304,20 @@
         local rr_dap = require("nvim-dap-rr")
         rr_dap.setup({
             mappings = {
-                continue = "<F7>",
-                step_over = "<F8>",
-                step_out = "<F9>",
-                step_into = "<F10>",
-                reverse_continue = "<F19>", -- <S-F7>
-                reverse_step_over = "<F20>", -- <S-F8>
-                reverse_step_out = "<F21>", -- <S-F9>
-                reverse_step_into = "<F22>", -- <S-F10>
-                step_over_i = "<F32>", -- <C-F8>
-                step_out_i = "<F33>", -- <C-F8>
-                step_into_i = "<F34>", -- <C-F8>
-                reverse_step_over_i = "<F44>", -- <SC-F8>
-                reverse_step_out_i = "<F45>", -- <SC-F9>
-                reverse_step_into_i = "<F46>", -- <SC-F10>
+                continue = "<F6>",
+                step_over = "<F7>",
+                step_out = "<F8>",
+                step_into = "<F9>",
+                reverse_continue = "<F18>", -- <S-F6>
+                reverse_step_over = "<F19>", -- <S-F7>
+                reverse_step_out = "<F20>", -- <S-F8>
+                reverse_step_into = "<F21>", -- <S-F9>
+                step_over_i = "<F31>", -- <C-F7>
+                step_out_i = "<F32>", -- <C-F8>
+                step_into_i = "<F33>", -- <C-F9>
+                reverse_step_over_i = "<F43>", -- <SC-F7>
+                reverse_step_out_i = "<F44>", -- <SC-F8>
+                reverse_step_into_i = "<F45>", -- <SC-F9>
             }
         })
         table.insert(dap.configurations.rust, rr_dap.get_rust_config())
