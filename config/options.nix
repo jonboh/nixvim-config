@@ -38,7 +38,6 @@
       termguicolors = true;
       fileformat = "unix";
       ff = "unix";
-      # cmdheight = 1;
       winbar = "%f %m";
 
       # history and backup
@@ -64,7 +63,14 @@
       # grep
       grepprg = "rg --vimgrep";
 
+      cmdheight = 0;
     };
+    # extraConfigLua = ''
+    #   vim.opt.shortmess:append("S")
+    #   vim.opt.shortmess:append("C")
+    #   vim.opt.shortmess:append("s")
+    #   vim.opt.shortmess:append("c")
+    # '';
   };
 
 }
