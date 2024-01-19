@@ -12,7 +12,10 @@
       #"core.ui.calendar".__empty = null;
       #  "core.completion".config.engine = "nvim-cmp";
       "core.integrations.telescope" = { __empty = null; };
+      "core.integrations.treesitter" = { __empty = null; };
       "core.integrations.image" = { __empty = null; };
+      "core.export" = { __empty = null; };
+      "core.export.markdown" = { __empty = null; };
       # "core.integrations.latex" = { __empty = null; };
       # "core.integrations.renderer" = { __empty = null; };
 
