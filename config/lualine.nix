@@ -170,17 +170,15 @@
           icon = ' LSP:',
           color = { fg = '#ffffff', gui = 'bold' },
         }
-
         ins_right {
                 function()
-    		local mode =  require("noice").api.statusline.mode.get()
-                    if string.find(mode, "recording") then
-                        return mode
+                    local recording = vim.fn.reg_recording()
+                    if recording == "" then
+                      return ""
                     else
-                        return ""
+                      return "Recording macro "..recording
                     end
                 end,
-                cond = require("noice").api.statusline.mode.has,
                 color = { fg = "#ff9e64" },
               }
 

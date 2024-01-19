@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   extraPlugins = [
     pkgs.vimExtraPlugins.ChatGPT-nvim
+    pkgs.vimExtraPlugins.nui-nvim
   ];
   extraConfigLua = ''
     require("chatgpt").setup({

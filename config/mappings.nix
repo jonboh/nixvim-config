@@ -2,6 +2,7 @@
   globals.mapleader = " ";
   globals.maplocalleader = "h";
   keymaps = [
+    # TODO: add invlist
     {
       mode = "t";
       key = "<Esc>";
@@ -10,6 +11,14 @@
         desc = "Make Esc take you out of Terminal mode";
       };
     }
+    # {
+    #   mode = "n";
+    #   key = "<Esc>";
+    #   action = "<cmd>nohls<cr><Esc>";
+    #   options = {
+    #     desc = "<Esc>, clear search highlight and dismiss Noice notifications";
+    #   };
+    # }
     {
       mode = "n";
       key = "<Esc>";
