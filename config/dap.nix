@@ -205,10 +205,9 @@
 
 
         -- Open/Close dapui with debugger session
-        dap.listeners.after.event_initialized["dapui_config"] = function()
-          dapui.open()
-        end
-
+        -- dap.listeners.after.event_initialized["dapui_config"] = function()
+        --   dapui.open()
+        -- end
         -- dap.listeners.before.event_terminated["dapui_config"] = function()
         --   dapui.close()
         -- end
@@ -247,6 +246,29 @@
               end)
             end
 
+        function get_program_args()
+          local debug_args_path = ".debug_args"
+          local file = io.open(debug_args_path, "r")
+          -- If the file doesn't exist, return an empty table
+          if not file then
+            return {}
+          end
+          -- Read the first line of the file
+          local line = file:read("*line")
+          file:close()
+          -- If the line is nil or empty, return an empty table
+          if not line or line == "" then
+            return {}
+          end
+          -- Split the line by whitespace and return the parts as a table
+          local args = {}
+          for arg in line:gmatch("%S+") do
+            table.insert(args, arg)
+          end
+          return args
+        end
+
+
         local dap = require("dap")
 
         local get_rust_gdb_path = function()
@@ -269,6 +291,7 @@
             program = get_program,
             miDebuggerPath = get_rust_lldb_path,
             cwd = "''${workspaceFolder}",
+            args = get_program_args,
             stopOnEntry = true,
         },
         {
@@ -278,6 +301,7 @@
             program = get_program,
             miDebuggerPath = get_rust_gdb_path,
             cwd= vim.fn.getcwd,
+            args = get_program_args,
             stopAtEntry = true,
         },
     }
@@ -288,6 +312,7 @@
             request = "launch",
             program = get_program,
             cwd = "''${workspaceFolder}",
+            args = get_program_args,
             stopOnEntry = true,
         },
         {
@@ -296,6 +321,7 @@
             request = "launch",
             program = get_program,
             cwd= vim.fn.getcwd,
+            args = get_program_args,
             stopAtEntry = true,
         },
     }
