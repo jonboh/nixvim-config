@@ -291,6 +291,7 @@
             return rustlldb
         end
 
+        require('dap').defaults.fallback.exception_breakpoints = {'uncaught', 'rust_panic'}
         dap.configurations.rust = {
         {
             name = "(lldb) Launch file",
@@ -300,7 +301,8 @@
             miDebuggerPath = get_rust_lldb_path,
             cwd = "''${workspaceFolder}",
             args = get_program_args,
-            stopOnEntry = true,
+            stopOnEntry = false,
+            showDisassembly = "never",
         },
         {
             name = "(gdb) Launch file",
@@ -310,7 +312,8 @@
             miDebuggerPath = get_rust_gdb_path,
             cwd= vim.fn.getcwd,
             args = get_program_args,
-            stopAtEntry = true,
+            stopAtEntry = false,
+            showDisassembly = "never",
         },
     }
         dap.configurations.cpp = {
@@ -321,7 +324,8 @@
             program = get_program,
             cwd = "''${workspaceFolder}",
             args = get_program_args,
-            stopOnEntry = true,
+            stopOnEntry = false,
+            showDisassembly = "never",
         },
         {
             name = "(gdb) Launch file",
@@ -330,7 +334,8 @@
             program = get_program,
             cwd= vim.fn.getcwd,
             args = get_program_args,
-            stopAtEntry = true,
+            stopAtEntry = false,
+            showDisassembly = "never",
         },
     }
         dap.configurations.c = dap.configurations.cpp
