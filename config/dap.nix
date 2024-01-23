@@ -99,6 +99,14 @@
     }
     {
       mode = "n";
+      key = "<F57>";
+      action = ''<cmd>lua require("dap").focus_frame()<cr>'';
+      options = {
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
       key = "<F17>"; # <A-F9>
       action = ''<cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition:"))<cr>'';
       options = {

@@ -150,6 +150,18 @@
           end,
         }
 
+        ins_right {
+          function()
+            local dap = require('dap')
+            if dap.session() then
+                return "🛠"..dap.status()
+            else
+              return ""
+            end
+          end,
+          color = { fg = colors.orange, gui = 'bold' },
+        }
+
         ins_left {
           -- Lsp server name .
           function()
@@ -170,6 +182,7 @@
           icon = ' LSP:',
           color = { fg = '#ffffff', gui = 'bold' },
         }
+
         ins_right {
                 function()
                     local recording = vim.fn.reg_recording()
