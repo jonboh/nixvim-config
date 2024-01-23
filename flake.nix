@@ -5,7 +5,7 @@
     nixvim.url = "github:nix-community/nixvim";
     flake-utils.url = "github:numtide/flake-utils";
     nixneovimplugins.url = "github:NixNeovim/NixNeovimPlugins";
-    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     # neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
   };
 
@@ -15,7 +15,7 @@
     , flake-utils
     , nixneovimplugins
     , ...
-    }:
+    }@inputs:
     flake-utils.lib.eachDefaultSystem (system:
     let
       nixvimLib = nixvim.lib.${system};
@@ -23,7 +23,7 @@
         inherit system;
         overlays = [
           nixneovimplugins.overlays.default
-          # inputs.neovim-nightly-overlay.overlay
+          inputs.neovim-nightly-overlay.overlay
           # inputs.neorg-overlay.overlays.default
         ];
 
