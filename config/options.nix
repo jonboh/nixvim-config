@@ -39,6 +39,7 @@
       fileformat = "unix";
       ff = "unix";
       winbar = "%f %m";
+      conceallevel = 2;
 
       # history and backup
       updatetime = 100;
