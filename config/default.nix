@@ -41,6 +41,7 @@
     ./image.nix
 
     # other
+    ./krita.nix
     ./notebook.nix
     ./asyncrun.nix
     ./toggle-term.nix
