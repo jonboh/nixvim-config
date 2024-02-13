@@ -25,6 +25,7 @@
           nixneovimplugins.overlays.default
           inputs.neovim-nightly-overlay.overlay
           # inputs.neorg-overlay.overlays.default
+          (import ./overlays/image-nvim.nix)
         ];
 
       };
