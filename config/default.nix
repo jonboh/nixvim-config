@@ -42,6 +42,7 @@
 
     # other
     ./krita.nix
+    ./kitty-scrollback.nix
     ./notebook.nix
     ./asyncrun.nix
     ./toggle-term.nix
