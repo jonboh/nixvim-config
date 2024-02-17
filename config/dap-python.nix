@@ -1,8 +1,5 @@
-{ pkgs, ... }:
-{
-  extraPlugins = [
-    pkgs.vimPlugins.nvim-dap-python
-  ];
+{ pkgs, ... }: {
+  extraPlugins = [ pkgs.vimPlugins.nvim-dap-python ];
   extraConfigLua = ''
     require('dap-python').setup('python')
     table.insert(require('dap').configurations.python, {

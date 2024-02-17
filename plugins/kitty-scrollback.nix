@@ -1,7 +1,4 @@
-{ lib
-, vimUtils
-, fetchFromGitHub
-}:
+{ lib, vimUtils, fetchFromGitHub }:
 
 vimUtils.buildVimPlugin {
   pname = "kitty-scrollback.nvim";

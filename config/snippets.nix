@@ -1,8 +1,6 @@
 { pkgs, ... }: {
   plugins.luasnip = { enable = true; };
-  extraPlugins = [
-    pkgs.vimPlugins.friendly-snippets
-  ];
+  extraPlugins = [ pkgs.vimPlugins.friendly-snippets ];
   extraConfigLua = ''
         require("luasnip.loaders.from_vscode").lazy_load() -- following instructions from friendly-snippets.nvim
       local ls = require "luasnip"

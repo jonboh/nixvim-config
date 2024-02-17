@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   config = {
     options.completeopt = [ "menu" "menuone" "noselect" ];
 
@@ -31,22 +30,24 @@
           "<C-u>" = "cmp.mapping.scroll_docs(-4)";
           "<C-d>" = "cmp.mapping.scroll_docs(4)";
           "<C-e>" = {
-            action = "cmp.mapping(function()
-            if cmp.visible() then
-                cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
-            else
-                cmp.complete()
-            end
-        end)";
+            action = ''
+              cmp.mapping(function()
+                          if cmp.visible() then
+                              cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
+                          else
+                              cmp.complete()
+                          end
+                      end)'';
           };
           "<C-n>" = {
-            action = "cmp.mapping(function()
-            if cmp.visible() then
-                cmp.select_prev_item({behavior = cmp.SelectBehavior.Select})
-            else
-                cmp.complete()
-            end
-        end)";
+            action = ''
+              cmp.mapping(function()
+                          if cmp.visible() then
+                              cmp.select_prev_item({behavior = cmp.SelectBehavior.Select})
+                          else
+                              cmp.complete()
+                          end
+                      end)'';
           };
           "<C-a>" = "cmp.mapping.confirm({ select = true })";
           # TODO: Add snippet completion functionality and doc window sizing
@@ -65,9 +66,7 @@
         ];
       };
     };
-    extraPlugins = [
-      pkgs.vimPlugins.cmp-cmdline
-    ];
+    extraPlugins = [ pkgs.vimPlugins.cmp-cmdline ];
     extraConfigLua = ''
       local cmp = require("cmp")
 

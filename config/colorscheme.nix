@@ -15,9 +15,7 @@
 
       };
     };
-    options = {
-      termguicolors = true;
-    };
+    options = { termguicolors = true; };
     extraConfigLua = ''
       vim.opt.background = "dark"
       vim.api.nvim_set_hl(0, "LineNr", {fg="#B1A6F7"})

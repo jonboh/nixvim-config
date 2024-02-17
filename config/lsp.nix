@@ -8,9 +8,7 @@
         ltex.enable = true;
       };
     };
-    lsp-format = {
-      enable = true;
-    };
+    lsp-format = { enable = true; };
 
     lspkind.enable = true;
 
@@ -183,7 +181,5 @@
     }
   ];
 
-  extraPlugins = [
-    (pkgs.callPackage ../plugins/nvim-bacon.nix { })
-  ];
+  extraPlugins = [ (pkgs.callPackage ../plugins/nvim-bacon.nix { }) ];
 }

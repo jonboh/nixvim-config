@@ -1,7 +1,4 @@
-{ lib
-, vimUtils
-, fetchFromGitHub
-}:
+{ lib, vimUtils, fetchFromGitHub }:
 
 vimUtils.buildVimPlugin rec {
   pname = "smart-splits.nvim";
@@ -15,7 +12,8 @@ vimUtils.buildVimPlugin rec {
   };
 
   meta = with lib; {
-    description = "🧠 Smart, seamless, directional navigation and resizing of Neovim + terminal multiplexer splits. Supports tmux, Wezterm, and Kitty. Think about splits in terms of up/down/left/right";
+    description =
+      "🧠 Smart, seamless, directional navigation and resizing of Neovim + terminal multiplexer splits. Supports tmux, Wezterm, and Kitty. Think about splits in terms of up/down/left/right";
     homepage = "https://github.com/mrjones2014/smart-splits.nvim";
     license = licenses.mit;
     maintainers = with maintainers; [ ];

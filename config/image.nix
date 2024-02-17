@@ -1,3 +1,1 @@
-{
-  plugins.image.enable = true;
-}
+{ plugins.image.enable = true; }

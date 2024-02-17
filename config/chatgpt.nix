@@ -1,8 +1,6 @@
 { pkgs, ... }: {
-  extraPlugins = [
-    pkgs.vimExtraPlugins.ChatGPT-nvim
-    pkgs.vimExtraPlugins.nui-nvim
-  ];
+  extraPlugins =
+    [ pkgs.vimExtraPlugins.ChatGPT-nvim pkgs.vimExtraPlugins.nui-nvim ];
   extraConfigLua = ''
     require("chatgpt").setup({
        api_key_cmd = "cat /home/jonboh/.secrets/chatgpt.key",

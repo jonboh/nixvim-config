@@ -1,7 +1,4 @@
-{ lib
-, vimUtils
-, fetchFromGitHub
-}:
+{ lib, vimUtils, fetchFromGitHub }:
 
 vimUtils.buildVimPlugin rec {
   pname = "nvim-bacon";

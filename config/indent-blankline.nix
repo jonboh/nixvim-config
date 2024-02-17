@@ -1,9 +1,6 @@
 {
   config = {
-    plugins.indent-blankline =
-      {
-        enable = true;
-      };
+    plugins.indent-blankline = { enable = true; };
     options = {
       list = true;
       listchars = "space:⋅";

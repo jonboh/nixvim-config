@@ -8,7 +8,6 @@
       loaded_python_provider = 0; # Python 2
     };
 
-
     options = {
       number = true;
       relativenumber = true;
@@ -47,15 +46,12 @@
       backup = false;
       undofile = true;
 
-
       # folding
       foldmethod = "expr";
       foldexpr = "nvim_treesitter#foldexpr()";
       foldminlines = 3;
       foldenable = true;
       foldlevelstart = 9;
-
-
 
       # leader
       timeout = true;

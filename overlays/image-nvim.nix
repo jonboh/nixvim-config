@@ -1,5 +1,4 @@
-self: super:
-{
+self: super: {
   vimPlugins = super.vimPlugins // {
     image-nvim = super.vimPlugins.image-nvim.overrideAttrs (oldAttrs: {
       src = super.fetchFromGitHub {

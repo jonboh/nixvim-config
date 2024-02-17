@@ -1,8 +1,5 @@
-{ pkgs, ... }:
-{
-  extraPlugins = [
-    (pkgs.callPackage ../plugins/kitty-scrollback.nix { })
-  ];
+{ pkgs, ... }: {
+  extraPlugins = [ (pkgs.callPackage ../plugins/kitty-scrollback.nix { }) ];
 
   extraConfigLua = ''
     require("kitty-scrollback").setup()

@@ -1,10 +1,10 @@
 {
   extraConfigLua = ''
-P = function(v) -- tj easy printing
-    print(vim.inspect(v))
-    return v
-end
+    P = function(v) -- tj easy printing
+        print(vim.inspect(v))
+        return v
+    end
 
   '';
-# TODO: add chatgpt
+  # TODO: add chatgpt
 }

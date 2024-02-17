@@ -1,7 +1,5 @@
 {
-  plugins.toggleterm = {
-    enable = true;
-  };
+  plugins.toggleterm = { enable = true; };
   keymaps = [
     {
       mode = "n";

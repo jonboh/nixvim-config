@@ -34,7 +34,8 @@
     {
       mode = "v";
       key = "<leader>s";
-      action = ''"zy<cmd>exec "Telescope grep_string search=" . escape(@z, " ")<cr>'';
+      action =
+        ''"zy<cmd>exec "Telescope grep_string search=" . escape(@z, " ")<cr>'';
       options = {
         silent = true;
         desc = "Find selection";
@@ -43,7 +44,8 @@
     {
       mode = "n";
       key = "<leader>tw";
-      action = ''<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>")})<cr>'';
+      action = ''
+        <cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>")})<cr>'';
       options = {
         silent = true;
         desc = "Word grep";
@@ -70,7 +72,8 @@
     {
       mode = "n";
       key = "<leader>/";
-      action = ''<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find({ sorting_strategy="ascending", layout_config={prompt_position="top"}})<cr>'';
+      action = ''
+        <cmd>lua require("telescope.builtin").current_buffer_fuzzy_find({ sorting_strategy="ascending", layout_config={prompt_position="top"}})<cr>'';
       options = {
         silent = true;
         desc = "Current buffer search";
@@ -107,7 +110,8 @@
     {
       mode = "n";
       key = "<leader>b";
-      action = ''<cmd>lua require("telescope").extensions.file_browser.file_browser()<cr>'';
+      action = ''
+        <cmd>lua require("telescope").extensions.file_browser.file_browser()<cr>'';
     }
   ];
 }
