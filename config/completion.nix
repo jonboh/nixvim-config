@@ -33,7 +33,7 @@
             action = ''
               cmp.mapping(function()
                           if cmp.visible() then
-                              cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
+                              cmp.select_prev_item({behavior = cmp.SelectBehavior.Select})
                           else
                               cmp.complete()
                           end
@@ -43,7 +43,7 @@
             action = ''
               cmp.mapping(function()
                           if cmp.visible() then
-                              cmp.select_prev_item({behavior = cmp.SelectBehavior.Select})
+                              cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
                           else
                               cmp.complete()
                           end
@@ -84,14 +84,14 @@
           ["<C-d>"] = cmp.mapping.scroll_docs(4);
           ["<C-e>"] = { c = function()
               if cmp.visible() then
-                    cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
+                    cmp.select_prev_item({behavior = cmp.SelectBehavior.Select})
                 else
                     cmp.complete()
                 end
             end},
           ["<C-n>"] = { c = function()
               if cmp.visible() then
-                  cmp.select_prev_item({behavior = cmp.SelectBehavior.Select})
+                  cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
               else
                   cmp.complete()
               end
