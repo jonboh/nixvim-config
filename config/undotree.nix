@@ -1,8 +1,10 @@
 {
   plugins.undotree = {
     enable = true;
-    focusOnToggle = true;
-    windowLayout = 2;
+    settings = {
+      FocusOnToggle = true;
+      WindowLayout = 2;
+    };
   };
   keymaps = [{
     mode = "n";

@@ -21,6 +21,39 @@
       yamlfmt.command = "${pkgs.yamlfmt}/bin/yamlfmt";
       stylua.command = "${pkgs.stylua}/bin/stylua";
     };
+
+    formatOnSave = ''
+      function(bufnr)
+        -- Disable with a global or buffer-local variable
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+          return
+        end
+
+        -- Handle slow formatters
+        if _conform_slow_format_filetypes[vim.bo[bufnr].filetype] then
+          return
+        end
+        local function on_format(err)
+          if err and err:match("timeout$") then
+            _conform_slow_format_filetypes[vim.bo[bufnr].filetype] = true
+          end
+        end
+
+        return { timeout_ms = 200, lsp_fallback = false }
+      end
+    '';
+
+    formatAfterSave = ''
+      function(bufnr)
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+          return
+        end
+        if not _conform_slow_format_filetypes[vim.bo[bufnr].filetype] then
+          return
+        end
+        return { lsp_fallback = false }
+      end
+    '';
   };
   extraConfigLua = ''
     -- Set Format commands
@@ -35,16 +68,6 @@
       end
       require("conform").format({ async = true, lsp_fallback = true, range = range })
     end, { range = true })
-
-    require("conform").setup({
-      format_on_save = function(bufnr)
-        -- Disable with a global or buffer-local variable
-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-          return
-        end
-        return { timeout_ms = 500, lsp_fallback = true }
-      end,
-    })
 
     vim.api.nvim_create_user_command("FormatDisable", function(args)
       if args.bang then
@@ -64,27 +87,8 @@
       desc = "Re-enable autoformat-on-save",
     })
 
-    -- Make slow formatters automatically async
-    local slow_format_filetypes = {}
-    require("conform").setup({
-      format_on_save = function(bufnr)
-        if slow_format_filetypes[vim.bo[bufnr].filetype] then
-          return
-        end
-        local function on_format(err)
-          if err and err:match("timeout$") then
-            slow_format_filetypes[vim.bo[bufnr].filetype] = true
-          end
-        end
-
-        return { timeout_ms = 200, lsp_fallback = true }, on_format
-      end,
-
-      format_after_save = function(bufnr)
-        if not slow_format_filetypes[vim.bo[bufnr].filetype] then
-          return
-        end
-        return { lsp_fallback = true }
-      end,
-    })'';
+    -- Make slow formatters automatically async. Generate storage table
+    -- see formatOnSave and formatAfterSave
+    _conform_slow_format_filetypes = {}
+  '';
 }
