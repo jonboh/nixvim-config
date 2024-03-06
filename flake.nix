@@ -14,7 +14,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         nixvimLib = nixvim.lib.${system};
-        pkgs = import nixpkgs {
+        pkgs-nightly = import nixpkgs {
           inherit system;
           overlays = [
             nixneovimplugins.overlays.default
@@ -24,7 +24,20 @@
           ];
 
         };
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [
+            nixneovimplugins.overlays.default
+            # inputs.neorg-overlay.overlays.default
+            (import ./overlays/image-nvim.nix)
+          ];
+
+        };
         nixvim' = nixvim.legacyPackages.${system};
+        nvim-nightly = nixvim'.makeNixvimWithModule {
+          inherit pkgs;
+          module = import ./config;
+        };
         nvim = nixvim'.makeNixvimWithModule {
           inherit pkgs;
           module = import ./config;
@@ -39,8 +52,9 @@
         };
 
         packages = {
-          # Lets you run `nix run .` to start nixvim
-          default = nvim;
+          default = nvim-nightly;
+          inherit nvim-nightly;
+          inherit nvim;
         };
       });
 }
