@@ -1,0 +1,90 @@
+{pkgs, ...}: {
+  plugins.conform-nvim = {
+    enable = true;
+    formattersByFt = {
+      nix = ["alejandra"];
+      rust = ["rustfmt"];
+      python = ["isort" "ruff_format"];
+      json = ["jq"];
+      toml = ["taplo"];
+      yaml = ["yamlfmt"];
+      lua = ["stylua"];
+      "*" = ["trim_whitespace"];
+    };
+    formatters = {
+      alejandra.command = "${pkgs.alejandra}/bin/alejandra";
+      rustfmt.command = "${pkgs.rustfmt}/bin/rustfmt";
+      isort.command = "${pkgs.python311Packages.isort}/bin/isort";
+      ruff_format.command = "${pkgs.ruff}/bin/ruff";
+      jq.command = "${pkgs.jq}/bin/jq";
+      taplo.command = "${pkgs.taplo}/bin/taplo";
+      yamlfmt.command = "${pkgs.yamlfmt}/bin/yamlfmt";
+      stylua.command = "${pkgs.stylua}/bin/stylua";
+    };
+  };
+  extraConfigLua = ''
+    -- Set Format commands
+    vim.api.nvim_create_user_command("Format", function(args)
+      local range = nil
+      if args.count ~= -1 then
+        local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+        range = {
+          start = { args.line1, 0 },
+          ["end"] = { args.line2, end_line:len() },
+        }
+      end
+      require("conform").format({ async = true, lsp_fallback = true, range = range })
+    end, { range = true })
+
+    require("conform").setup({
+      format_on_save = function(bufnr)
+        -- Disable with a global or buffer-local variable
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+          return
+        end
+        return { timeout_ms = 500, lsp_fallback = true }
+      end,
+    })
+
+    vim.api.nvim_create_user_command("FormatDisable", function(args)
+      if args.bang then
+        -- FormatDisable! will disable formatting just for this buffer
+        vim.b.disable_autoformat = true
+      else
+        vim.g.disable_autoformat = true
+      end
+    end, {
+      desc = "Disable autoformat-on-save",
+      bang = true,
+    })
+    vim.api.nvim_create_user_command("FormatEnable", function()
+      vim.b.disable_autoformat = false
+      vim.g.disable_autoformat = false
+    end, {
+      desc = "Re-enable autoformat-on-save",
+    })
+
+    -- Make slow formatters automatically async
+    local slow_format_filetypes = {}
+    require("conform").setup({
+      format_on_save = function(bufnr)
+        if slow_format_filetypes[vim.bo[bufnr].filetype] then
+          return
+        end
+        local function on_format(err)
+          if err and err:match("timeout$") then
+            slow_format_filetypes[vim.bo[bufnr].filetype] = true
+          end
+        end
+
+        return { timeout_ms = 200, lsp_fallback = true }, on_format
+      end,
+
+      format_after_save = function(bufnr)
+        if not slow_format_filetypes[vim.bo[bufnr].filetype] then
+          return
+        end
+        return { lsp_fallback = true }
+      end,
+    })'';
+}

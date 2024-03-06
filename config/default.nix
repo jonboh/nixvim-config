@@ -19,6 +19,7 @@
     ./lsp-lines.nix
     ./indent-blankline.nix
     ./vimtex.nix
+    ./conform.nix
 
     # git
     ./gitsigns.nix
