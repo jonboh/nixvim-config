@@ -1,103 +1,103 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   keymaps = [
     {
       mode = "n";
       key = "<F35>"; # "<C-F11>"
       action = ''<cmd>lua require("dap").terminate()<cr>'';
-      options = { silent = true; };
+      options = {silent = true;};
     }
     {
       mode = "n";
       key = "<F1>";
       action = ''<cmd>lua require("dap").run_to_cursor()<cr>'';
-      options = { silent = true; };
+      options = {silent = true;};
     }
     {
       mode = "v";
       key = "<F4>";
       action = ''<cmd>lua require("dapui").eval(vim.fn.expand("<cword>"))<cr>'';
-      options = { silent = true; };
+      options = {silent = true;};
     }
     {
       mode = "n";
       key = "<F4>";
       action = ''<cmd>lua require("dapui").eval()<cr>'';
-      options = { silent = true; };
+      options = {silent = true;};
     }
     {
       mode = "n";
       key = "<F5>";
       action = ''<cmd>lua require("dap").toggle_breakpoint()<cr>'';
-      options = { silent = true; };
+      options = {silent = true;};
     }
     {
       mode = "n";
       key = "<F6>";
       action = ''<cmd>lua require("dap").continue()<cr>'';
-      options = { silent = true; };
+      options = {silent = true;};
     }
     {
       mode = "n";
       key = "<F7>";
       action = ''<cmd>lua require("dap").step_over()<cr>'';
-      options = { silent = true; };
+      options = {silent = true;};
     }
     {
       mode = "n";
       key = "<F8>";
       action = ''<cmd>lua require("dap").step_out()<cr>'';
-      options = { silent = true; };
+      options = {silent = true;};
     }
     {
       mode = "n";
       key = "<F9>";
       action = ''<cmd>lua require("dap").step_into()<cr>'';
-      options = { silent = true; };
+      options = {silent = true;};
     }
     {
       mode = "n";
       key = "<F11>";
       action = ''<cmd>lua require("dap").pause()<cr>'';
-      options = { silent = true; };
+      options = {silent = true;};
     }
     {
       mode = "n";
       key = "<F55>"; # <A-F8>
       action = ''<cmd>lua require("dap").down()<cr>'';
-      options = { silent = true; };
+      options = {silent = true;};
     }
     {
       mode = "n";
       key = "<F56>"; # <A-F9>
       action = ''<cmd>lua require("dap").up()<cr>'';
-      options = { silent = true; };
+      options = {silent = true;};
     }
     {
       mode = "n";
       key = "<F57>";
       action = ''<cmd>lua require("dap").focus_frame()<cr>'';
-      options = { silent = true; };
+      options = {silent = true;};
     }
     {
       mode = "n";
       key = "<F17>"; # <A-F9>
       action = ''
         <cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition:"))<cr>'';
-      options = { silent = true; };
+      options = {silent = true;};
     }
     {
       mode = "n";
       key = "<F12>";
       action = ''
         <cmd>lua require("dapui").toggle(1)<cr><cmd>lua require("dapui").toggle(2)<cr>'';
-      options = { silent = true; };
+      options = {silent = true;};
     }
   ];
   extraPlugins = [
     pkgs.vimPlugins.nvim-dap
     pkgs.vimPlugins.nvim-dap-ui
     pkgs.vimPlugins.nvim-dap-virtual-text
-    (pkgs.callPackage ../plugins/nvim-dap-rr.nix { })
+    (pkgs.callPackage ../plugins/nvim-dap-rr.nix {})
   ];
   extraConfigLua = ''
         local dap = require('dap')
@@ -334,5 +334,4 @@
         table.insert(dap.configurations.cpp, rr_dap.get_config())
 
   '';
-
 }

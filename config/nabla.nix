@@ -1,1 +1,1 @@
-{ pkgs, ... }: { extraPlugins = [ pkgs.vimExtraPlugins.nabla-nvim ]; }
+{pkgs, ...}: {extraPlugins = [pkgs.vimExtraPlugins.nabla-nvim];}

@@ -1,5 +1,8 @@
-{ lib, vimUtils, fetchFromGitHub }:
-
+{
+  lib,
+  vimUtils,
+  fetchFromGitHub,
+}:
 vimUtils.buildVimPlugin rec {
   pname = "nvim-dap-rr";
   version = "2023-10-25";
@@ -12,11 +15,10 @@ vimUtils.buildVimPlugin rec {
   };
 
   meta = with lib; {
-    description =
-      "Dap configuration for the record and replay debugger. Supports Rust, C++ and C";
+    description = "Dap configuration for the record and replay debugger. Supports Rust, C++ and C";
     homepage = "https://github.com/jonboh/nvim-dap-rr";
     license = licenses.mit;
-    maintainers = with maintainers; [ ];
+    maintainers = with maintainers; [];
     mainProgram = "nvim-dap-rr";
     platforms = platforms.all;
   };

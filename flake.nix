@@ -10,51 +10,54 @@
     # neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
   };
 
-  outputs = { nixpkgs, nixvim, flake-utils, nixneovimplugins, ... }@inputs:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        nixvimLib = nixvim.lib.${system};
-        pkgs-nightly = import nixpkgs {
-          inherit system;
-          overlays = [
-            nixneovimplugins.overlays.default
-            inputs.neovim-nightly-overlay.overlay
-            # inputs.neorg-overlay.overlays.default
-            (import ./overlays/image-nvim.nix)
-          ];
-
-        };
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [
-            nixneovimplugins.overlays.default
-            # inputs.neorg-overlay.overlays.default
-            (import ./overlays/image-nvim.nix)
-          ];
-
-        };
-        nixvim' = nixvim.legacyPackages.${system};
-        nvim-nightly = nixvim'.makeNixvimWithModule {
-          inherit pkgs;
-          module = import ./config;
-        };
-        nvim = nixvim'.makeNixvimWithModule {
-          inherit pkgs;
-          module = import ./config;
-        };
-      in {
-        checks = {
-          # Run `nix flake check .` to verify that your config is not broken
-          default = nixvimLib.check.mkTestDerivationFromNvim {
-            inherit nvim;
-            name = "A nixvim configuration";
-          };
-        };
-
-        packages = {
-          default = nvim-nightly;
-          inherit nvim-nightly;
+  outputs = {
+    nixpkgs,
+    nixvim,
+    flake-utils,
+    nixneovimplugins,
+    ...
+  } @ inputs:
+    flake-utils.lib.eachDefaultSystem (system: let
+      nixvimLib = nixvim.lib.${system};
+      pkgs-nightly = import nixpkgs {
+        inherit system;
+        overlays = [
+          nixneovimplugins.overlays.default
+          inputs.neovim-nightly-overlay.overlay
+          # inputs.neorg-overlay.overlays.default
+          (import ./overlays/image-nvim.nix)
+        ];
+      };
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          nixneovimplugins.overlays.default
+          # inputs.neorg-overlay.overlays.default
+          (import ./overlays/image-nvim.nix)
+        ];
+      };
+      nixvim' = nixvim.legacyPackages.${system};
+      nvim-nightly = nixvim'.makeNixvimWithModule {
+        inherit pkgs-nightly;
+        module = import ./config;
+      };
+      nvim = nixvim'.makeNixvimWithModule {
+        inherit pkgs;
+        module = import ./config;
+      };
+    in {
+      checks = {
+        # Run `nix flake check .` to verify that your config is not broken
+        default = nixvimLib.check.mkTestDerivationFromNvim {
           inherit nvim;
+          name = "A nixvim configuration";
         };
-      });
+      };
+
+      packages = {
+        default = nvim-nightly;
+        inherit nvim-nightly;
+        inherit nvim;
+      };
+    });
 }

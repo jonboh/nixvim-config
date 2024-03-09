@@ -1,1 +1,1 @@
-{ pkgs, ... }: { extraPlugins = [ pkgs.vimPlugins.asyncrun-vim ]; }
+{pkgs, ...}: {extraPlugins = [pkgs.vimPlugins.asyncrun-vim];}

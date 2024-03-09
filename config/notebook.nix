@@ -1,8 +1,7 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   extraPlugins = [
     pkgs.vimExtraPlugins.NotebookNavigator-nvim
     pkgs.vimExtraPlugins.hydra-nvim
-
   ];
 
   keymaps = [
@@ -10,25 +9,25 @@
       mode = "n";
       key = "<leader>x";
       action = "<cmd>lua require('notebook-navigator').run_and_move()<cr>";
-      options = { desc = "Run cell and move to next"; };
+      options = {desc = "Run cell and move to next";};
     }
     {
       mode = "n";
       key = "<leader>X";
       action = "<cmd>lua require('notebook-navigator').run_cell()<cr>";
-      options = { desc = "Run cell"; };
+      options = {desc = "Run cell";};
     }
     {
       mode = "n";
       key = ">c";
       action = "<cmd>lua require('notebook-navigator').move_cell('d')<cr>";
-      options = { desc = "Run cell"; };
+      options = {desc = "Run cell";};
     }
     {
       mode = "n";
       key = "<c";
       action = "<cmd>lua require('notebook-navigator').move_cell('u')<cr>";
-      options = { desc = "Run cell"; };
+      options = {desc = "Run cell";};
     }
   ];
 

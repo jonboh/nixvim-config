@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   config = {
-    options.completeopt = [ "menu" "menuone" "noselect" ];
+    options.completeopt = ["menu" "menuone" "noselect"];
 
     plugins = {
       luasnip.enable = true;
@@ -54,19 +54,19 @@
         };
 
         sources = [
-          { name = "path"; }
-          { name = "nvim_lsp"; }
-          { name = "luasnip"; }
+          {name = "path";}
+          {name = "nvim_lsp";}
+          {name = "luasnip";}
           {
             name = "buffer";
             # Words from other open buffers can also be suggested.
             option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
           }
-          { name = "neorg"; }
+          {name = "neorg";}
         ];
       };
     };
-    extraPlugins = [ pkgs.vimPlugins.cmp-cmdline ];
+    extraPlugins = [pkgs.vimPlugins.cmp-cmdline];
     extraConfigLua = ''
       local cmp = require("cmp")
 

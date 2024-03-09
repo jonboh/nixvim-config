@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  extraPlugins = [ pkgs.vimExtraPlugins.nnn-nvim ];
+{pkgs, ...}: {
+  extraPlugins = [pkgs.vimExtraPlugins.nnn-nvim];
   extraConfigLua = ''
     require("nnn").setup({
       --picker = {
@@ -10,13 +10,15 @@
       --},
     })
   '';
-  keymaps = [{
-    mode = "n";
-    key = "<C-b>";
-    action = "<cmd>NnnPicker<cr>";
-    options = {
-      silent = true;
-      desc = "Run nnn";
-    };
-  }];
+  keymaps = [
+    {
+      mode = "n";
+      key = "<C-b>";
+      action = "<cmd>NnnPicker<cr>";
+      options = {
+        silent = true;
+        desc = "Run nnn";
+      };
+    }
+  ];
 }

@@ -1,18 +1,18 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   plugins.neorg = {
     enable = true;
     modules = {
       "core.defaults".__empty = null;
-      "core.concealer" = { __empty = null; };
-      "core.dirman".config.workspaces = { vault = "~/doc/vault"; };
+      "core.concealer" = {__empty = null;};
+      "core.dirman".config.workspaces = {vault = "~/doc/vault";};
       #"core.tempus".__empty = null; # waiting for nvim 0.10
       #"core.ui.calendar".__empty = null;
       #  "core.completion".config.engine = "nvim-cmp";
-      "core.integrations.telescope" = { __empty = null; };
-      "core.integrations.treesitter" = { __empty = null; };
-      "core.integrations.image" = { __empty = null; };
-      "core.export" = { __empty = null; };
-      "core.export.markdown" = { __empty = null; };
+      "core.integrations.telescope" = {__empty = null;};
+      "core.integrations.treesitter" = {__empty = null;};
+      "core.integrations.image" = {__empty = null;};
+      "core.export" = {__empty = null;};
+      "core.export.markdown" = {__empty = null;};
       # "core.integrations.latex" = { __empty = null; };
       # "core.integrations.renderer" = { __empty = null; };
 
@@ -67,14 +67,16 @@
     };
   };
 
-  keymaps = [{
-    mode = "n";
-    key = "<leader>o";
-    action = "<cmd>Neorg workspace vault<cr>";
-    options = { desc = "Open vault"; };
-  }];
+  keymaps = [
+    {
+      mode = "n";
+      key = "<leader>o";
+      action = "<cmd>Neorg workspace vault<cr>";
+      options = {desc = "Open vault";};
+    }
+  ];
 
-  extraPlugins = [ pkgs.vimPlugins.neorg-telescope ];
+  extraPlugins = [pkgs.vimPlugins.neorg-telescope];
   extraConfigLua = ''
     --local callme = function()
     --  print("hello")

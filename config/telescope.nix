@@ -34,8 +34,7 @@
     {
       mode = "v";
       key = "<leader>s";
-      action =
-        ''"zy<cmd>exec "Telescope grep_string search=" . escape(@z, " ")<cr>'';
+      action = ''"zy<cmd>exec "Telescope grep_string search=" . escape(@z, " ")<cr>'';
       options = {
         silent = true;
         desc = "Find selection";

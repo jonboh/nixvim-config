@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   plugins = {
     lsp = {
       enable = true;
@@ -180,5 +180,5 @@
     }
   ];
 
-  extraPlugins = [ (pkgs.callPackage ../plugins/nvim-bacon.nix { }) ];
+  extraPlugins = [(pkgs.callPackage ../plugins/nvim-bacon.nix {})];
 }

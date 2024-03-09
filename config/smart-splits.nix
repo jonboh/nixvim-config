@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  extraPlugins = [ (pkgs.callPackage ../plugins/smart-splits.nix { }) ];
+{pkgs, ...}: {
+  extraPlugins = [(pkgs.callPackage ../plugins/smart-splits.nix {})];
 
   extraConfigLua = ''
         require("smart-splits").setup({

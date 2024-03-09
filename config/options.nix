@@ -1,6 +1,5 @@
 {
   config = {
-
     globals = {
       # Disable useless providers
       loaded_ruby_provider = 0; # Ruby
@@ -32,7 +31,7 @@
       smartcase = true;
 
       # other
-      colorcolumn = [ 80 100 ];
+      colorcolumn = [80 100];
       signcolumn = "yes";
       termguicolors = true;
       fileformat = "unix";
@@ -69,5 +68,4 @@
     #   vim.opt.shortmess:append("c")
     # '';
   };
-
 }

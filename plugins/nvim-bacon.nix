@@ -1,5 +1,8 @@
-{ lib, vimUtils, fetchFromGitHub }:
-
+{
+  lib,
+  vimUtils,
+  fetchFromGitHub,
+}:
 vimUtils.buildVimPlugin rec {
   pname = "nvim-bacon";
   version = "9310faab2ffc03a4b375ad20cab3191c96d612d3";
@@ -15,7 +18,7 @@ vimUtils.buildVimPlugin rec {
     description = "bacon's companion for neovim";
     homepage = "https://github.com/Canop/nvim-bacon";
     license = licenses.gpl3;
-    maintainers = with maintainers; [ ];
+    maintainers = with maintainers; [];
     platforms = platforms.all;
   };
 }
