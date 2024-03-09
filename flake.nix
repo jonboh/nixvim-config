@@ -38,7 +38,7 @@
       };
       nixvim' = nixvim.legacyPackages.${system};
       nvim-nightly = nixvim'.makeNixvimWithModule {
-        inherit pkgs-nightly;
+        pkgs = pkgs-nightly;
         module = import ./config;
       };
       nvim = nixvim'.makeNixvimWithModule {
