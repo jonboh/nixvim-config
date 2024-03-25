@@ -13,7 +13,7 @@
       "core.integrations.image" = {__empty = null;};
       "core.export" = {__empty = null;};
       "core.export.markdown" = {__empty = null;};
-      # "core.integrations.latex" = { __empty = null; };
+      "core.latex.renderer" = {__empty = null;};
       # "core.integrations.renderer" = { __empty = null; };
 
       "core.keybinds".config.hook.__raw = ''
@@ -84,12 +84,6 @@
 
   extraPlugins = [pkgs.vimPlugins.neorg-telescope];
   extraConfigLua = ''
-    --local callme = function()
-    --  print("hello")
-    --  end
-
-    --vim.callme = callme
-
     local neorg_callbacks = require("neorg.core.callbacks")
 
     neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, keybinds)
