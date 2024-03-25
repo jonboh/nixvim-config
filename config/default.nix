@@ -1,13 +1,17 @@
-{...}: {
-  # Import all your configuration modules here
-  imports = [
+{full, ...}: let
+  basic = [
     ./options.nix
     ./mappings.nix
     ./autocmd.nix
     ./undotree.nix
     ./clipboard.nix
-
-    # code
+    ./smart-splits.nix
+    ./colorscheme.nix
+    ./kitty-scrollback.nix
+    ./leap.nix
+    ./debugging.nix
+  ];
+  code = [
     ./lsp.nix
     ./dap.nix
     ./dap-python.nix
@@ -20,36 +24,59 @@
     ./indent-blankline.nix
     ./vimtex.nix
     ./conform.nix
-
-    # git
+    ./todo-comments.nix
+  ];
+  git = [
     ./gitsigns.nix
     ./fugitive.nix
-
-    # navigation
+  ];
+  navigation = [
     ./telescope.nix
     ./nnn.nix
-    ./leap.nix
     ./harpoon.nix
-    ./smart-splits.nix
-
-    # visuals
-    ./colorscheme.nix
+  ];
+  extraAppearance = [
     ./noice.nix
     ./dressing.nix
     ./lualine.nix
-    ./nabla.nix
     ./image.nix
-
-    # other
+  ];
+  integrations = [
     ./krita.nix
-    ./kitty-scrollback.nix
     ./notebook.nix
     ./asyncrun.nix
     ./toggle-term.nix
-    ./todo-comments.nix
     ./neorg.nix
     ./chatgpt.nix
     ./markdown-preview.nix
-    ./extraConfigLua.nix
   ];
+  imports =
+    basic
+    ++ (
+      if full
+      then navigation
+      else []
+    )
+    ++ (
+      if full
+      then code
+      else []
+    )
+    ++ (
+      if full
+      then git
+      else []
+    )
+    ++ (
+      if full
+      then extraAppearance
+      else []
+    )
+    ++ (
+      if full
+      then integrations
+      else []
+    );
+in {
+  inherit imports;
 }

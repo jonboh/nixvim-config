@@ -4,7 +4,5 @@
         print(vim.inspect(v))
         return v
     end
-
   '';
-  # TODO: add chatgpt
 }

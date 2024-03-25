@@ -39,12 +39,25 @@
       nixvim' = nixvim.legacyPackages.${system};
       nvim-nightly = nixvim'.makeNixvimWithModule {
         pkgs = pkgs-nightly;
-        module = import ./config;
+        module = import ./config {full = true;};
       };
       nvim = nixvim'.makeNixvimWithModule {
         inherit pkgs;
-        module = import ./config;
+        module = import ./config {full = true;};
       };
+      _nvim-light = nixvim'.makeNixvimWithModule {
+        inherit pkgs;
+        module = import ./config {full = false;};
+      };
+      nvim-light = with nixpkgs.legacyPackages.${system};
+        stdenv.mkDerivation {
+          name = "nvim-light";
+          buildInputs = [_nvim-light];
+          buildCommand = ''
+            mkdir -p $out/bin
+            ln -s ${_nvim-light}/bin/nvim $out/bin/nvim-light
+          '';
+        };
     in {
       checks = {
         # Run `nix flake check .` to verify that your config is not broken
@@ -58,6 +71,7 @@
         default = nvim-nightly;
         inherit nvim-nightly;
         inherit nvim;
+        inherit nvim-light;
       };
     });
 }
