@@ -74,6 +74,12 @@
       action = "<cmd>Neorg workspace vault<cr>";
       options = {desc = "Open vault";};
     }
+    {
+      mode = "n";
+      key = "<leader>hs";
+      action = ''<cmd>lua require('telescope.builtin').live_grep({ search_dirs = {'~/doc/vault'}, path_display = {"tail"} })<cr>'';
+      options = {desc = "Live grep over vault";};
+    }
   ];
 
   extraPlugins = [pkgs.vimPlugins.neorg-telescope];
