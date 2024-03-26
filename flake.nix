@@ -2,8 +2,9 @@
   description = "A nixvim configuration";
 
   inputs = {
-    nixvim.url = "github:jonboh/nixvim_";
+    # nixvim.url = "github:jonboh/nixvim_";
     # nixvim.url = "/home/jonboh/devel/nixvim_";
+    nixvim.url = "github:nix-community/nixvim";
     flake-utils.url = "github:numtide/flake-utils";
     nixneovimplugins.url = "github:NixNeovim/NixNeovimPlugins";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -25,7 +26,7 @@
           nixneovimplugins.overlays.default
           inputs.neovim-nightly-overlay.overlay
           # inputs.neorg-overlay.overlays.default
-          (import ./overlays/image-nvim.nix)
+          # (import ./overlays/image-nvim.nix)
         ];
       };
       pkgs = import nixpkgs {

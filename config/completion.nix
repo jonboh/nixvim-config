@@ -21,49 +21,49 @@
         };
       };
 
-      nvim-cmp = {
+      cmp = {
         enable = true;
 
-        snippet.expand = "luasnip";
+        settings = {
+          mapping = {
+            __raw = ''
+              cmp.mapping.preset.insert({
+                ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+                ['<C-d>'] = cmp.mapping.scroll_docs(4),
+                ['<C-e>'] = cmp.mapping(function()
+                                if cmp.visible() then
+                                    cmp.select_prev_item({behavior = cmp.SelectBehavior.Select})
+                                else
+                                    cmp.complete()
+                                end
+                            end),
+                ['<C-n>'] = cmp.mapping(function()
+                                if cmp.visible() then
+                                    cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
+                                else
+                                    cmp.complete()
+                                end
+                            end),
+                ['<C-a>'] = cmp.mapping.confirm({ select = true }),
+              })
+            '';
+          };
+          snippet = {
+            expand = "function(args) require('luasnip').lsp_expand(args.body) end";
+          };
 
-        mapping = {
-          "<C-u>" = "cmp.mapping.scroll_docs(-4)";
-          "<C-d>" = "cmp.mapping.scroll_docs(4)";
-          "<C-e>" = {
-            action = ''
-              cmp.mapping(function()
-                          if cmp.visible() then
-                              cmp.select_prev_item({behavior = cmp.SelectBehavior.Select})
-                          else
-                              cmp.complete()
-                          end
-                      end)'';
-          };
-          "<C-n>" = {
-            action = ''
-              cmp.mapping(function()
-                          if cmp.visible() then
-                              cmp.select_next_item({behavior = cmp.SelectBehavior.Select})
-                          else
-                              cmp.complete()
-                          end
-                      end)'';
-          };
-          "<C-a>" = "cmp.mapping.confirm({ select = true })";
-          # TODO: Add snippet completion functionality and doc window sizing
+          sources = [
+            {name = "path";}
+            {name = "nvim_lsp";}
+            {name = "luasnip";}
+            {
+              name = "buffer";
+              # Words from other open buffers can also be suggested.
+              option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
+            }
+            {name = "neorg";}
+          ];
         };
-
-        sources = [
-          {name = "path";}
-          {name = "nvim_lsp";}
-          {name = "luasnip";}
-          {
-            name = "buffer";
-            # Words from other open buffers can also be suggested.
-            option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
-          }
-          {name = "neorg";}
-        ];
       };
     };
     extraPlugins = [pkgs.vimPlugins.cmp-cmdline];
@@ -78,7 +78,7 @@
       --     })
       -- })
 
-      -- NOTE: this needs to be in sync with the nix config -- wtf! why?!
+      -- NOTE: this needs to be in sync with the nix config so that it works on cmdline and search
       local completion_mappings = {
           ["<C-u>"] = cmp.mapping.scroll_docs(-4);
           ["<C-d>"] = cmp.mapping.scroll_docs(4);
@@ -99,7 +99,6 @@
             ["<C-a>"] = { c = cmp.mapping.confirm({ select = true }) },
           }
 
-      -- TODO: fix cmdline completion
       cmp.setup.cmdline({ '/', '?' }, {
           mapping = completion_mappings,
           sources = {

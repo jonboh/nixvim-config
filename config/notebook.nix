@@ -1,7 +1,8 @@
 {pkgs, ...}: {
   extraPlugins = [
     pkgs.vimExtraPlugins.NotebookNavigator-nvim
-    pkgs.vimExtraPlugins.hydra-nvim
+    # NOTE: we don't need to use hydra if we dont use the extra mode
+    # pkgs.vimPlugins.hydra-nvim
   ];
 
   keymaps = [
