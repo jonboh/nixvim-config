@@ -11,9 +11,15 @@
       "core.integrations.telescope" = {__empty = null;};
       "core.integrations.treesitter" = {__empty = null;};
       "core.integrations.image" = {__empty = null;};
-      "core.export" = {__empty = null;};
-      "core.export.markdown" = {__empty = null;};
-      "core.latex.renderer" = {__empty = null;};
+      # "core.export" = {__empty = null;};
+      # "core.export.markdown" = {__empty = null;};
+      "core.latex.renderer" = {
+        config = {
+          conceal = false;
+          render_on_enter = true;
+          dpi = 200;
+        };
+      };
       # "core.integrations.renderer" = { __empty = null; };
 
       "core.keybinds".config.hook.__raw = ''
