@@ -4,11 +4,16 @@ self: super: {
     // {
       image-nvim = super.vimPlugins.image-nvim.overrideAttrs (oldAttrs: {
         src = super.fetchFromGitHub {
-          owner = "3rd";
+          owner = "jonboh";
           repo = "image.nvim";
-          rev = "4c6cb5ad93ee93d8d7b7c84e1eb291cee99f0a0e";
-          sha256 = "sha256-mh3J3lW2Co2uA7YJzSGum0ZmpJBP0ZzBWUvJLAI9bHw=";
+          rev = "88566b588af071262e73d2af95ff2f5d260066aa";
+          sha256 = "sha256-ZfNUZs3AAPrAWrc5vUtoE2cEo/Ijh67njSyq+604GDg=";
         };
+        # src = fetchTree {
+        #   path = /home/jonboh/devel/image.nvim;
+        #   narHash = "sha256-oKLFLUTuTkQ4dJ7GemdytkJ+RQcT0C0XBzcvX//PxE8=";
+        #   type = "path";
+        # };
       });
     };
 }
