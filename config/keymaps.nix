@@ -114,6 +114,30 @@
     }
     {
       mode = "n";
+      key = "<AS-Left>";
+      action = "<C-W>H";
+      options = {desc = "Move window Left";};
+    }
+    {
+      mode = "n";
+      key = "<AS-Down>";
+      action = "<C-W>J";
+      options = {desc = "Move window down";};
+    }
+    {
+      mode = "n";
+      key = "<AS-Up>";
+      action = "<C-W>K";
+      options = {desc = "Move window up";};
+    }
+    {
+      mode = "n";
+      key = "<AS-Right>";
+      action = "<C-W>L";
+      options = {desc = "Move window right";};
+    }
+    {
+      mode = "n";
       key = "<leader>r";
       action = ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>";
       options = {desc = "Substitute current word";};

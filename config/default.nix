@@ -1,7 +1,7 @@
 {full, ...}: let
   basic = [
     ./options.nix
-    ./mappings.nix
+    ./keymaps.nix
     ./autocmd.nix
     ./undotree.nix
     ./clipboard.nix
