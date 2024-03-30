@@ -47,7 +47,7 @@
     ./asyncrun.nix
     ./toggle-term.nix
     ./neorg.nix
-    ./chatgpt.nix
+    ./gp.nix
     ./markdown-preview.nix
   ];
   imports =
