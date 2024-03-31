@@ -4,6 +4,13 @@
     require("gp").setup({
        openai_api_key = { "rbw", "get", "platform.openai.com" }
       })
+
+    vim.api.nvim_create_user_command('ReloadGP', function()
+      require("gp").setup({
+         openai_api_key = { "rbw", "get", "platform.openai.com" }
+        })
+      end,
+      {})
   '';
   keymaps = [
     {
@@ -33,8 +40,14 @@
     {
       mode = ["n" "v"];
       key = "<C-g>n";
+      action = "<cmd>GpChatNew<cr>";
+      options = {desc = "New AI Chat";};
+    }
+    {
+      mode = ["n" "v"];
+      key = "<C-g>d";
       action = "<cmd>GpNextAgent<cr>";
-      options = {desc = "Next AI Agent";};
+      options = {desc = "New AI Chat";};
     }
     {
       mode = ["v"];
