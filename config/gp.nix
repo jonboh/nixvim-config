@@ -1,14 +1,13 @@
 {pkgs, ...}: {
   extraPlugins = [pkgs.vimExtraPlugins.gp-nvim];
   extraConfigLua = ''
-    require("gp").setup({
-       openai_api_key = { "rbw", "get", "platform.openai.com" }
-      })
+    local config = {
+      openai_api_key = { "rbw", "get", "platform.openai.com" }
+      }
+    require("gp").setup(config)
 
-    vim.api.nvim_create_user_command('ReloadGP', function()
-      require("gp").setup({
-         openai_api_key = { "rbw", "get", "platform.openai.com" }
-        })
+    vim.api.nvim_create_user_command('GPReload', function()
+      require("gp").setup(config)
       end,
       {})
   '';
