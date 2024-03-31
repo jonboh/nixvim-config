@@ -1,7 +1,20 @@
 {pkgs, ...}: {
   plugins.image = {
     enable = true;
-    package = pkgs.vimPlugins.image-nvim;
+    # package = pkgs.vimPlugins.image-nvim;
+    package = pkgs.vimPlugins.image-nvim.overrideAttrs (oldAttrs: {
+      src = pkgs.fetchFromGitHub {
+        owner = "3rd";
+        repo = "image.nvim";
+        rev = "a0b756d589c1623ebbfe344666e6d7c49bdc9d71";
+        sha256 = "sha256-4xsyVDZOFidvLqwfWRB7BPMOejWk3/uhsnUsCNG/hpU=";
+      };
+      # src = fetchTree {
+      #   path = /home/jonboh/devel/image.nvim;
+      #   narHash = "sha256-oKLFLUTuTkQ4dJ7GemdytkJ+RQcT0C0XBzcvX//PxE8=";
+      #   type = "path";
+      # };
+    });
 
     # integrations.clearInInsertMode = true;
     # windowOverlapClearEnabled = true;
