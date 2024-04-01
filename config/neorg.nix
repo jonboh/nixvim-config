@@ -5,18 +5,13 @@
 }: {
   plugins.neorg = {
     enable = true;
+    # package = pkgs.vimExtraPlugins.neorg; # NOTE: for nightly
     package = pkgs.vimPlugins.neorg.overrideAttrs (oldAttrs: {
-      # src = pkgs.fetchFromGitHub {
-      #   owner = "nvim-neorg";
-      #   repo = "neorg";
-      #   rev = "086891d396ac9fccd91faf1520f563b6eb9eb942";
-      #   sha256 = "1k152lzvizaf1i7gkbjilcvs9l9d13zs606qjw0mpvyhzy4rqd0r";
-      # };
       src = pkgs.fetchFromGitHub {
         owner = "jonboh";
         repo = "neorg";
-        rev = "8142bf065d3a5ea63e077a9750185d0f2b0a3766";
-        sha256 = "sha256-1wbPwW8tcTl+fd5YzuaKibwuQGhrMdloUHyNXKGlwN8=";
+        rev = "bd46cafb2ef1af8e47146b3e9a5dae607806f1f7";
+        sha256 = "sha256-jXkjJ6P5LFErtkzbXkOKfO70T9ZPfJ11BeTqYAhomoA=";
       };
       # src = fetchTree {
       #   path = /home/jonboh/devel/neorg;
