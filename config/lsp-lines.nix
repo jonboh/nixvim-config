@@ -9,4 +9,7 @@
       options = {desc = "Toggle lsp_lines";};
     }
   ];
+  extraConfigLua = ''
+    vim.diagnostic.config({virtual_lines=false})
+  '';
 }

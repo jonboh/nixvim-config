@@ -6,7 +6,7 @@
       }
     require("gp").setup(config)
 
-    vim.api.nvim_create_user_command('GPReload', function()
+    vim.api.nvim_create_user_command('GpReload', function()
       require("gp").setup(config)
       end,
       {})
@@ -38,27 +38,21 @@
     }
     {
       mode = ["n" "v"];
-      key = "<C-g>n";
+      key = "<C-g>c";
       action = "<cmd>GpChatNew<cr>";
       options = {desc = "New AI Chat";};
     }
     {
       mode = ["n" "v"];
-      key = "<C-g>d";
+      key = "<C-g>n";
       action = "<cmd>GpNextAgent<cr>";
       options = {desc = "New AI Chat";};
-    }
-    {
-      mode = ["v"];
-      key = "<C-g>s";
-      action = "<cmd>GpNew<cr>";
-      options = {desc = "Short explain";};
     }
     {
       mode = ["n" "v"];
       key = "<C-g>r";
       action = "<cmd>GpWhisper<cr>";
-      options = {desc = "Short explain";};
+      options = {desc = "Whisper Transcript";};
     }
   ];
   extraPackages = [(pkgs.sox.override {enableLame = true;})];
