@@ -1,6 +1,29 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  helpers,
+  ...
+}: {
   plugins.neorg = {
     enable = true;
+    package = pkgs.vimPlugins.neorg.overrideAttrs (oldAttrs: {
+      # src = pkgs.fetchFromGitHub {
+      #   owner = "nvim-neorg";
+      #   repo = "neorg";
+      #   rev = "086891d396ac9fccd91faf1520f563b6eb9eb942";
+      #   sha256 = "1k152lzvizaf1i7gkbjilcvs9l9d13zs606qjw0mpvyhzy4rqd0r";
+      # };
+      src = pkgs.fetchFromGitHub {
+        owner = "jonboh";
+        repo = "neorg";
+        rev = "8142bf065d3a5ea63e077a9750185d0f2b0a3766";
+        sha256 = "sha256-1wbPwW8tcTl+fd5YzuaKibwuQGhrMdloUHyNXKGlwN8=";
+      };
+      # src = fetchTree {
+      #   path = /home/jonboh/devel/neorg;
+      #   # narHash = "sha256-LnPyjyegqU22rOhi5FhWB3JIemCpawPwsjr4piT++Vw=";
+      #   type = "path";
+      # };
+    });
     modules = {
       "core.defaults".__empty = null;
       "core.concealer" = {__empty = null;};
@@ -15,7 +38,7 @@
       # "core.export.markdown" = {__empty = null;};
       "core.latex.renderer" = {
         config = {
-          conceal = false;
+          conceal = true;
           render_on_enter = true;
           dpi = 200;
         };
