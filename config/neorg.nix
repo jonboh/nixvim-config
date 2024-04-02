@@ -73,6 +73,13 @@
           keybinds.map(
             'norg',
             'n',
+            '<localleader><C-l>',
+            ':Neorg render-latex<CR>',
+            {silent=true}
+          )
+          keybinds.map(
+            'norg',
+            'n',
             '<localleader>f',
             ':Telescope neorg find_norg_files<CR>',
             {silent=true}
