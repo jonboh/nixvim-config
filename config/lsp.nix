@@ -23,6 +23,7 @@
     require('lspconfig').ruff_lsp.setup { }
     require('lspconfig').pyright.setup{ }
     require'lspconfig'.jsonnet_ls.setup{}
+    vim.api.nvim_create_user_command("LspFormat", vim.lsp.buf.format, {})
   '';
   keymaps = [
     {
