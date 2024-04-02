@@ -22,7 +22,12 @@
     modules = {
       "core.defaults".__empty = null;
       "core.concealer" = {__empty = null;};
-      "core.dirman".config.workspaces = {vault = "~/doc/vault";};
+      "core.dirman".config = {
+        workspaces = {
+          vault = "~/doc/vault";
+          default = "~/doc/vault";
+        };
+      };
       #"core.tempus".__empty = null; # waiting for nvim 0.10
       #"core.ui.calendar".__empty = null;
       #  "core.completion".config.engine = "nvim-cmp";
@@ -49,6 +54,13 @@
             'n',
             '<localleader>o',
             ':Neorg return<CR>',
+            {silent=true}
+          )
+          keybinds.map(
+            'norg',
+            'n',
+            '<localleader>j',
+            ':Neorg journal today<CR>',
             {silent=true}
           )
           keybinds.map(
