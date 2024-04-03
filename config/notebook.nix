@@ -9,33 +9,33 @@
   keymaps = [
     {
       mode = "n";
-      key = "<leader>x";
+      key = "<leader>e";
       action = "<cmd>lua require('notebook-navigator').run_and_move()<cr>";
-      options = {desc = "Run cell and move to next";};
+      options = {desc = "Evaluate cell and move to next";};
     }
     {
       mode = "n";
-      key = "<leader>X";
+      key = "<leader>E";
       action = "<cmd>lua require('notebook-navigator').run_cell()<cr>";
-      options = {desc = "Run cell";};
+      options = {desc = "Evaluate cell";};
     }
     {
       mode = "n";
       key = ">c";
       action = "<cmd>lua require('notebook-navigator').move_cell('d')<cr>";
-      options = {desc = "Run cell";};
+      options = {desc = "Evaluate cell";};
     }
     {
       mode = "n";
       key = "<c";
       action = "<cmd>lua require('notebook-navigator').move_cell('u')<cr>";
-      options = {desc = "Run cell";};
+      options = {desc = "Evaluate cell";};
     }
     {
       mode = "v";
-      key = "<leader>x";
+      key = "<leader>e";
       action = "<cmd>IPythonSendVisual<cr>";
-      options = {desc = "Run Visual Selection";};
+      options = {desc = "Evaluate Visual Selection";};
     }
   ];
 
