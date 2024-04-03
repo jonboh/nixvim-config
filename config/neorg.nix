@@ -10,8 +10,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "jonboh";
         repo = "neorg";
-        rev = "bd46cafb2ef1af8e47146b3e9a5dae607806f1f7";
-        sha256 = "sha256-jXkjJ6P5LFErtkzbXkOKfO70T9ZPfJ11BeTqYAhomoA=";
+        rev = "2bc02fddb510967ab66e9cc4bdc1cf9cab5be76b";
+        sha256 = "sha256-59N3RI3nLexduCiEIwuPhalmizZap1SVb9EHrzO65g4=";
       };
       # src = fetchTree {
       #   path = /home/jonboh/devel/neorg;
@@ -39,8 +39,9 @@
       "core.latex.renderer" = {
         config = {
           conceal = true;
-          render_on_enter = true;
-          dpi = 200;
+          render_on_enter = false;
+          bounded_geometry = false;
+          dpi = 300;
         };
       };
       # "core.integrations.renderer" = { __empty = null; };
