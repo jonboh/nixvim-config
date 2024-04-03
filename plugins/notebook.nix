@@ -9,8 +9,8 @@ vimUtils.buildVimPlugin rec {
   src = fetchFromGitHub {
     owner = "jonboh";
     repo = "NotebookNavigator.nvim";
-    rev = "16fed604653aa9aa7c9c421536c6c92feef2bc38";
-    hash = "sha256-0kAF47Zbfyf6CsuK6ck1pXpwe0GB2D+Gld9SVEKkFYg=";
+    rev = "34dc9b6f3bb72e5430e5307af006a73be814ae3e";
+    hash = "sha256-8YI0caQNF9GyeumklCyE8YBeK3HOCrhy+sSROFcKHAk=";
   };
 
   # src = fetchTree {

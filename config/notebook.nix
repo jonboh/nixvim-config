@@ -46,6 +46,32 @@
         show_hydra_hint = false,
       })
 
+    --https://github.com/akinsho/toggleterm.nvim/issues/425#issuecomment-1854373704
+    function send_visual_lines()
+      -- visual markers only update after leaving visual mode
+      local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
+      vim.api.nvim_feedkeys(esc, "x", false)
+
+      -- get selected text
+      local start_line, start_col = unpack(vim.api.nvim_buf_get_mark(0, "<"))
+      local end_line, end_col = unpack(vim.api.nvim_buf_get_mark(0, ">"))
+      local lines = vim.fn.getline(start_line, end_line)
+
+      -- send selection with trimmed indent
+      local cmd = ""
+      local indent = nil
+      for _, line in ipairs(lines) do
+        if indent == nil and line:find("[^%s]") ~= nil then
+          indent = line:find("[^%s]")
+        end
+        -- (i)python interpreter evaluates sent code on empty lines -> remove
+        if not line:match("^%s*$") then
+          cmd = cmd .. line:sub(indent or 1) .. string.char(13) -- trim indent
+        end
+      end
+      require("toggleterm").exec(cmd, 1)
+    end
+
     -- taken from: https://github.com/akinsho/toggleterm.nvim?tab=readme-ov-file#sending-lines-to-the-terminal
     vim.api.nvim_create_user_command('IPythonOpen', function()
       require("toggleterm").exec("ipython --no-autoindent", 1, 80, vim.fn.getcwd(), "vertical")
@@ -62,7 +88,8 @@
     vim.api.nvim_create_user_command('IPythonSendVisualSelection', function()
       local toggleterm = require("toggleterm")
       if vim.api.nvim_get_mode().mode == 'V' then
-        toggleterm.send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
+        -- toggleterm.send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
+        send_visual_lines()
       else
         toggleterm.send_lines_to_terminal("visual_selection", trim_spaces, { args = vim.v.count })
       end
