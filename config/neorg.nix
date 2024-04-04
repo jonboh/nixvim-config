@@ -10,12 +10,11 @@
       src = pkgs.fetchFromGitHub {
         owner = "jonboh";
         repo = "neorg";
-        rev = "2bc02fddb510967ab66e9cc4bdc1cf9cab5be76b";
-        sha256 = "sha256-59N3RI3nLexduCiEIwuPhalmizZap1SVb9EHrzO65g4=";
+        rev = "f23036c2bd3a07a032d16157e5c5b79de4dd74f6";
+        sha256 = "sha256-cjTpnT/qzMFY5UKUWj7S4b8tKnPfDcdmMq0QkH0YWPY=";
       };
       # src = fetchTree {
       #   path = /home/jonboh/devel/neorg;
-      #   # narHash = "sha256-LnPyjyegqU22rOhi5FhWB3JIemCpawPwsjr4piT++Vw=";
       #   type = "path";
       # };
     });
