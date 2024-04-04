@@ -25,6 +25,7 @@
     ./vimtex.nix
     ./conform.nix
     ./todo-comments.nix
+    ./devdocs.nix
   ];
   git = [
     ./gitsigns.nix

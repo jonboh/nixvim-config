@@ -99,6 +99,7 @@
       };
     }
     {
+      # TODO: this breaks keyword search. use lsp on_attach
       mode = "n";
       key = "K";
       action = "<cmd>lua vim.lsp.buf.hover()<cr>";
