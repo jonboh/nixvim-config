@@ -43,16 +43,34 @@
       options = {desc = "New AI Chat";};
     }
     {
+      mode = "n";
+      key = "<C-g>z";
+      action = "<cmd>GpNew<cr>";
+      options = {desc = "New AI Chat";};
+    }
+    {
+      mode = "v";
+      key = "<C-g>z";
+      action = ":'<,'>GpNew<cr>";
+      options = {desc = "New AI Chat";};
+    }
+    {
       mode = ["n" "v"];
       key = "<C-g>n";
       action = "<cmd>GpNextAgent<cr>";
-      options = {desc = "New AI Chat";};
+      options = {desc = "Next AI Agent";};
     }
     {
       mode = ["n" "v"];
       key = "<C-g>r";
       action = "<cmd>GpWhisper<cr>";
       options = {desc = "Whisper Transcript";};
+    }
+    {
+      mode = "n";
+      key = "<C-g>s";
+      action = "<cmd>GpStop<cr>";
+      options = {desc = "Stop response";};
     }
   ];
   extraPackages = [(pkgs.sox.override {enableLame = true;})];
