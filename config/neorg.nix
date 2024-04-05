@@ -20,21 +20,17 @@
     });
     modules = {
       "core.defaults".__empty = null;
-      "core.concealer" = {__empty = null;};
+      "core.concealer".__empty = null;
       "core.dirman".config = {
         workspaces = {
           vault = "~/doc/vault";
           default = "~/doc/vault";
         };
       };
-      #"core.tempus".__empty = null; # waiting for nvim 0.10
-      #"core.ui.calendar".__empty = null;
-      #  "core.completion".config.engine = "nvim-cmp";
-      "core.integrations.telescope" = {__empty = null;};
-      "core.integrations.treesitter" = {__empty = null;};
-      "core.integrations.image" = {__empty = null;};
-      # "core.export" = {__empty = null;};
-      # "core.export.markdown" = {__empty = null;};
+      "core.ui.calendar".__empty = null;
+      "core.integrations.telescope".__empty = null;
+      "core.integrations.treesitter".__empty = null;
+      "core.integrations.image".__empty = null;
       "core.latex.renderer" = {
         config = {
           conceal = true;
@@ -43,7 +39,6 @@
           dpi = 300;
         };
       };
-      # "core.integrations.renderer" = { __empty = null; };
 
       "core.keybinds".config.hook.__raw = ''
         function(keybinds)
