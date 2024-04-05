@@ -1,9 +1,52 @@
 {pkgs, ...}: {
   extraPlugins = [pkgs.vimExtraPlugins.gp-nvim];
   extraConfigLua = ''
+    local chat_system_prompt = "You are a helpful AI assistant.\n\n"
+            .. "The user provided the additional info about how they would like you to respond:\n\n"
+            .. "- If you're unsure don't guess and say you don't know instead.\n"
+            .. "- Don't elide any code from your output if the answer requires coding.\n"
+            .. "- No yapping.\n"
     local config = {
-      openai_api_key = { "rbw", "get", "platform.openai.com" }
+      openai_api_key = { "rbw", "get", "platform.openai.com" },
+      agents = {
+        {
+          name = "ChatGPT4",
+          chat = true,
+          command = false,
+          model = { model = "gpt-4-1106-preview", temperature = 1.1, top_p = 1 },
+          system_prompt = chat_system_prompt
+        },
+        {
+          name = "ChatGPT3-5",
+          chat = true,
+          command = false,
+          model = { model = "gpt-3.5-turbo-1106", temperature = 1.1, top_p = 1 },
+          system_prompt = chat_system_prompt
+        },
+        {
+          name = "CodeGPT4",
+          chat = false,
+          command = true,
+          -- string with model name or table with model name and parameters
+          model = { model = "gpt-4-1106-preview", temperature = 0.8, top_p = 1 },
+          -- system prompt (use this to specify the persona/role of the AI)
+          system_prompt = "You are an AI working as a code editor.\n\n"
+            .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
+            .. "START AND END YOUR ANSWER WITH:\n\n```",
+        },
+        {
+          name = "CodeGPT3-5",
+          chat = false,
+          command = true,
+          -- string with model name or table with model name and parameters
+          model = { model = "gpt-3.5-turbo-1106", temperature = 0.8, top_p = 1 },
+          -- system prompt (use this to specify the persona/role of the AI)
+          system_prompt = "You are an AI working as a code editor.\n\n"
+            .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
+            .. "START AND END YOUR ANSWER WITH:\n\n```",
+        }
       }
+    }
     require("gp").setup(config)
 
     vim.api.nvim_create_user_command('GpReload', function()
