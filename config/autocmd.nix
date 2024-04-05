@@ -13,7 +13,18 @@
       pattern = "nix";
       command = "setlocal tabstop=2 shiftwidth=2";
     }
-
+    # Set conceallevel only on neorg files
+    {
+      event = "FileType";
+      pattern = "norg";
+      command = "setlocal conceallevel=2";
+    }
+    # Set markdown to wrap, it helps with devdocs
+    {
+      event = "FileType";
+      pattern = "markdown";
+      command = "setlocal wrap";
+    }
     # Enable spellcheck for some filetypes
     {
       event = "FileType";
