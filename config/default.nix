@@ -50,6 +50,7 @@
     ./neorg.nix
     ./gp.nix
     ./markdown-preview.nix
+    ./dadbod.nix
   ];
   imports =
     basic

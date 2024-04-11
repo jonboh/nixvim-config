@@ -17,6 +17,7 @@
             luasnip = "[snip]";
             buffer = "[buffer]";
             neorg = "[neorg]";
+            vim-dadbod-completion = "[DB]";
           };
         };
       };
@@ -62,6 +63,7 @@
               option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
             }
             {name = "neorg";}
+            {name = "vim-dadbod-completion";}
           ];
         };
       };
