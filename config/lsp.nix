@@ -156,6 +156,7 @@
       },
     }
     for _, map in ipairs(keymaps) do
+      map.options["buffer"] = bufnr
       vim.keymap.set(map.mode, map.key, map.action, map.options)
     end
   '';
