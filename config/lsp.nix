@@ -1,4 +1,11 @@
 {pkgs, ...}: let
+  extraCapabilities = ''
+    -- for ufo-nvim
+    capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true
+    }
+  '';
   onAttach = ''
     local keymaps = {
       {
@@ -170,6 +177,7 @@ in {
         ltex.enable = true;
       };
       onAttach = onAttach;
+      capabilities = extraCapabilities;
     };
 
     lspkind.enable = true;
@@ -181,20 +189,31 @@ in {
     };
   };
   extraConfigLua = ''
+    -- copy of __lspCapabilities from nixvim, which is not visible in extraConfigLua
+    local lspCapabilities = function()
+      capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+      ${extraCapabilities}
+      return capabilities
+    end
+
     require('lspconfig').ruff_lsp.setup {
       on_attach = function(client, bufnr)
           ${onAttach}
         end,
+      capabilities = lspCapabilities()
       }
     require('lspconfig').pyright.setup {
       on_attach = function(client, bufnr)
           ${onAttach}
         end,
+      capabilities = lspCapabilities()
       }
     require'lspconfig'.jsonnet_ls.setup {
       on_attach = function(client, bufnr)
           ${onAttach}
         end,
+      capabilities = lspCapabilities()
       }
     vim.api.nvim_create_user_command("LspFormat", vim.lsp.buf.format, {})
   '';

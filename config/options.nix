@@ -45,14 +45,6 @@
       backup = false;
       undofile = true;
 
-      # folding
-      foldmethod = "expr";
-      foldexpr = "nvim_treesitter#foldexpr()";
-      foldminlines = 3;
-      foldenable = true;
-      foldlevel = 99;
-      foldlevelstart = 99;
-
       # leader
       timeout = true;
       timeoutlen = 500;
@@ -62,11 +54,5 @@
 
       cmdheight = 0;
     };
-    # extraConfigLua = ''
-    #   vim.opt.shortmess:append("S")
-    #   vim.opt.shortmess:append("C")
-    #   vim.opt.shortmess:append("s")
-    #   vim.opt.shortmess:append("c")
-    # '';
   };
 }

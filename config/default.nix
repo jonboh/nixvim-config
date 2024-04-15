@@ -41,6 +41,7 @@
     ./dressing.nix
     ./lualine.nix
     ./image.nix
+    ./ufo-fold.nix
   ];
   integrations = [
     ./krita.nix
