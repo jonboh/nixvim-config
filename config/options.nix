@@ -50,7 +50,8 @@
       foldexpr = "nvim_treesitter#foldexpr()";
       foldminlines = 3;
       foldenable = true;
-      foldlevelstart = 9;
+      foldlevel = 99;
+      foldlevelstart = 99;
 
       # leader
       timeout = true;
