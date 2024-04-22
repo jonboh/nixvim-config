@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   config = {
-    options.completeopt = ["menu" "menuone" "noselect"];
+    opts.completeopt = ["menu" "menuone" "noselect"];
 
     plugins = {
       luasnip.enable = true;

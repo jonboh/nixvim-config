@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   config = {
-    options = {
+    opts = {
       # folding
       foldenable = true;
       foldlevel = 99;

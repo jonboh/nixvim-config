@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   config = {
-    options = {
+    opts = {
       list = true;
       listchars = "space:⋅";
     };

@@ -2,13 +2,13 @@
   description = "A nixvim configuration";
 
   inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixvim.url = "github:jonboh/nixvim_";
     # nixvim.url = "/home/jonboh/devel/nixvim_";
     nixvim.url = "github:nix-community/nixvim";
     flake-utils.url = "github:numtide/flake-utils";
     nixneovimplugins.url = "github:NixNeovim/NixNeovimPlugins";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    # neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
   };
 
   outputs = {

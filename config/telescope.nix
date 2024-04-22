@@ -3,11 +3,12 @@
     enable = true;
     extensions = {
       fzf-native.enable = true;
-      file_browser = {
+      file-browser = {
         enable = true;
-        path = "%:p:h";
-        hidden = true;
-        # follow-symlinks = true;
+        settings = {
+          path = "%:p:h";
+          hidden = true;
+        };
       };
     };
   };

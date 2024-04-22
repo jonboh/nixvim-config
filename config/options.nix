@@ -7,7 +7,7 @@
       loaded_python_provider = 0; # Python 2
     };
 
-    options = {
+    opts = {
       number = true;
       relativenumber = true;
       cursorline = true;
