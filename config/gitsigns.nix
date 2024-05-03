@@ -13,13 +13,13 @@
         end
 
         -- Navigation
-        map('n', ']c', function()
+        map('n', 'j<Down>', function()
           if vim.wo.diff then return ']c' end
           vim.schedule(function() gs.next_hunk() end)
           return '<Ignore>'
         end, {expr=true})
 
-        map('n', '[c', function()
+        map('n', 'j<Up>', function()
           if vim.wo.diff then return '[c' end
           vim.schedule(function() gs.prev_hunk() end)
           return '<Ignore>'
@@ -37,8 +37,7 @@
         map('n', 'jb', function() gs.blame_line{full=true} end)
         map('n', 'jB', gs.toggle_current_line_blame)
         map('n', 'jd', gs.diffthis)
-        map('n', 'jD', function() gs.diffthis('~') end)
-        map('n', 'jg', gs.toggle_deleted)
+        map('n', 'jD', function() gs.diffthis('~'..vim.api.nvim_get_vvar('count')) end)
 
         -- Text object
         -- map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
