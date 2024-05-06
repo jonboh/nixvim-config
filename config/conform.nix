@@ -9,6 +9,7 @@
       toml = ["taplo"];
       yaml = ["yamlfmt"];
       lua = ["stylua"];
+      html = ["prettier"];
       "*" = ["trim_whitespace"];
     };
     formatters = {
@@ -20,6 +21,7 @@
       taplo.command = "${pkgs.taplo}/bin/taplo";
       yamlfmt.command = "${pkgs.yamlfmt}/bin/yamlfmt";
       stylua.command = "${pkgs.stylua}/bin/stylua";
+      prettier.command = "${pkgs.nodePackages.prettier}/bin/prettier";
     };
 
     formatOnSave = ''
