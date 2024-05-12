@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  new_chat_shortcut = "<C-g><C-c>";
+in {
   extraPlugins = [pkgs.vimExtraPlugins.gp-nvim];
   extraConfigLua = ''
     local chat_system_prompt = "You are a helpful AI assistant.\n\n"
@@ -10,21 +12,21 @@
       openai_api_key = { "rbw", "get", "platform.openai.com" },
       agents = {
         {
-          name = "ChatGPT4",
+          name = "ChatGPT4-P",
           chat = true,
           command = false,
           model = { model = "gpt-4-1106-preview", temperature = 1.1, top_p = 1 },
           system_prompt = chat_system_prompt
         },
         {
-          name = "ChatGPT3-5",
+          name = "ChatGPT3-5-P",
           chat = true,
           command = false,
           model = { model = "gpt-3.5-turbo-1106", temperature = 1.1, top_p = 1 },
           system_prompt = chat_system_prompt
         },
         {
-          name = "CodeGPT4",
+          name = "CodeGPT4-P",
           chat = false,
           command = true,
           -- string with model name or table with model name and parameters
@@ -35,7 +37,7 @@
             .. "START AND END YOUR ANSWER WITH:\n\n```",
         },
         {
-          name = "CodeGPT3-5",
+          name = "CodeGPT3-5-P",
           chat = false,
           command = true,
           -- string with model name or table with model name and parameters
@@ -45,14 +47,18 @@
             .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
             .. "START AND END YOUR ANSWER WITH:\n\n```",
         }
-      }
+      },
+      chat_shortcut_respond = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g><C-g>" },
+      chat_shortcut_delete = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>d" },
+      chat_shortcut_stop = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>s" },
+      chat_shortcut_new = { modes = { "n", "i", "v", "x" }, shortcut = "${new_chat_shortcut}" },
     }
     require("gp").setup(config)
 
     vim.api.nvim_create_user_command('GpReload', function()
       require("gp").setup(config)
       end,
-      {})
+    {})
   '';
   keymaps = [
     {
@@ -81,7 +87,7 @@
     }
     {
       mode = ["n" "v"];
-      key = "<C-g>c";
+      key = "${new_chat_shortcut}";
       action = "<cmd>GpChatNew<cr>";
       options = {desc = "New AI Chat";};
     }
