@@ -23,8 +23,8 @@
       "core.concealer".__empty = null;
       "core.dirman".config = {
         workspaces = {
-          vault = "~/doc/vault";
-          default = "~/doc/vault";
+          vault = "~/vault";
+          default = "~/vault";
         };
       };
       "core.ui.calendar".__empty = null;
@@ -115,7 +115,7 @@
     {
       mode = "n";
       key = "<leader>hs";
-      action = ''<cmd>lua require('telescope.builtin').live_grep({ search_dirs = {'~/doc/vault'}, path_display = {"tail"} })<cr>'';
+      action = ''<cmd>lua require('telescope.builtin').live_grep({ search_dirs = {'~/vault'}, path_display = {"tail"} })<cr>'';
       options = {desc = "Live grep over vault";};
     }
   ];
