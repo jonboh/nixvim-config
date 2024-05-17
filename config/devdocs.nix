@@ -18,6 +18,7 @@
         "jq",
         "postgresql-16",
         "influxdata",
+        "html",
         },
       })
   '';
