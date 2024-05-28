@@ -6,18 +6,18 @@
   plugins.neorg = {
     enable = true;
     # package = pkgs.vimExtraPlugins.neorg; # NOTE: for nightly
-    package = pkgs.vimPlugins.neorg.overrideAttrs (oldAttrs: {
-      src = pkgs.fetchFromGitHub {
-        owner = "jonboh";
-        repo = "neorg";
-        rev = "f23036c2bd3a07a032d16157e5c5b79de4dd74f6";
-        sha256 = "sha256-cjTpnT/qzMFY5UKUWj7S4b8tKnPfDcdmMq0QkH0YWPY=";
-      };
-      # src = fetchTree {
-      #   path = /home/jonboh/devel/neorg;
-      #   type = "path";
-      # };
-    });
+    # package = pkgs.vimPlugins.neorg.overrideAttrs (oldAttrs: {
+    #   src = pkgs.fetchFromGitHub {
+    #     owner = "jonboh";
+    #     repo = "neorg";
+    #     rev = "f23036c2bd3a07a032d16157e5c5b79de4dd74f6";
+    #     sha256 = "sha256-cjTpnT/qzMFY5UKUWj7S4b8tKnPfDcdmMq0QkH0YWPY=";
+    #   };
+    #   # src = fetchTree {
+    #   #   path = /home/jonboh/devel/neorg;
+    #   #   type = "path";
+    #   # };
+    # });
     modules = {
       "core.defaults".__empty = null;
       "core.concealer".__empty = null;
