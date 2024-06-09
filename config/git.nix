@@ -1,5 +1,31 @@
 {
+  plugins.fugitive.enable = true;
+
   plugins.gitsigns = {enable = true;};
+
+  keymaps = [
+    {
+      mode = "n";
+      key = "jp";
+      action = "<cmd>diffput<cr>";
+    }
+    {
+      mode = "n";
+      key = "jg";
+      action = "<cmd>diffget<cr>";
+    }
+    # for 3 way diff
+    {
+      mode = "n";
+      key = "j<Left>";
+      action = "<cmd>diffget /:2<cr>";
+    }
+    {
+      mode = "n";
+      key = "j<Right>";
+      action = "<cmd>diffget /:3<cr>";
+    }
+  ];
 
   extraConfigLua = ''
     require('gitsigns').setup{

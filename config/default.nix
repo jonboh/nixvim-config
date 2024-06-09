@@ -28,8 +28,7 @@
     ./devdocs.nix
   ];
   git = [
-    ./gitsigns.nix
-    ./fugitive.nix
+    ./git.nix
   ];
   navigation = [
     ./telescope.nix
