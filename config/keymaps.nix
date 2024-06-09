@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   globals.mapleader = " ";
   globals.maplocalleader = "h";
   keymaps = [
@@ -9,18 +9,13 @@
       action = "<C-\\><C-n>";
       options = {desc = "Make Esc take you out of Terminal mode";};
     }
-    # {
-    #   mode = "n";
-    #   key = "<Esc>";
-    #   action = "<cmd>nohls<cr><Esc>";
-    #   options = {
-    #     desc = "<Esc>, clear search highlight and dismiss Noice notifications";
-    #   };
-    # }
     {
       mode = "n";
       key = "<Esc>";
-      action = "<cmd>nohls<cr><cmd>NoiceDismiss<cr><Esc>";
+      action =
+        if config.plugins.noice.enable
+        then "<cmd>nohls<cr><cmd>NoiceDismiss<cr><Esc>"
+        else "<cmd>nohls<cr>";
       options = {
         desc = "<Esc>, clear search highlight and dismiss Noice notifications";
       };
