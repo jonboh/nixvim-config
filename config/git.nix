@@ -18,12 +18,29 @@
     {
       mode = "n";
       key = "j<Left>";
-      action = "<cmd>diffget /:2<cr>";
+      action = "<cmd>diffget //2<cr>";
     }
     {
       mode = "n";
       key = "j<Right>";
-      action = "<cmd>diffget /:3<cr>";
+      action = "<cmd>diffget //3<cr>";
+    }
+
+    {
+      mode = "n";
+      key = "jd";
+      action = "<cmd>Gvdiffsplit!<cr>";
+      options = {
+        desc = "Diff againt HEAD";
+      };
+    }
+    {
+      mode = "n";
+      key = "jD";
+      action = "<cmd>lua vim.cmd(\"Gvdiffsplit! HEAD~\"..vim.api.nvim_get_vvar('count'))<cr>";
+      options = {
+        desc = "Diff againt HEAD~<count>";
+      };
     }
   ];
 
@@ -62,8 +79,6 @@
         map('n', 'jv', gs.preview_hunk)
         map('n', 'jb', function() gs.blame_line{full=true} end)
         map('n', 'jB', gs.toggle_current_line_blame)
-        map('n', 'jd', gs.diffthis)
-        map('n', 'jD', function() gs.diffthis('~'..vim.api.nvim_get_vvar('count')) end)
 
         -- Text object
         -- map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
