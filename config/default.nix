@@ -10,6 +10,7 @@
     ./kitty-scrollback.nix
     ./leap.nix
     ./debugging.nix
+    ./cloak.nix
   ];
   code = [
     ./lsp.nix

@@ -1,0 +1,5 @@
+{
+  plugins.cloak = {
+    enable = true;
+  };
+}
