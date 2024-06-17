@@ -5,13 +5,13 @@
 }:
 vimUtils.buildVimPlugin {
   pname = "kitty-scrollback.nvim";
-  version = "v4.0.3";
+  version = "v5.0.0";
 
   src = fetchFromGitHub {
     owner = "mikesmithgh";
     repo = "kitty-scrollback.nvim";
-    rev = "78dd609368aa20bd6fbd801cce73ea30787ebe21";
-    hash = "sha256-RAqRIrKKaRoBVLTlI18hCHvGwUb/YVfIb3soNmyO24w=";
+    rev = "v5.0.0";
+    hash = "sha256-TV++v8aH0Vi9UZEdTT+rUpu6HKAfhu04EwAgGbfk614=";
   };
 
   meta = with lib; {
