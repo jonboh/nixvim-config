@@ -1,28 +1,98 @@
 {pkgs, ...}: let
   new_chat_shortcut = "<C-g><C-c>";
+  # NOTE: kind of hacky way to force the removal of these models
+  droppedModels = ''
+    {
+      name = "CodeCopilot"
+    },
+    {
+      name = "CodeGemini"
+    },
+    {
+      name = "CodePerplexityMixtral"
+    },
+    {
+      name = "CodeOllamaDeepSeek"
+    },
+    {
+      name = "CodeClaude-3-Haiku"
+    },
+    {
+      name = "CodeGPT35-P"
+    },
+    {
+      name = "CodeGPT3-5"
+    },
+    {
+      name = "CodeGPT4"
+    },
+    {
+      name = "ChatOllama"
+    },
+    {
+      name = "ChatLMStudio"
+    },
+    {
+      name = "ChatPerplexityMixtral"
+    },
+    {
+      name = "ChatClaude-3-Haiku"
+    },
+    {
+      name = "ChatCopilot"
+    },
+    {
+      name = "ChatGPT3-5"
+    },
+    {
+      name = "ChatGPT4"
+    },
+    {
+      name = "ChatGemini"
+    },
+  '';
 in {
-  extraPlugins = [pkgs.vimExtraPlugins.gp-nvim];
+  # extraPlugins = [pkgs.vimExtraPlugins.gp-nvim];
+  extraPlugins = [(pkgs.callPackage ../plugins/gp-nvim.nix {})];
   extraConfigLua = ''
     local chat_system_prompt = "You are a helpful AI assistant.\n\n"
             .. "The user provided the additional info about how they would like you to respond:\n\n"
             .. "- If you're unsure don't guess and say you don't know instead.\n"
             .. "- Don't elide any code from your output if the answer requires coding.\n"
             .. "- No yapping.\n"
+    local code_system_prompt = "You are an AI working as a code editor.\n\n"
+            .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
+            .. "START AND END YOUR ANSWER WITH:\n\n```"
     local config = {
       openai_api_key = { "rbw", "get", "platform.openai.com" },
       agents = {
+        {
+          name = "Mistral7B-Instruct",
+          provider = "ollama",
+          chat = true,
+          command = false,
+          model = {
+            model = "mistral:7b-instruct-v0.2-q4_K_M",
+            num_ctx = 8192,
+          },
+          system_prompt = chat_system_prompt
+        },
+        {
+          name = "CodeMistral7B-Instruct",
+          provider = "ollama",
+          chat = false,
+          command = true,
+          model = {
+            model = "mistral:7b-instruct-v0.2-q4_K_M",
+            num_ctx = 8192,
+          },
+          system_prompt = code_system_prompt
+        },
         {
           name = "ChatGPT4-P",
           chat = true,
           command = false,
           model = { model = "gpt-4-1106-preview", temperature = 1.1, top_p = 1 },
-          system_prompt = chat_system_prompt
-        },
-        {
-          name = "ChatGPT3-5-P",
-          chat = true,
-          command = false,
-          model = { model = "gpt-3.5-turbo-1106", temperature = 1.1, top_p = 1 },
           system_prompt = chat_system_prompt
         },
         {
@@ -32,21 +102,9 @@ in {
           -- string with model name or table with model name and parameters
           model = { model = "gpt-4-1106-preview", temperature = 0.8, top_p = 1 },
           -- system prompt (use this to specify the persona/role of the AI)
-          system_prompt = "You are an AI working as a code editor.\n\n"
-            .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
-            .. "START AND END YOUR ANSWER WITH:\n\n```",
+          system_prompt = code_system_prompt
         },
-        {
-          name = "CodeGPT3-5-P",
-          chat = false,
-          command = true,
-          -- string with model name or table with model name and parameters
-          model = { model = "gpt-3.5-turbo-1106", temperature = 0.8, top_p = 1 },
-          -- system prompt (use this to specify the persona/role of the AI)
-          system_prompt = "You are an AI working as a code editor.\n\n"
-            .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
-            .. "START AND END YOUR ANSWER WITH:\n\n```",
-        }
+        ${droppedModels}
       },
       chat_shortcut_respond = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g><C-g>" },
       chat_shortcut_delete = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>d" },
