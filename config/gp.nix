@@ -67,24 +67,42 @@ in {
       openai_api_key = { "rbw", "get", "platform.openai.com" },
       agents = {
         {
-          name = "Mistral7B-Instruct",
+          name = "DeepSeek33B",
           provider = "ollama",
           chat = true,
           command = false,
           model = {
-            model = "mistral:7b-instruct-v0.2-q4_K_M",
-            num_ctx = 8192,
+            model = "deepseek-coder:33b",
           },
           system_prompt = chat_system_prompt
         },
         {
-          name = "CodeMistral7B-Instruct",
+          name = "CodeDeepSeek33B",
           provider = "ollama",
           chat = false,
           command = true,
           model = {
-            model = "mistral:7b-instruct-v0.2-q4_K_M",
-            num_ctx = 8192,
+            model = "deepseek-coder:33b",
+          },
+          system_prompt = code_system_prompt
+        },
+        {
+          name = "DeepSeek7B",
+          provider = "ollama",
+          chat = true,
+          command = false,
+          model = {
+            model = "deepseek-coder:7b",
+          },
+          system_prompt = chat_system_prompt
+        },
+        {
+          name = "CodeDeepSeek7B",
+          provider = "ollama",
+          chat = false,
+          command = true,
+          model = {
+            model = "deepseek-coder:7b",
           },
           system_prompt = code_system_prompt
         },
