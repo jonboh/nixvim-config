@@ -67,32 +67,12 @@ in {
       openai_api_key = { "rbw", "get", "platform.openai.com" },
       agents = {
         {
-          name = "DeepSeek33B",
-          provider = "ollama",
-          chat = true,
-          command = false,
-          model = {
-            model = "deepseek-coder:33b",
-          },
-          system_prompt = chat_system_prompt
-        },
-        {
-          name = "CodeDeepSeek33B",
-          provider = "ollama",
-          chat = false,
-          command = true,
-          model = {
-            model = "deepseek-coder:33b",
-          },
-          system_prompt = code_system_prompt
-        },
-        {
           name = "DeepSeek7B",
           provider = "ollama",
           chat = true,
           command = false,
           model = {
-            model = "deepseek-coder:7b",
+            model = "deepseek-coder:6.7b",
           },
           system_prompt = chat_system_prompt
         },
@@ -102,9 +82,29 @@ in {
           chat = false,
           command = true,
           model = {
-            model = "deepseek-coder:7b",
+            model = "deepseek-coder:6.7b",
           },
           system_prompt = code_system_prompt
+        },
+        {
+          name = "Llama3",
+          provider = "ollama",
+          chat = true,
+          command = false,
+          model = {
+            model = "llama3:8b",
+          },
+          system_prompt = chat_system_prompt
+        },
+        {
+          name = "CodeLlama3",
+          provider = "ollama",
+          chat = false,
+          command = true,
+          model = {
+            model = "llama3:8b",
+          },
+          system_prompt = chat_system_prompt
         },
         {
           name = "ChatGPT4-P",
