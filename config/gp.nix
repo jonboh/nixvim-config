@@ -151,6 +151,18 @@ in {
     }
     {
       mode = ["n" "v"];
+      key = "<C-g>V";
+      action = "<cmd>GpChatNew vsplit<cr>";
+      options = {desc = "Toggle AI Chat Vertical";};
+    }
+    {
+      mode = ["n" "v"];
+      key = "<C-g>H";
+      action = "<cmd>GpChatNew split<cr>";
+      options = {desc = "Toggle AI Chat Horizontal";};
+    }
+    {
+      mode = ["n" "v"];
       key = "<C-g>t";
       action = "<cmd>GpChatToggle tabnew<cr>";
       options = {desc = "Toggle AI Chat Horizontal";};
