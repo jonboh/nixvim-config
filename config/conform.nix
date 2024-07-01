@@ -10,6 +10,8 @@
       yaml = ["yamlfmt"];
       lua = ["stylua"];
       html = ["prettier"];
+      sql = ["sql-formatter"];
+      mysql = ["sql-formatter-mysql"];
       "*" = ["trim_whitespace"];
     };
     formatters = {
@@ -22,6 +24,35 @@
       yamlfmt.command = "${pkgs.yamlfmt}/bin/yamlfmt";
       stylua.command = "${pkgs.stylua}/bin/stylua";
       prettier.command = "${pkgs.nodePackages.prettier}/bin/prettier";
+      sql-formatter = {
+        command = "${pkgs.nodePackages.sql-formatter}/bin/sql-formatter";
+        args = [
+          "--config"
+          "${pkgs.writeText "conform-sql-config.json" ''
+            {
+              "tabWidth": 2,
+              "linesBetweenQueries": 2,
+              "keywordCase": "upper",
+              "dataTypeCase": "upper",
+              "identifierCase": "lower"
+            }''}"
+        ];
+      };
+      sql-formatter-mysql = {
+        command = "${pkgs.nodePackages.sql-formatter}/bin/sql-formatter";
+        args = [
+          "--config"
+          "${pkgs.writeText "conform-sql-config.json" ''
+            {
+              "language": "mysql",
+              "tabWidth": 2,
+              "linesBetweenQueries": 2,
+              "keywordCase": "upper",
+              "dataTypeCase": "upper",
+              "identifierCase": "lower"
+            }''}"
+        ];
+      };
     };
 
     formatOnSave = ''
