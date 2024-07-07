@@ -5,13 +5,13 @@
 }:
 vimUtils.buildVimPlugin rec {
   pname = "nvim-dap-rr";
-  version = "2023-10-25";
+  version = "v0.1.1";
 
   src = fetchFromGitHub {
     owner = "jonboh";
     repo = "nvim-dap-rr";
-    rev = "89d41b02f7495e29ea0d4279fb98942b3ccb737d";
-    hash = "sha256-jouY+7rvte90cn8hkFhnB5BJDolkNnuosAvfF0jL0nU=";
+    rev = "v0.1.1";
+    hash = "sha256-1WgES0gng74eNfTxJZksYoAFIYtuG3D/l/BEyt1o60w=";
   };
 
   meta = with lib; {

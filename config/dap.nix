@@ -200,30 +200,44 @@
 
         -- Rust Configuration
 
-        local pickers = require("telescope.pickers")
-        local finders = require("telescope.finders")
-        local conf = require("telescope.config").values
-        local actions = require("telescope.actions")
-        local action_state = require("telescope.actions.state")
-        function get_program()
-              return coroutine.create(function(coro)
-                local opts = {}
-                pickers
-                  .new(opts, {
-                    prompt_title = "Path to executable",
-                    finder = finders.new_oneshot_job({ "fd", "--exclude", ".git", "--no-ignore", "--type", "x"}, {}),
-                    sorter = conf.generic_sorter(opts),
-                    attach_mappings = function(buffer_number)
-                      actions.select_default:replace(function()
-                        actions.close(buffer_number)
-                        coroutine.resume(coro, action_state.get_selected_entry()[1])
-                      end)
-                      return true
-                    end,
-                  })
-                  :find()
-              end)
-            end
+        local has_telescope, telescope = pcall(require, "telescope")
+
+        local find_program
+        if has_telescope then
+          local pickers = require("telescope.pickers")
+          local finders = require("telescope.finders")
+          local conf = require("telescope.config").values
+          local actions = require("telescope.actions")
+          local action_state = require("telescope.actions.state")
+
+          find_program = function()
+            return coroutine.create(function(coro)
+              local opts = {}
+              pickers
+                .new(opts, {
+                  prompt_title = "Path to executable",
+                  finder = finders.new_oneshot_job(
+                    { "fd", "--hidden", "--exclude", ".git", "--no-ignore", "--type", "x" },
+                    {}
+                  ),
+                  sorter = conf.generic_sorter(opts),
+                  attach_mappings = function(buffer_number)
+                    actions.select_default:replace(function()
+                      actions.close(buffer_number)
+                      coroutine.resume(coro, action_state.get_selected_entry()[1])
+                    end)
+                    return true
+                  end,
+                })
+                :find()
+            end)
+          end
+        else
+          find_program = function()
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+          end
+        end
+
 
         function get_program_args()
           local debug_args_path = ".debug_args"
@@ -268,7 +282,7 @@
             name = "(lldb) Launch file",
             type = "codelldb",
             request = "launch",
-            program = get_program,
+            program = find_program,
             miDebuggerPath = get_rust_lldb_path,
             cwd = "''${workspaceFolder}",
             args = get_program_args,
@@ -279,7 +293,7 @@
             name = "(gdb) Launch file",
             type = "cppdbg",
             request = "launch",
-            program = get_program,
+            program = find_program,
             miDebuggerPath = get_rust_gdb_path,
             cwd= vim.fn.getcwd,
             args = get_program_args,
@@ -292,7 +306,7 @@
             name = "(lldb) Launch file",
             type = "codelldb",
             request = "launch",
-            program = get_program,
+            program = find_program,
             cwd = "''${workspaceFolder}",
             args = get_program_args,
             stopOnEntry = false,
@@ -302,7 +316,7 @@
             name = "(gdb) Launch file",
             type = "cppdbg",
             request = "launch",
-            program = get_program,
+            program = find_program,
             cwd= vim.fn.getcwd,
             args = get_program_args,
             stopAtEntry = false,
