@@ -22,7 +22,10 @@
       jq.command = "${pkgs.jq}/bin/jq";
       taplo.command = "${pkgs.taplo}/bin/taplo";
       yamlfmt.command = "${pkgs.yamlfmt}/bin/yamlfmt";
-      stylua.command = "${pkgs.stylua}/bin/stylua";
+      stylua = {
+        command = "${pkgs.stylua}/bin/stylua";
+        args = ["--indent-type" "Spaces" "--indent-width" "2" "--column-width" "100" "--sort-requires"];
+      };
       prettier.command = "${pkgs.nodePackages.prettier}/bin/prettier";
       sql-formatter = {
         command = "${pkgs.nodePackages.sql-formatter}/bin/sql-formatter";
