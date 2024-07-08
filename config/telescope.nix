@@ -8,6 +8,7 @@
         settings = {
           path = "%:p:h";
           hidden = true;
+          respect_gitignore = false;
           follow_symlinks = true;
           hide_parent_dir = true;
           mappings = {
