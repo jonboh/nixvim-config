@@ -19,6 +19,15 @@
       },
       {
         mode = "n",
+        key = "hX",
+        action = "<cmd>BaconLoad<cr><cmd>copen<cr><cmd>cfirst<cr>",
+        options = {
+          silent = true,
+          desc = "Load Bacon locations to qf",
+        },
+      },
+      {
+        mode = "n",
         key = "hd",
         action = "<cmd>lua vim.lsp.buf.definition()<cr>",
         options = {
