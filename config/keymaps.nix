@@ -67,13 +67,13 @@
     {
       mode = "n";
       key = "<C-Down>";
-      action = "<cmd>copen<CR><cmd>cnext<CR>zz";
+      action = "<cmd>copen<CR><cmd>cnext<CR>zzzv";
       options = {desc = "Go to next qf item";};
     }
     {
       mode = "n";
       key = "<C-Up>";
-      action = "<cmd>copen<CR><cmd>cprev<CR>zz";
+      action = "<cmd>copen<CR><cmd>cprev<CR>zzzv";
       options = {desc = "Go to prev qf item";};
     }
     {

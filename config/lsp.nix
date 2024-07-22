@@ -11,7 +11,7 @@
       {
         mode = "n",
         key = "hx",
-        action = "<cmd>lua vim.diagnostic.setqflist()<cr><cmd>cfirst<cr>",
+        action = "<cmd>lua vim.diagnostic.setqflist()<cr><cmd>cfirst<cr>zzzv",
         options = {
           silent = true,
           desc = "Load LSP Diagnostics to qf",
@@ -20,7 +20,7 @@
       {
         mode = "n",
         key = "hX",
-        action = "<cmd>BaconLoad<cr><cmd>copen<cr><cmd>cfirst<cr>",
+        action = "<cmd>BaconLoad<cr><cmd>copen<cr><cmd>cfirst<cr>zzzv",
         options = {
           silent = true,
           desc = "Load Bacon locations to qf",
