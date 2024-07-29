@@ -160,19 +160,19 @@
     {
       mode = "n";
       key = "<leader>jf";
-      action = ''<cmd>FindFilesGitCurrentBuffer<cr>'';
+      action = ''<cmd>FindFilesGitOrNixStoreCurrentBuffer<cr>'';
       options = {
         silent = true;
-        desc = "Find files";
+        desc = "Find files in the current git directory or nix store path";
       };
     }
     {
       mode = "n";
       key = "<leader>js";
-      action = ''<cmd>LiveGrepGitCurrentBuffer<cr>'';
+      action = ''<cmd>LiveGrepGitOrNixStoreCurrentBuffer<cr>'';
       options = {
         silent = true;
-        desc = "Live grep";
+        desc = "Live grep in the current git directory or nix store path";
       };
     }
     {
@@ -250,40 +250,53 @@
   ];
 
   extraConfigLua = ''
-    function generate_git_opts()
-      local function is_git_repo()
-        vim.fn.system("git rev-parse --is-inside-work-tree")
-
-        return vim.v.shell_error == 0
-      end
+    function generate_opts()
 
       local function get_git_root()
         local dot_git_path = vim.fn.finddir(".git", vim.fn.expand("%:p:h") .. ";")
-        return vim.fn.fnamemodify(dot_git_path, ":h")
+        if dot_git_path ~= "" then
+            return vim.fn.fnamemodify(dot_git_path, ":h")
+        else
+            return nil
+        end
+      end
+
+      local function extract_nixstore_path(path)
+        local pattern = '^(/nix/store/[a-z0-9]+%-[a-zA-Z0-9_.-]+)/'
+        return string.match(path, pattern)
       end
 
       local opts = {}
 
-      if is_git_repo() then
-        opts = {
-          cwd = get_git_root(),
+      local gitroot = get_git_root()
+      if gitroot then
+          opts = {
+            cwd = gitroot,
         }
-      end
+        else
+          nixstorepath = extract_nixstore_path(vim.api.nvim_buf_get_name(0))
+          if nixstorepath  then
+            if nixstorepath ~= "" then
+              opts = {
+                cwd = nixstorepath,
+              }
+            end
+          end
+        end
       return opts
     end
 
     function live_grep_from_project_git_root()
-      opts = generate_git_opts()
+      opts = generate_opts()
       require("telescope.builtin").live_grep(opts)
     end
 
     function find_files_from_project_git_root()
-      opts = generate_git_opts()
+      opts = generate_opts()
       require("telescope.builtin").find_files(opts)
     end
 
-    vim.api.nvim_create_user_command("LiveGrepGitCurrentBuffer", live_grep_from_project_git_root, { nargs = 0 })
-    vim.api.nvim_create_user_command("FindFilesGitCurrentBuffer", find_files_from_project_git_root, { nargs = 0 })
-
+    vim.api.nvim_create_user_command("LiveGrepGitOrNixStoreCurrentBuffer", live_grep_from_project_git_root, { nargs = 0 })
+    vim.api.nvim_create_user_command("FindFilesGitOrNixStoreCurrentBuffer", find_files_from_project_git_root, { nargs = 0 })
   '';
 }
