@@ -64,7 +64,7 @@ in {
             .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
             .. "START AND END YOUR ANSWER WITH:\n\n```"
     local config = {
-      openai_api_key = { "rbw", "get", "platform.openai.com" },
+      openai_api_key = { "pass-password", "platform.openai.com_API_Key" },
       agents = {
         {
           name = "DeepSeek7B",
