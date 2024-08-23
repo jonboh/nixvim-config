@@ -3,22 +3,22 @@
   keymaps = [
     {
       mode = "n";
-      key = "<A-t>";
+      key = "<A-Enter>";
       action = "<cmd>ToggleTerm direction='vertical' size=80<cr>";
     }
     {
       mode = "n";
-      key = "<A-T>";
+      key = "<AS-Enter>";
       action = "<cmd>ToggleTerm direction='horizontal' size=20<cr>";
     }
     {
       mode = "t";
-      key = "<A-t>";
+      key = "<A-Enter>";
       action = "<cmd>ToggleTerm<cr>";
     }
     {
       mode = "t";
-      key = "<A-T>";
+      key = "<AS-Enter>";
       action = "<cmd>ToggleTerm<cr>";
     }
   ];

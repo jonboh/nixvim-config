@@ -82,6 +82,73 @@
       action = "<C-I>";
     }
 
+    ## Tabs
+    {
+      mode = "n";
+      key = "<A-t>";
+      action = "<cmd>tabnew<cr>";
+      options = {desc = "Create new tab";};
+    }
+    {
+      mode = "n";
+      key = "<A-1>";
+      action = "<cmd>1tabn<cr>";
+      options = {desc = "Go to tab 1";};
+    }
+    {
+      mode = "n";
+      key = "<A-2>";
+      action = "<cmd>2tabn<cr>";
+      options = {desc = "Go to tab 2";};
+    }
+    {
+      mode = "n";
+      key = "<A-3>";
+      action = "<cmd>3tabn<cr>";
+      options = {desc = "Go to tab 3";};
+    }
+    {
+      mode = "n";
+      key = "<A-4>";
+      action = "<cmd>4tabn<cr>";
+      options = {desc = "Go to tab 3";};
+    }
+    {
+      mode = "n";
+      key = "<A-5>";
+      action = "<cmd>5tabn<cr>";
+      options = {desc = "Go to tab 4";};
+    }
+    {
+      mode = "n";
+      key = "<A-6>";
+      action = "<cmd>6tabn<cr>";
+      options = {desc = "Go to tab 6";};
+    }
+    {
+      mode = "n";
+      key = "<A-7>";
+      action = "<cmd>7tabn<cr>";
+      options = {desc = "Go to tab 7";};
+    }
+    {
+      mode = "n";
+      key = "<A-8>";
+      action = "<cmd>8tabn<cr>";
+      options = {desc = "Go to tab 8";};
+    }
+    {
+      mode = "n";
+      key = "<A-9>";
+      action = "<cmd>9tabn<cr>";
+      options = {desc = "Go to tab 8";};
+    }
+    {
+      mode = "n";
+      key = "<A-0>";
+      action = "tablast";
+    }
+
     ## Windows
     {
       mode = "n";
