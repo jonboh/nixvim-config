@@ -98,6 +98,7 @@
     pkgs.vimPlugins.nvim-dap-ui
     pkgs.vimPlugins.nvim-dap-virtual-text
     (pkgs.callPackage ../plugins/nvim-dap-rr.nix {})
+    pkgs.vimPlugins.nvim-dap-python
   ];
   extraConfigLua = ''
         local dap = require('dap')
@@ -279,7 +280,7 @@
         require('dap').defaults.fallback.exception_breakpoints = {'uncaught', 'rust_panic'}
         dap.configurations.rust = {
         {
-            name = "(lldb) Launch file",
+            name = "(lldb) Launch file (with .debug-args)",
             type = "codelldb",
             request = "launch",
             program = find_program,
@@ -290,7 +291,7 @@
             showDisassembly = "never",
         },
         {
-            name = "(gdb) Launch file",
+            name = "(gdb) Launch file (with .debug-args)",
             type = "cppdbg",
             request = "launch",
             program = find_program,
@@ -303,7 +304,7 @@
     }
         dap.configurations.cpp = {
         {
-            name = "(lldb) Launch file",
+            name = "(lldb) Launch file (with .debug-args)",
             type = "codelldb",
             request = "launch",
             program = find_program,
@@ -313,7 +314,7 @@
             showDisassembly = "never",
         },
         {
-            name = "(gdb) Launch file",
+            name = "(gdb) Launch file (with .debug-args)",
             type = "cppdbg",
             request = "launch",
             program = find_program,
@@ -323,29 +324,39 @@
             showDisassembly = "never",
         },
     }
-        dap.configurations.c = dap.configurations.cpp
+      dap.configurations.c = dap.configurations.cpp
 
-        local rr_dap = require("nvim-dap-rr")
-        rr_dap.setup({
-            mappings = {
-                continue = "<F6>",
-                step_over = "<F7>",
-                step_out = "<F8>",
-                step_into = "<F9>",
-                reverse_continue = "<F18>", -- <S-F6>
-                reverse_step_over = "<F19>", -- <S-F7>
-                reverse_step_out = "<F20>", -- <S-F8>
-                reverse_step_into = "<F21>", -- <S-F9>
-                step_over_i = "<F31>", -- <C-F7>
-                step_out_i = "<F32>", -- <C-F8>
-                step_into_i = "<F33>", -- <C-F9>
-                reverse_step_over_i = "<F43>", -- <SC-F7>
-                reverse_step_out_i = "<F44>", -- <SC-F8>
-                reverse_step_into_i = "<F45>", -- <SC-F9>
-            }
-        })
-        table.insert(dap.configurations.rust, rr_dap.get_rust_config())
-        table.insert(dap.configurations.cpp, rr_dap.get_config())
+      local rr_dap = require("nvim-dap-rr")
+      rr_dap.setup({
+          mappings = {
+              continue = "<F6>",
+              step_over = "<F7>",
+              step_out = "<F8>",
+              step_into = "<F9>",
+              reverse_continue = "<F18>", -- <S-F6>
+              reverse_step_over = "<F19>", -- <S-F7>
+              reverse_step_out = "<F20>", -- <S-F8>
+              reverse_step_into = "<F21>", -- <S-F9>
+              step_over_i = "<F31>", -- <C-F7>
+              step_out_i = "<F32>", -- <C-F8>
+              step_into_i = "<F33>", -- <C-F9>
+              reverse_step_over_i = "<F43>", -- <SC-F7>
+              reverse_step_out_i = "<F44>", -- <SC-F8>
+              reverse_step_into_i = "<F45>", -- <SC-F9>
+          }
+      })
+      table.insert(dap.configurations.rust, rr_dap.get_rust_config())
+      table.insert(dap.configurations.cpp, rr_dap.get_config())
+
+    require('dap-python').setup('python')
+    table.insert(require('dap').configurations.python, {
+      type = 'python',
+      request = 'launch',
+      name = 'Launch current file with .debug-args',
+      program =  "''${file}",
+      args = get_program_args,
+      -- ... more options, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings
+    })
 
   '';
 }

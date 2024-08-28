@@ -15,7 +15,6 @@
   code = [
     ./lsp.nix
     ./dap.nix
-    ./dap-python.nix
     ./fidget.nix
     ./treesitter.nix
     ./completion.nix
