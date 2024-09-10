@@ -48,6 +48,11 @@
       key = "h";
       action = "<nop>";
     }
+    {
+      mode = "n";
+      key = "gzz";
+      action = "zszH"; # zs (scroll horizontal to cursor) and zH (scorll half left)
+    }
 
     ## Search
     {
