@@ -184,6 +184,7 @@ in {
         lua-ls.enable = true;
         nil_ls.enable = true;
         ltex.enable = true;
+        texlab.enable = true;
         terraformls.enable = true;
       };
       onAttach = onAttach;
