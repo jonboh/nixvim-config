@@ -11,6 +11,7 @@
     ./leap.nix
     ./debugging.nix
     ./cloak.nix
+    ./offset_cursorline.nix
   ];
   code = [
     ./lsp.nix
