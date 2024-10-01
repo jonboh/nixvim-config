@@ -10,7 +10,7 @@
     # Set indentation to 2 spaces for nix files
     {
       event = "FileType";
-      pattern = "nix";
+      pattern = ["nix" "markdown"];
       command = "setlocal tabstop=2 shiftwidth=2";
     }
     {
