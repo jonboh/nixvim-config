@@ -11,6 +11,7 @@
             nodeDecremental = "-";
           };
         };
+        highlight.enable = true;
       };
       nixvimInjections = true;
     };
