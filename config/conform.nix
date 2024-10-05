@@ -1,95 +1,97 @@
 {pkgs, ...}: {
   plugins.conform-nvim = {
     enable = true;
-    formattersByFt = {
-      nix = ["alejandra"];
-      rust = ["rustfmt"];
-      python = ["isort" "ruff_format"];
-      json = ["jq"];
-      toml = ["taplo"];
-      yaml = ["yamlfmt"];
-      lua = ["stylua"];
-      html = ["prettier"];
-      sql = ["sql-formatter"];
-      mysql = ["sql-formatter-mysql"];
-      "*" = ["trim_whitespace"];
-    };
-    formatters = {
-      alejandra.command = "${pkgs.alejandra}/bin/alejandra";
-      rustfmt.command = "${pkgs.rustfmt}/bin/rustfmt";
-      isort.command = "${pkgs.python311Packages.isort}/bin/isort";
-      ruff_format.command = "${pkgs.ruff}/bin/ruff";
-      jq.command = "${pkgs.jq}/bin/jq";
-      taplo.command = "${pkgs.taplo}/bin/taplo";
-      yamlfmt.command = "${pkgs.yamlfmt}/bin/yamlfmt";
-      stylua = {
-        command = "${pkgs.stylua}/bin/stylua";
-        args = ["--indent-type" "Spaces" "--indent-width" "2" "--column-width" "100" "--sort-requires"];
-      };
-      prettier.command = "${pkgs.nodePackages.prettier}/bin/prettier";
-      sql-formatter = {
-        command = "${pkgs.nodePackages.sql-formatter}/bin/sql-formatter";
-        args = [
-          "--config"
-          "${pkgs.writeText "conform-sql-config.json" ''
-            {
-              "tabWidth": 2,
-              "linesBetweenQueries": 2,
-              "keywordCase": "upper",
-              "dataTypeCase": "upper",
-              "identifierCase": "lower"
-            }''}"
-        ];
-      };
-      sql-formatter-mysql = {
-        command = "${pkgs.nodePackages.sql-formatter}/bin/sql-formatter";
-        args = [
-          "--config"
-          "${pkgs.writeText "conform-sql-config.json" ''
-            {
-              "language": "mysql",
-              "tabWidth": 2,
-              "linesBetweenQueries": 2,
-              "keywordCase": "upper",
-              "dataTypeCase": "upper",
-              "identifierCase": "lower"
-            }''}"
-        ];
-      };
-    };
 
-    formatOnSave = ''
-      function(bufnr)
-        -- Disable with a global or buffer-local variable
-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-          return
-        end
-
-        -- Handle slow formatters
-        if _conform_slow_format_filetypes[vim.bo[bufnr].filetype] then
-          return
-        end
-        local function on_format(err)
-          if err and err:match("timeout$") then
-            _conform_slow_format_filetypes[vim.bo[bufnr].filetype] = true
+    settings = {
+      formatters = {
+        alejandra.command = "${pkgs.alejandra}/bin/alejandra";
+        rustfmt.command = "${pkgs.rustfmt}/bin/rustfmt";
+        isort.command = "${pkgs.python311Packages.isort}/bin/isort";
+        ruff_format.command = "${pkgs.ruff}/bin/ruff";
+        jq.command = "${pkgs.jq}/bin/jq";
+        taplo.command = "${pkgs.taplo}/bin/taplo";
+        yamlfmt.command = "${pkgs.yamlfmt}/bin/yamlfmt";
+        stylua = {
+          command = "${pkgs.stylua}/bin/stylua";
+          args = ["--indent-type" "Spaces" "--indent-width" "2" "--column-width" "100" "--sort-requires"];
+        };
+        prettier.command = "${pkgs.nodePackages.prettier}/bin/prettier";
+        sql-formatter = {
+          command = "${pkgs.nodePackages.sql-formatter}/bin/sql-formatter";
+          args = [
+            "--config"
+            "${pkgs.writeText "conform-sql-config.json" ''
+              {
+                "tabWidth": 2,
+                "linesBetweenQueries": 2,
+                "keywordCase": "upper",
+                "dataTypeCase": "upper",
+                "identifierCase": "lower"
+              }''}"
+          ];
+        };
+        sql-formatter-mysql = {
+          command = "${pkgs.nodePackages.sql-formatter}/bin/sql-formatter";
+          args = [
+            "--config"
+            "${pkgs.writeText "conform-sql-config.json" ''
+              {
+                "language": "mysql",
+                "tabWidth": 2,
+                "linesBetweenQueries": 2,
+                "keywordCase": "upper",
+                "dataTypeCase": "upper",
+                "identifierCase": "lower"
+              }''}"
+          ];
+        };
+      };
+      formatters_by_ft = {
+        nix = ["alejandra"];
+        rust = ["rustfmt"];
+        python = ["isort" "ruff_format"];
+        json = ["jq"];
+        toml = ["taplo"];
+        yaml = ["yamlfmt"];
+        lua = ["stylua"];
+        html = ["prettier"];
+        sql = ["sql-formatter"];
+        mysql = ["sql-formatter-mysql"];
+        "*" = ["trim_whitespace"];
+      };
+      format_on_save = ''
+        function(bufnr)
+          -- Disable with a global or buffer-local variable
+          if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+            return
           end
-        end
 
-        return { timeout_ms = 200, lsp_fallback = false }
-      end
-    '';
+          -- Handle slow formatters
+          if _conform_slow_format_filetypes[vim.bo[bufnr].filetype] then
+            return
+          end
+          local function on_format(err)
+            if err and err:match("timeout$") then
+              _conform_slow_format_filetypes[vim.bo[bufnr].filetype] = true
+            end
+          end
 
-    formatAfterSave = ''
-      function(bufnr)
-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-          return
+          return { timeout_ms = 200, lsp_fallback = false }
         end
-        if not _conform_slow_format_filetypes[vim.bo[bufnr].filetype] then
-          return
+      '';
+
+      settings.format_after_save = ''
+        function(bufnr)
+          if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+            return
+          end
+          if not _conform_slow_format_filetypes[vim.bo[bufnr].filetype] then
+            return
+          end
+          return { lsp_fallback = false }
         end
-        return { lsp_fallback = false }
-      end
-    '';
+      '';
+    };
   };
   extraConfigLua = ''
     -- Set Format commands

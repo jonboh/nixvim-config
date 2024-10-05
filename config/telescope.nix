@@ -138,6 +138,7 @@
       };
     };
   };
+  plugins.web-devicons.enable = true; # pretty icons
   keymaps = [
     {
       mode = "n";

@@ -2,12 +2,14 @@
   plugins = {
     treesitter = {
       enable = true;
-      incrementalSelection = {
-        enable = true;
-        keymaps = {
-          initSelection = "+";
-          nodeIncremental = "+";
-          nodeDecremental = "-";
+      settings = {
+        incrementalSelection = {
+          enable = true;
+          keymaps = {
+            initSelection = "+";
+            nodeIncremental = "+";
+            nodeDecremental = "-";
+          };
         };
       };
       nixvimInjections = true;

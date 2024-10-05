@@ -182,7 +182,7 @@ in {
       enable = true;
       servers = {
         lua-ls.enable = true;
-        nil_ls.enable = true;
+        nil-ls.enable = true;
         ltex.enable = true;
         texlab.enable = true;
         terraformls.enable = true;
