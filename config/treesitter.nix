@@ -3,12 +3,12 @@
     treesitter = {
       enable = true;
       settings = {
-        incrementalSelection = {
+        incremental_selection = {
           enable = true;
           keymaps = {
-            initSelection = "+";
-            nodeIncremental = "+";
-            nodeDecremental = "-";
+            init_selection = "+";
+            node_incremental = "+";
+            node_decremental = "-";
           };
         };
         highlight.enable = true;
