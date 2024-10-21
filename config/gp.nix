@@ -3,57 +3,73 @@
   # NOTE: kind of hacky way to force the removal of these models
   droppedModels = ''
     {
-      name = "CodeCopilot"
+      name = "CodeCopilot",
+      disable=true
     },
     {
-      name = "CodeGemini"
+      name = "CodeGemini",
+      disable=true
     },
     {
-      name = "CodePerplexityMixtral"
+      name = "CodePerplexityMixtral",
+      disable=true
     },
     {
-      name = "CodeOllamaDeepSeek"
+      name = "CodeOllamaDeepSeek",
+      disable=true
     },
     {
-      name = "CodeClaude-3-Haiku"
+      name = "CodeClaude-3-Haiku",
+      disable=true
     },
     {
-      name = "CodeGPT35-P"
+      name = "CodeGPT35-P",
+      disable=true
     },
     {
-      name = "CodeGPT3-5"
+      name = "CodeGPT3-5",
+      disable=true
     },
     {
-      name = "CodeGPT4"
+      name = "CodeGPT4",
+      disable=true
     },
     {
-      name = "ChatOllama"
+      name = "ChatOllama",
+      disable=true
     },
     {
-      name = "ChatLMStudio"
+      name = "ChatLMStudio",
+      disable=true
     },
     {
-      name = "ChatPerplexityMixtral"
+      name = "ChatPerplexityMixtral",
+      disable=true
     },
     {
-      name = "ChatClaude-3-Haiku"
+      name = "ChatClaude-3-Haiku",
+      disable=true
     },
     {
-      name = "ChatCopilot"
+      name = "ChatCopilot",
+      disable=true
     },
     {
-      name = "ChatGPT3-5"
+      name = "ChatGPT3-5",
+      disable=true
     },
     {
-      name = "ChatGPT4"
+      name = "ChatGPT4",
+      disable=true
     },
     {
-      name = "ChatGemini"
+      name = "ChatGemini",
+      disable=true
     },
   '';
 in {
-  # extraPlugins = [pkgs.vimExtraPlugins.gp-nvim];
-  extraPlugins = [(pkgs.callPackage ../plugins/gp-nvim.nix {})];
+  extraPlugins = [pkgs.vimExtraPlugins.gp-nvim];
+  # extraPlugins = [(pkgs.callPackage ../plugins/gp-nvim.nix {})];
   extraConfigLua = ''
     local chat_system_prompt = "You are a helpful AI assistant.\n\n"
             .. "The user provided the additional info about how they would like you to respond:\n\n"
