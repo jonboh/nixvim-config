@@ -64,4 +64,9 @@
       end
     end, { noremap = false, expr = true })
   '';
+
+  # modified from https://heitorpb.github.io/bla/format-tables-in-vim/
+  extraConfigVim = ''
+    command! -range TableFormat <line1>,<line2>!tr -s " " | column -t -s '|' -o '|'
+  '';
 }

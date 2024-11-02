@@ -186,6 +186,7 @@ in {
         ltex.enable = true;
         texlab.enable = true;
         terraformls.enable = true;
+        marksman.enable = true;
       };
       onAttach = onAttach;
       capabilities = extraCapabilities;
