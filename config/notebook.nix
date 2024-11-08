@@ -10,13 +10,13 @@
     {
       mode = "n";
       key = "<leader>e";
-      action = "<cmd>lua require('notebook-navigator').run_and_move()<cr>";
+      action = "<cmd>IPythonOpen<cr><cmd>lua require('notebook-navigator').run_and_move()<cr>";
       options = {desc = "Evaluate cell and move to next";};
     }
     {
       mode = "n";
       key = "<leader>E";
-      action = "<cmd>lua require('notebook-navigator').run_cell()<cr>";
+      action = "<cmd>IPythonOpen<cr>lua require('notebook-navigator').run_cell()<cr>";
       options = {desc = "Evaluate cell";};
     }
     {
@@ -72,20 +72,27 @@
       require("toggleterm").exec(cmd, 1)
     end
 
+    local function open_ipython()
+      if vim.g.ipython_open == nil or vim.g.ipython_open == false then
+        require("toggleterm").exec("ipython --no-autoindent", 1, 80, vim.fn.getcwd(), "vertical")
+        vim.g.ipython_open = true
+        P("oppened ipython")
+      end
+    end
+
     -- taken from: https://github.com/akinsho/toggleterm.nvim?tab=readme-ov-file#sending-lines-to-the-terminal
-    vim.api.nvim_create_user_command('IPythonOpen', function()
-      require("toggleterm").exec("ipython --no-autoindent", 1, 80, vim.fn.getcwd(), "vertical")
-      end,
-    {})
+    vim.api.nvim_create_user_command('IPythonOpen', open_ipython, {})
 
     local trim_spaces = false
     vim.api.nvim_create_user_command('IPythonSendLine', function()
+        open_ipython()
         require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = vim.v.count })
       end,
     {})
 
     -- this should be called only in Visual or Visual-Lines modes
     vim.api.nvim_create_user_command('IPythonSendVisualSelection', function()
+      open_ipython()
       local toggleterm = require("toggleterm")
       if vim.api.nvim_get_mode().mode == 'V' then
         -- toggleterm.send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
