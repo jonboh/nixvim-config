@@ -19,6 +19,7 @@
         "postgresql-16",
         "influxdata",
         "html",
+        "haskell-9"
         },
       })
   '';
