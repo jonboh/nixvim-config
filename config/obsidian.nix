@@ -8,6 +8,15 @@
           path = "~/vault";
         }
       ];
+      mappings = {
+        # we need to add at least one mapping to clear gf default mapping
+        "<leader>ch" = {
+          action = "require('obsidian').util.toggle_checkbox";
+          opts = {
+            buffer = true;
+          };
+        };
+      }; # remove default mappings
       follow_url_func = ''
         function(url)
           vim.fn.jobstart({"xdg-open", url})  -- linux
@@ -57,8 +66,19 @@
   ];
   extraConfigLua = ''
     vim.keymap.set("n", "gf", function()
-      if require("obsidian").util.cursor_on_markdown_link() then
-        return "<cmd>ObsidianFollowLink<CR>"
+      local obsidian = require("obsidian")
+      if obsidian.util.cursor_on_markdown_link() then
+        target = obsidian.util.parse_cursor_link()
+        if target:sub(-3) == ".md" then
+          return "<cmd>ObsidianFollowLink<CR>"
+        else
+          local client = obsidian.get_client()
+          if target:sub(1,1) == "/" then -- absolute path
+            return "<cmd>e "..target.."<cr>"
+          else -- path from vault
+            return "<cmd>e "..client:vault_root().filename.."/"..target.."<cr>"
+          end
+        end
       else
         return "gf"
       end
