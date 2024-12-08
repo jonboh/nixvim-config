@@ -188,6 +188,7 @@ in {
         terraformls.enable = true;
         marksman.enable = true;
         hls.enable = true;
+        julials.enable = true;
       };
       onAttach = onAttach;
       capabilities = extraCapabilities;
