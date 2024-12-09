@@ -1,5 +1,19 @@
 {
-  plugins.toggleterm = {enable = true;};
+  plugins.toggleterm = {
+    enable = true;
+    settings = {
+      start_in_insert = false;
+      size = ''
+        function(term)
+          if term.direction == "horizontal" then
+            return 20
+          elseif term.direction == "vertical" then
+            return 80
+          end
+        end
+      '';
+    };
+  };
   keymaps = [
     {
       mode = "n";
