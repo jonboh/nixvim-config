@@ -69,7 +69,7 @@
       local obsidian = require("obsidian")
       if obsidian.util.cursor_on_markdown_link() then
         target = obsidian.util.parse_cursor_link()
-        if target:sub(-3) == ".md" then
+        if target:sub(-3) == ".md" or target:sub(1, 7) == "http://" or target:sub(1, 8) == "https://" then
           return "<cmd>ObsidianFollowLink<CR>"
         else
           local client = obsidian.get_client()
