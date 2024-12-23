@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   plugins.obsidian = {
     enable = true;
     settings = {
@@ -69,14 +69,21 @@
       local obsidian = require("obsidian")
       if obsidian.util.cursor_on_markdown_link() then
         target = obsidian.util.parse_cursor_link()
-        if target:sub(-3) == ".md" or target:sub(1, 7) == "http://" or target:sub(1, 8) == "https://" then
-          return "<cmd>ObsidianFollowLink<CR>"
-        else
+        if target:sub(-4) == ".tex" then
           local client = obsidian.get_client()
           if target:sub(1,1) == "/" then -- absolute path
             return "<cmd>e "..target.."<cr>"
           else -- path from vault
             return "<cmd>e "..client:vault_root().filename.."/"..target.."<cr>"
+          end
+        else
+          local handle = io.popen("${pkgs.file}/bin/file '" .. target .. "' | awk '{print $2}'")
+          local result = handle:read("*a")
+          handle:close()
+          if (vim.trim(result):match("^directory$")) then
+            return "<cmd>e "..target.."<cr>"
+          else
+            return "<cmd>ObsidianFollowLink<CR>"
           end
         end
       else
