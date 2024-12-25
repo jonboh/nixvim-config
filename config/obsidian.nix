@@ -22,6 +22,7 @@
           vim.fn.jobstart({"xdg-open", url})  -- linux
         end
       '';
+      # TODO: follow_img_func = '' '';
       note_id_func = ''
         function(title)
           -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
@@ -65,17 +66,23 @@
     }
   ];
   extraConfigLua = ''
+    local obsidian = require("obsidian")
+    local make_absolute_link = function(target)
+      if target:sub(1,1) == "/" then -- absolute path
+        return target
+      else -- path from vault
+        return obsidian.get_client():vault_root().filename.."/"..target
+      end
+    end
+
     vim.keymap.set("n", "gf", function()
-      local obsidian = require("obsidian")
       if obsidian.util.cursor_on_markdown_link() then
         target = obsidian.util.parse_cursor_link()
         if target:sub(-4) == ".tex" then
-          local client = obsidian.get_client()
-          if target:sub(1,1) == "/" then -- absolute path
-            return "<cmd>e "..target.."<cr>"
-          else -- path from vault
-            return "<cmd>e "..client:vault_root().filename.."/"..target.."<cr>"
-          end
+            return "<cmd>e "..make_absolute_link(target).."<cr>"
+        elseif target:sub(-4) == ".pdf" then
+            vim.fn.jobstart({"xdg-open", make_absolute_link(target)})  -- linux
+            return ""
         else
           local handle = io.popen("${pkgs.file}/bin/file '" .. target .. "' | awk '{print $2}'")
           local result = handle:read("*a")
