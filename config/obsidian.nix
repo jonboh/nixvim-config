@@ -1,4 +1,19 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  helpers,
+  ...
+}: let
+  make_absolute_link_luafunc_definition = ''
+    local make_absolute_link = function(target)
+      local obsidian = require("obsidian")
+      if target:sub(1,1) == "/" then -- absolute path
+        return target
+      else -- path from vault
+        return obsidian.get_client():vault_root().filename.."/"..target
+      end
+    end
+  '';
+in {
   plugins.obsidian = {
     enable = true;
     settings = {
@@ -19,10 +34,15 @@
       }; # remove default mappings
       follow_url_func = ''
         function(url)
-          vim.fn.jobstart({"xdg-open", url})  -- linux
+          vim.fn.jobstart({"xdg-open", url})
         end
       '';
-      # TODO: follow_img_func = '' '';
+      follow_img_func = ''
+        function(url)
+          ${make_absolute_link_luafunc_definition}
+          vim.fn.jobstart({"xdg-open", make_absolute_link(url)})
+        end
+      '';
       note_id_func = ''
         function(title)
           -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
@@ -66,15 +86,9 @@
     }
   ];
   extraConfigLua = ''
-    local obsidian = require("obsidian")
-    local make_absolute_link = function(target)
-      if target:sub(1,1) == "/" then -- absolute path
-        return target
-      else -- path from vault
-        return obsidian.get_client():vault_root().filename.."/"..target
-      end
-    end
+    ${make_absolute_link_luafunc_definition}
 
+    local obsidian = require("obsidian")
     vim.keymap.set("n", "gf", function()
       if obsidian.util.cursor_on_markdown_link() then
         target = obsidian.util.parse_cursor_link()
