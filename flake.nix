@@ -13,6 +13,7 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     nixvim,
     flake-utils,
@@ -39,23 +40,56 @@
       nixvim' = nixvim.legacyPackages.${system};
       nvim-nightly = nixvim'.makeNixvimWithModule {
         pkgs = pkgs-nightly;
+        extraSpecialArgs = {
+          inherit self;
+          binname = "nixvim-nightly";
+        };
         module = import ./config {full = true;};
       };
       nvim = nixvim'.makeNixvimWithModule {
         inherit pkgs;
+        extraSpecialArgs = {
+          inherit self;
+          binname = "nixvim";
+        };
         module = import ./config {full = true;};
       };
-      _nvim-light = nixvim'.makeNixvimWithModule {
+      nvim-light = nixvim'.makeNixvimWithModule {
         inherit pkgs;
+        extraSpecialArgs = {
+          inherit self;
+          binname = "nixvim-light";
+        };
         module = import ./config {full = false;};
       };
-      nvim-light = with nixpkgs.legacyPackages.${system};
+      nixvim-nightly-config = with nixpkgs.legacyPackages.${system};
         stdenv.mkDerivation {
-          name = "nvim-light";
-          buildInputs = [_nvim-light];
+          name = "nixvim-nightly-config";
+          buildInputs = [nvim-nightly];
           buildCommand = ''
             mkdir -p $out/bin
-            ln -s ${_nvim-light}/bin/nvim $out/bin/nvim-light
+            ln -s ${nvim-nightly}/bin/nvim $out/bin/nixvim-nightly
+            ln -s ${nvim-nightly}/bin/nixvim-print-init $out/bin/nixvim-print-init
+          '';
+        };
+      nixvim-config = with nixpkgs.legacyPackages.${system};
+        stdenv.mkDerivation {
+          name = "nixvim-config";
+          buildInputs = [nvim];
+          buildCommand = ''
+            mkdir -p $out/bin
+            ln -s ${nvim}/bin/nvim $out/bin/nixvim
+            ln -s ${nvim}/bin/nixvim-print-init $out/bin/nixvim-print-init
+          '';
+        };
+      nixvim-light-config = with nixpkgs.legacyPackages.${system};
+        stdenv.mkDerivation {
+          name = "nixvim-light-config";
+          buildInputs = [nvim-light];
+          buildCommand = ''
+            mkdir -p $out/bin
+            ln -s ${nvim-light}/bin/nvim $out/bin/nixvim-light
+            ln -s ${nvim-light}/bin/nixvim-print-init $out/bin/nixvim-print-init
           '';
         };
     in {
@@ -68,10 +102,10 @@
       };
 
       packages = {
-        default = nvim-nightly;
-        inherit nvim-nightly;
-        inherit nvim;
-        inherit nvim-light;
+        default = nixvim-nightly-config;
+        inherit nixvim-nightly-config;
+        inherit nixvim-config;
+        nixvim-light-config = nixvim-light-config;
       };
     });
 }

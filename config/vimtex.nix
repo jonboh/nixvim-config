@@ -1,8 +1,17 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  binname,
+  lib,
+  ...
+}: {
   plugins.vimtex = {
     enable = true;
     # full is needed for Neorg render-latex
     texlivePackage = pkgs.texlive.combined.scheme-full;
+    settings = {
+      view_method = "zathura";
+      callback_progpath = lib.mkForce "${binname}";
+    };
   };
   extraConfigVim = ''
     let g:vimtex_compiler_latexmk = {
@@ -19,5 +28,7 @@
         \   '-interaction=nonstopmode',
         \ ],
         \}
+    let g:vimtex_view_method = 'zathura'
+    let g:vimtex_callback_progpath = '${binname}'
   '';
 }
