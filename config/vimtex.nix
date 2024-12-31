@@ -1,6 +1,5 @@
 {
   pkgs,
-  binname,
   lib,
   ...
 }: {
@@ -10,7 +9,7 @@
     texlivePackage = pkgs.texlive.combined.scheme-full;
     settings = {
       view_method = "zathura";
-      callback_progpath = lib.mkForce "${binname}";
+      callback_progpath = lib.mkForce "nixvim";
     };
   };
   extraConfigVim = ''
@@ -28,7 +27,5 @@
         \   '-interaction=nonstopmode',
         \ ],
         \}
-    let g:vimtex_view_method = 'zathura'
-    let g:vimtex_callback_progpath = '${binname}'
   '';
 }

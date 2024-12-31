@@ -37,26 +37,17 @@
       nixvim' = nixvim.legacyPackages.${system};
       nvim-nightly = nixvim'.makeNixvimWithModule {
         pkgs = pkgs-nightly;
-        extraSpecialArgs = {
-          inherit self;
-          binname = "nixvim-nightly";
-        };
+        extraSpecialArgs = {inherit self;};
         module = import ./config {full = true;};
       };
       nvim = nixvim'.makeNixvimWithModule {
         inherit pkgs;
-        extraSpecialArgs = {
-          inherit self;
-          binname = "nixvim";
-        };
+        extraSpecialArgs = {inherit self;};
         module = import ./config {full = true;};
       };
       nvim-light = nixvim'.makeNixvimWithModule {
         inherit pkgs;
-        extraSpecialArgs = {
-          inherit self;
-          binname = "nixvim-light";
-        };
+        extraSpecialArgs = {inherit self;};
         module = import ./config {full = false;};
       };
       nixvim-nightly-config = with nixpkgs.legacyPackages.${system};
@@ -65,7 +56,7 @@
           buildInputs = [nvim-nightly];
           buildCommand = ''
             mkdir -p $out/bin
-            ln -s ${nvim-nightly}/bin/nvim $out/bin/nixvim-nightly
+            ln -s ${nvim-nightly}/bin/nvim $out/bin/nixvim
             ln -s ${nvim-nightly}/bin/nixvim-print-init $out/bin/nixvim-print-init
           '';
         };
