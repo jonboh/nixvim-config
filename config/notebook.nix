@@ -137,6 +137,12 @@
     end
 
 
+    vim.api.nvim_create_user_command('ReplToggle', function()
+        id = _get_repl_terminal_id()
+        _repl_spawn()
+        _repl_toggle()
+      end,
+    {})
     vim.api.nvim_create_user_command('ReplRunAndMove', function()
         id = _get_repl_terminal_id()
         _repl_spawn()
