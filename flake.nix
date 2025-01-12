@@ -3,9 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixvim.url = "github:jonboh/nixvim";
+    # nixvim.url = "github:jonboh/nixvim";
     # nixvim.url = "/home/jonboh/devel/nixvim";
-    # nixvim.url = "github:nix-community/nixvim";
+    nixvim.url = "github:nix-community/nixvim";
     flake-utils.url = "github:numtide/flake-utils";
     nixneovimplugins.url = "github:NixNeovim/NixNeovimPlugins";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";

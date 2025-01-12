@@ -37,7 +37,7 @@ in {
           vim.fn.jobstart({"xdg-open", url})
         end
       '';
-      follow_img_func = ''
+      follow_img_func.__raw = ''
         function(url)
           ${make_absolute_link_luafunc_definition}
           vim.fn.jobstart({"xdg-open", make_absolute_link(url)})
