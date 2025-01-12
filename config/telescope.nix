@@ -151,6 +151,15 @@
     }
     {
       mode = "n";
+      key = "<leader>rc";
+      action = ''<cmd>lua require("telescope.builtin").find_files({cwd="/home/jonboh/.flakes/nixvim-config/"})<cr>'';
+      options = {
+        silent = true;
+        desc = "Find files";
+      };
+    }
+    {
+      mode = "n";
       key = "<leader>s";
       action = ''<cmd>lua require("telescope.builtin").live_grep()<cr>'';
       options = {

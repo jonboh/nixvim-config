@@ -71,6 +71,11 @@ in {
     }
     {
       mode = "n";
+      key = "<leader>oF";
+      action = ''<cmd>lua require("telescope.builtin").find_files({cwd="/home/jonboh/vault/"})<cr>'';
+    }
+    {
+      mode = "n";
       key = "<leader>os";
       action = "<cmd>ObsidianSearch<cr>";
     }
