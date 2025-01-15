@@ -33,7 +33,6 @@
   ];
   navigation = [
     ./telescope.nix
-    # ./nnn.nix
     ./harpoon.nix
   ];
   extraAppearance = [
@@ -51,7 +50,7 @@
     ./gp.nix
     ./markdown-preview.nix
     ./dadbod.nix
-    ./hurl.nix
+    # ./hurl.nix
   ];
   imports =
     basic
