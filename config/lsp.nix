@@ -202,10 +202,13 @@ in {
 
     lspkind.enable = true;
 
-    rust-tools = {
+    # rust-tools = {
+    #   enable = true;
+    #   server.check.command = "check";
+    #   server.rustc.source = "discover";
+    # };
+    rustaceanvim = {
       enable = true;
-      server.check.command = "check";
-      server.rustc.source = "discover";
     };
   };
   extraConfigLua = ''
