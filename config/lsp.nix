@@ -195,6 +195,9 @@ in {
           enable = true;
           package = null;
         };
+        clangd = {
+          enable = true;
+        };
       };
       onAttach = onAttach;
       capabilities = extraCapabilities;
