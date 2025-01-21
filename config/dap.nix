@@ -241,7 +241,7 @@
 
 
         function get_program_args()
-          local debug_args_path = ".debug_args"
+          local debug_args_path = ".debug-args"
           local file = io.open(debug_args_path, "r")
           -- If the file doesn't exist, return an empty table
           if not file then
