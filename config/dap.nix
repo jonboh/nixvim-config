@@ -218,7 +218,7 @@
                 .new(opts, {
                   prompt_title = "Path to executable",
                   finder = finders.new_oneshot_job(
-                    { "fd", "--hidden", "--exclude", ".git", "--no-ignore", "--type", "x" },
+                    { "fd", "--absolute-path", "--hidden", "--exclude", ".git", "--no-ignore", "--type", "x" },
                     {}
                   ),
                   sorter = conf.generic_sorter(opts),
@@ -341,6 +341,7 @@
             stopAtEntry = false,
             showDisassembly = "never",
         },
+
     }
         dap.configurations.cpp = {
         {
@@ -382,6 +383,13 @@
             args = get_debugargs,
             stopAtEntry = false,
             showDisassembly = "never",
+        },
+        {
+            name = "(gdb) Attach to process",
+            type = "cppdbg",
+            request = "attach",
+            program = find_program, -- unfortunately it seems this is needed due to the debug adapter impl: https://github.com/mfussenegger/nvim-dap/issues/881
+            processId = require('dap.utils').pick_process,
         },
     }
       dap.configurations.c = dap.configurations.cpp
