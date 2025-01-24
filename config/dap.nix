@@ -240,7 +240,25 @@
         end
 
 
-        function get_program_args()
+        function get_debugcmd()
+          local debug_args_path = ".debug-cmd"
+          local file = io.open(debug_args_path, "r")
+          -- If the file doesn't exist, return an empty table
+          if not file then
+            return {}
+          end
+          -- Read the first line of the file
+          local line = file:read("*line")
+          file:close()
+          -- If the line is nil or empty, return an empty table
+          if not line or line == "" then
+            return {}
+          end
+          -- Split the line by whitespace and return the parts as a table
+          return cmd
+        end
+
+        function get_debugargs()
           local debug_args_path = ".debug-args"
           local file = io.open(debug_args_path, "r")
           -- If the file doesn't exist, return an empty table
@@ -286,7 +304,7 @@
             program = find_program,
             miDebuggerPath = get_rust_lldb_path,
             cwd = "''${workspaceFolder}",
-            args = get_program_args,
+            args = get_debugargs,
             stopOnEntry = false,
             showDisassembly = "never",
         },
@@ -297,7 +315,29 @@
             program = find_program,
             miDebuggerPath = get_rust_gdb_path,
             cwd= vim.fn.getcwd,
-            args = get_program_args,
+            args = get_debugargs,
+            stopAtEntry = false,
+            showDisassembly = "never",
+        },
+        {
+            name = "(lldb) Launch .debug-cmd with .debug-args",
+            type = "codelldb",
+            request = "launch",
+            program = get_debugcmd,
+            miDebuggerPath = get_rust_lldb_path,
+            cwd = "''${workspaceFolder}",
+            args = get_debugargs,
+            stopOnEntry = false,
+            showDisassembly = "never",
+        },
+        {
+            name = "(gdb) Launch .debug-cmd with .debug-args",
+            type = "cppdbg",
+            request = "launch",
+            program = get_debugcmd,
+            miDebuggerPath = get_rust_gdb_path,
+            cwd= vim.fn.getcwd,
+            args = get_debugargs,
             stopAtEntry = false,
             showDisassembly = "never",
         },
@@ -309,7 +349,7 @@
             request = "launch",
             program = find_program,
             cwd = "''${workspaceFolder}",
-            args = get_program_args,
+            args = get_debugargs,
             stopOnEntry = false,
             showDisassembly = "never",
         },
@@ -319,7 +359,27 @@
             request = "launch",
             program = find_program,
             cwd= vim.fn.getcwd,
-            args = get_program_args,
+            args = get_debugargs,
+            stopAtEntry = false,
+            showDisassembly = "never",
+        },
+        {
+            name = "(lldb) Launch .debug-cmd with .debug-args",
+            type = "codelldb",
+            request = "launch",
+            program = get_debugcmd,
+            cwd = "''${workspaceFolder}",
+            args = get_debugargs,
+            stopOnEntry = false,
+            showDisassembly = "never",
+        },
+        {
+            name = "(gdb) Launch file (with .debug-args)",
+            type = "cppdbg",
+            request = "launch",
+            program = get_debugcmd,
+            cwd= vim.fn.getcwd,
+            args = get_debugargs,
             stopAtEntry = false,
             showDisassembly = "never",
         },
@@ -354,7 +414,7 @@
       request = 'launch',
       name = 'Launch current file with .debug-args',
       program =  "''${file}",
-      args = get_program_args,
+      args = get_debugargs,
       -- ... more options, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings
     })
 
