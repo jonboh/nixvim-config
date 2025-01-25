@@ -77,7 +77,7 @@ in {
     {
       mode = "n";
       key = "<leader>os";
-      action = "<cmd>ObsidianSearch<cr>";
+      action = ''<cmd>lua require("telescope.builtin").live_grep({cwd="/home/jonboh/vault/"})<cr>'';
     }
     {
       mode = "n";
