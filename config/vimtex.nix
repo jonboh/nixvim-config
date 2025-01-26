@@ -11,6 +11,7 @@
       view_method = "zathura";
       callback_progpath = lib.mkForce "nixvim";
     };
+    zathuraPackage = null; # use system package. that is my fork
   };
   extraConfigVim = ''
     let g:vimtex_compiler_latexmk = {
