@@ -8,86 +8,86 @@
     }
     {
       mode = "n";
-      key = "<F1>";
+      key = "<F2>";
       action = ''<cmd>lua require("dap").run_to_cursor()<cr>'';
       options = {silent = true;};
     }
     {
       mode = "v";
-      key = "<F4>";
+      key = "<F1>";
       action = ''<cmd>lua require("dapui").eval(vim.fn.expand("<cword>"))<cr>'';
       options = {silent = true;};
     }
     {
       mode = "n";
-      key = "<F4>";
+      key = "<F1>";
       action = ''<cmd>lua require("dapui").eval()<cr>'';
       options = {silent = true;};
     }
     {
       mode = "n";
-      key = "<F5>";
+      key = "<F10>";
       action = ''<cmd>lua require("dap").toggle_breakpoint()<cr>'';
       options = {silent = true;};
     }
     {
       mode = "n";
-      key = "<F6>";
-      action = ''<cmd>lua require("dap").continue()<cr>'';
-      options = {silent = true;};
-    }
-    {
-      mode = "n";
-      key = "<F7>";
-      action = ''<cmd>lua require("dap").step_over()<cr>'';
-      options = {silent = true;};
-    }
-    {
-      mode = "n";
-      key = "<F8>";
-      action = ''<cmd>lua require("dap").step_out()<cr>'';
-      options = {silent = true;};
-    }
-    {
-      mode = "n";
-      key = "<F9>";
-      action = ''<cmd>lua require("dap").step_into()<cr>'';
-      options = {silent = true;};
-    }
-    {
-      mode = "n";
-      key = "<F11>";
-      action = ''<cmd>lua require("dap").pause()<cr>'';
-      options = {silent = true;};
-    }
-    {
-      mode = "n";
-      key = "<F55>"; # <A-F8>
-      action = ''<cmd>lua require("dap").down()<cr>'';
-      options = {silent = true;};
-    }
-    {
-      mode = "n";
-      key = "<F56>"; # <A-F9>
-      action = ''<cmd>lua require("dap").up()<cr>'';
-      options = {silent = true;};
-    }
-    {
-      mode = "n";
-      key = "<F57>";
-      action = ''<cmd>lua require("dap").focus_frame()<cr>'';
-      options = {silent = true;};
-    }
-    {
-      mode = "n";
-      key = "<F17>"; # <A-F9>
+      key = "<F22>"; # <S-F10>
       action = ''
         <cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition:"))<cr>'';
       options = {silent = true;};
     }
     {
       mode = "n";
-      key = "<F12>";
+      key = "<F5>"; # <FLeft>
+      action = ''<cmd>lua require("dap").continue()<cr>'';
+      options = {silent = true;};
+    }
+    {
+      mode = "n";
+      key = "<F6>"; # <FDown>
+      action = ''<cmd>lua require("dap").step_over()<cr>'';
+      options = {silent = true;};
+    }
+    {
+      mode = "n";
+      key = "<F7>"; # <FUp>
+      action = ''<cmd>lua require("dap").step_out()<cr>'';
+      options = {silent = true;};
+    }
+    {
+      mode = "n";
+      key = "<F8>"; # <FRight>
+      action = ''<cmd>lua require("dap").step_into()<cr>'';
+      options = {silent = true;};
+    }
+    {
+      mode = "n";
+      key = "<F9>"; # FPinky
+      action = ''<cmd>lua require("dap").pause()<cr>'';
+      options = {silent = true;};
+    }
+    {
+      mode = "n";
+      key = "<F54>"; # <A-FDown>
+      action = ''<cmd>lua require("dap").down()<cr>'';
+      options = {silent = true;};
+    }
+    {
+      mode = "n";
+      key = "<F55>"; # <A-FUp>
+      action = ''<cmd>lua require("dap").up()<cr>'';
+      options = {silent = true;};
+    }
+    {
+      mode = "n";
+      key = "<F56>"; # <A-FRight>
+      action = ''<cmd>lua require("dap").focus_frame()<cr>'';
+      options = {silent = true;};
+    }
+    {
+      mode = "n";
+      key = "<F12>"; # FPinky-South
       action = ''
         <cmd>lua require("dapui").toggle(1)<cr><cmd>lua require("dapui").toggle(2)<cr>'';
       options = {silent = true;};
@@ -341,6 +341,14 @@
             stopAtEntry = false,
             showDisassembly = "never",
         },
+        {
+            name = "(gdb) Attach to process",
+            type = "cppdbg",
+            request = "attach",
+            program = find_program, -- unfortunately it seems this is needed due to the debug adapter impl: https://github.com/mfussenegger/nvim-dap/issues/881
+            processId = require('dap.utils').pick_process,
+            miDebuggerPath = get_rust_gdb_path,
+        },
 
     }
         dap.configurations.cpp = {
@@ -397,20 +405,20 @@
       local rr_dap = require("nvim-dap-rr")
       rr_dap.setup({
           mappings = {
-              continue = "<F6>",
-              step_over = "<F7>",
-              step_out = "<F8>",
-              step_into = "<F9>",
-              reverse_continue = "<F18>", -- <S-F6>
-              reverse_step_over = "<F19>", -- <S-F7>
-              reverse_step_out = "<F20>", -- <S-F8>
-              reverse_step_into = "<F21>", -- <S-F9>
-              step_over_i = "<F31>", -- <C-F7>
-              step_out_i = "<F32>", -- <C-F8>
-              step_into_i = "<F33>", -- <C-F9>
-              reverse_step_over_i = "<F43>", -- <SC-F7>
-              reverse_step_out_i = "<F44>", -- <SC-F8>
-              reverse_step_into_i = "<F45>", -- <SC-F9>
+              continue = "<F5>", -- FRight
+              step_over = "<F6>", -- FDown
+              step_out = "<F7>", -- FUp
+              step_into = "<F8>", -- FRight
+              reverse_continue = "<F17>", -- <S-FLeft>
+              reverse_step_over = "<F18>", -- <S-FDown>
+              reverse_step_out = "<F19>", -- <S-FUp>
+              reverse_step_into = "<F20>", -- <S-FRight>
+              step_over_i = "<F30>", -- <C-FDown>
+              step_out_i = "<F31>", -- <C-FUp>
+              step_into_i = "<F32>", -- <C-FRight>
+              reverse_step_over_i = "<F42>", -- <SC-FDown>
+              reverse_step_out_i = "<F43>", -- <SC-FUp>
+              reverse_step_into_i = "<F44>", -- <SC-FRight>
           }
       })
       table.insert(dap.configurations.rust, rr_dap.get_rust_config())
