@@ -199,7 +199,7 @@ in {
           enable = true;
         };
       };
-      onAttach = onAttach;
+      inherit onAttach;
       capabilities = extraCapabilities;
     };
 
@@ -207,6 +207,10 @@ in {
 
     rustaceanvim = {
       enable = true;
+      rustAnalyzerPackage = null;
+      settings.server = {
+        on_attach = ''function() ${onAttach} end'';
+      };
     };
   };
   extraConfigLua = ''
@@ -218,12 +222,6 @@ in {
       return capabilities
     end
 
-    require('lspconfig').rust_analyzer.setup {
-      on_attach = function(client, bufnr)
-          ${onAttach}
-        end,
-      capabilities = lspCapabilities()
-      }
     require('lspconfig').ruff_lsp.setup {
       on_attach = function(client, bufnr)
           ${onAttach}
