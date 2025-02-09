@@ -342,6 +342,8 @@
             showDisassembly = "never",
         },
         {
+            -- If you get an "Operation not permitted" error using this, try disabling YAMA:
+            --  echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
             name = "(gdb) Attach to process",
             type = "cppdbg",
             request = "attach",
@@ -393,6 +395,8 @@
             showDisassembly = "never",
         },
         {
+            -- If you get an "Operation not permitted" error using this, try disabling YAMA:
+            --  echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
             name = "(gdb) Attach to process",
             type = "cppdbg",
             request = "attach",

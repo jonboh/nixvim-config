@@ -244,4 +244,12 @@ in {
   '';
 
   extraPlugins = [(pkgs.callPackage ../plugins/nvim-bacon.nix {})];
+  keymaps = [
+    {
+      mode = "n";
+      key = "hL";
+      action = "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>";
+      options = {desc = "Toggle inlay_hints";};
+    }
+  ];
 }
