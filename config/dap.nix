@@ -8,80 +8,80 @@
     }
     {
       mode = "n";
-      key = "<F2>";
+      key = "<F4>";
       action = ''<cmd>lua require("dap").run_to_cursor()<cr>'';
       options = {silent = true;};
     }
     {
       mode = "v";
-      key = "<F1>";
+      key = "<F6>";
       action = ''<cmd>lua require("dapui").eval(vim.fn.expand("<cword>"))<cr>'';
       options = {silent = true;};
     }
     {
       mode = "n";
-      key = "<F1>";
+      key = "<F6>";
       action = ''<cmd>lua require("dapui").eval()<cr>'';
       options = {silent = true;};
     }
     {
       mode = "n";
-      key = "<F10>";
+      key = "<F5>";
       action = ''<cmd>lua require("dap").toggle_breakpoint()<cr>'';
       options = {silent = true;};
     }
     {
       mode = "n";
-      key = "<F22>"; # <S-F10>
+      key = "<F17>"; # <S-F10>
       action = ''
         <cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition:"))<cr>'';
       options = {silent = true;};
     }
     {
       mode = "n";
-      key = "<F5>"; # <FLeft>
+      key = "<F10>"; # <FLeft>
       action = ''<cmd>lua require("dap").continue()<cr>'';
       options = {silent = true;};
     }
     {
       mode = "n";
-      key = "<F6>"; # <FDown>
+      key = "<F1>"; # <FDown>
       action = ''<cmd>lua require("dap").step_over()<cr>'';
       options = {silent = true;};
     }
     {
       mode = "n";
-      key = "<F7>"; # <FUp>
+      key = "<F2>"; # <FUp>
       action = ''<cmd>lua require("dap").step_out()<cr>'';
       options = {silent = true;};
     }
     {
       mode = "n";
-      key = "<F8>"; # <FRight>
+      key = "<F3>"; # <FRight>
       action = ''<cmd>lua require("dap").step_into()<cr>'';
       options = {silent = true;};
     }
     {
       mode = "n";
-      key = "<F9>"; # FPinky
+      key = "<F4>"; # FPinky
       action = ''<cmd>lua require("dap").pause()<cr>'';
       options = {silent = true;};
     }
     {
       mode = "n";
-      key = "<F54>"; # <A-FDown>
+      key = "<F49>"; # <A-FDown>
       action = ''<cmd>lua require("dap").down()<cr>'';
       options = {silent = true;};
     }
     {
       mode = "n";
-      key = "<F55>"; # <A-FUp>
+      key = "<F50>"; # <A-FUp>
       action = ''<cmd>lua require("dap").up()<cr>'';
       options = {silent = true;};
     }
     {
       mode = "n";
-      key = "<F56>"; # <A-FRight>
+      key = "<F51>"; # <A-FRight>
       action = ''<cmd>lua require("dap").focus_frame()<cr>'';
       options = {silent = true;};
     }
@@ -409,20 +409,20 @@
       local rr_dap = require("nvim-dap-rr")
       rr_dap.setup({
           mappings = {
-              continue = "<F5>", -- FRight
-              step_over = "<F6>", -- FDown
-              step_out = "<F7>", -- FUp
-              step_into = "<F8>", -- FRight
-              reverse_continue = "<F17>", -- <S-FLeft>
-              reverse_step_over = "<F18>", -- <S-FDown>
-              reverse_step_out = "<F19>", -- <S-FUp>
-              reverse_step_into = "<F20>", -- <S-FRight>
-              step_over_i = "<F30>", -- <C-FDown>
-              step_out_i = "<F31>", -- <C-FUp>
-              step_into_i = "<F32>", -- <C-FRight>
-              reverse_step_over_i = "<F42>", -- <SC-FDown>
-              reverse_step_out_i = "<F43>", -- <SC-FUp>
-              reverse_step_into_i = "<F44>", -- <SC-FRight>
+              continue = "<F10>", -- FRight
+              step_over = "<F1>", -- FDown
+              step_out = "<F2>", -- FUp
+              step_into = "<F3>", -- FRight
+              reverse_continue = "<F22>", -- <S-FLeft>
+              reverse_step_over = "<F13>", -- <S-FDown>
+              reverse_step_out = "<F14>", -- <S-FUp>
+              reverse_step_into = "<F15>", -- <S-FRight>
+              step_over_i = "<F25>", -- <C-FDown>
+              step_out_i = "<F26>", -- <C-FUp>
+              step_into_i = "<F27>", -- <C-FRight>
+              reverse_step_over_i = "<F37>", -- <SC-FDown>
+              reverse_step_out_i = "<F38>", -- <SC-FUp>
+              reverse_step_into_i = "<F39>", -- <SC-FRight>
           }
       })
       table.insert(dap.configurations.rust, rr_dap.get_rust_config())
