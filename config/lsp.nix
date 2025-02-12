@@ -208,8 +208,23 @@ in {
     rustaceanvim = {
       enable = true;
       rustAnalyzerPackage = null;
-      settings.server = {
-        on_attach = ''function() ${onAttach} end'';
+      settings = {
+        server = {
+          on_attach = ''function() ${onAttach} end'';
+        };
+        dap = {
+          # NOTE: used to run RustLsp debuggables
+          adapter = ''
+            {
+              type = 'server',
+              port = "''${port}",
+              executable = {
+                  command = "/run/current-system/sw/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb",
+                  args = {"--port", "''${port}"},
+              }
+            }
+          '';
+        };
       };
     };
   };
