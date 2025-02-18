@@ -143,7 +143,7 @@
     {
       mode = "n";
       key = "<leader>f";
-      action = ''<cmd>lua require("telescope.builtin").find_files()<cr>'';
+      action = ''<cmd>lua require("telescope.builtin").find_files({follow=true})<cr>'';
       options = {
         silent = true;
         desc = "Find files";
@@ -151,8 +151,17 @@
     }
     {
       mode = "n";
+      key = "<leader>F";
+      action = ''<cmd>lua require("telescope.builtin").find_files({follow=true, hidden=true, no_ignore=true, no_ignore_parent=true})<cr>'';
+      options = {
+        silent = true;
+        desc = "Find all files";
+      };
+    }
+    {
+      mode = "n";
       key = "<leader>rcf";
-      action = ''<cmd>lua require("telescope.builtin").find_files({cwd="/home/jonboh/.flakes/nixvim-config/"})<cr>'';
+      action = ''<cmd>lua require("telescope.builtin").find_files({follow=true, cwd="/home/jonboh/.flakes/nixvim-config/"})<cr>'';
       options = {
         silent = true;
         desc = "Find files";
