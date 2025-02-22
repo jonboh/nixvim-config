@@ -1,7 +1,7 @@
 {
   extraConfigLua = ''
     -- Configuration
-    local level_color = { {-16, "#2B062C"},{-6, "#3A093B"},  {6, "#3B0909"}, {16, "#2C0606"}}
+    local level_color = { {-16, "#3A093B"},{-6, "#2B062C"},  {6, "#2C0606"}, {16, "#3B0909"}}
 
     -- Plugin
     local ns_id = vim.api.nvim_create_namespace('offset_cursorline')
