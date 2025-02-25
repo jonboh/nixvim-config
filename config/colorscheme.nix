@@ -19,8 +19,9 @@
     opts = {termguicolors = true;};
     extraConfigLua = ''
       vim.opt.background = "dark"
-      vim.api.nvim_set_hl(0, "LineNr", {fg="#B1A6F7"})
+      -- vim.api.nvim_set_hl(0, "LineNr", {fg="#3B0909"})
       vim.api.nvim_set_hl(0, "CursorLineNr", {fg="#af00af"})
+      vim.api.nvim_set_hl(0, "CursorLine", {bg="#04260e"})
 
       local config = {
           normal_cursor_color = '#bbc2cf',

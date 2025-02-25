@@ -10,7 +10,7 @@
         return function()
           local win_width = vim.api.nvim_win_get_width(0)
           local cursor_line_nr = vim.api.nvim_win_get_cursor(0)[1]
-          local offset_line_nr = cursor_line_nr + line_offset-1
+          local offset_line_nr = cursor_line_nr + line_offset-1 -- WARN: this does not take into account folds
           -- Remove previously set extmarks, if any, to avoid stacking them
           vim.api.nvim_buf_del_extmark(0, ns_id, 1010+line_offset)
           if offset_line_nr >= 0 and offset_line_nr < vim.api.nvim_buf_line_count(0) then
