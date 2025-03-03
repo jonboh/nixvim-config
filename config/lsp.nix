@@ -10,7 +10,7 @@
     local keymaps = {
       {
         mode = "n",
-        key = "hx",
+        key = "h<Space>",
         action = "<cmd>lua vim.diagnostic.setqflist()<cr><cmd>cfirst<cr>zzzv",
         options = {
           silent = true,
@@ -19,7 +19,7 @@
       },
       {
         mode = "n",
-        key = "hX",
+        key = "h<C-Space>",
         action = "<cmd>BaconLoad<cr><cmd>copen<cr><cmd>cfirst<cr>zzzv",
         options = {
           silent = true,
