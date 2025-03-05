@@ -21,6 +21,12 @@
       };
     }
 
+    ## Make backspace remove characters in normal mode, in my layout S-Backspace=Delete so we have both directions
+    {
+      mode = "n";
+      key = "<backspace>";
+      action = "X";
+    }
     ## Clear space for leader
     {
       mode = "n";
