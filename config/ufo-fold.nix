@@ -7,8 +7,9 @@
       foldlevelstart = 99;
       foldcolumn = "1";
     };
-    # had to use ufo-nvim nightly to work with nvim nightly
-    extraPlugins = [pkgs.vimPlugins.promise-async (pkgs.callPackage ../plugins/ufo-nvim.nix {})];
+    extraPlugins = [
+      pkgs.vimPlugins.nvim-ufo
+    ];
 
     extraConfigLua = ''
         vim.keymap.set('n', 'zR', require('ufo').openAllFolds)

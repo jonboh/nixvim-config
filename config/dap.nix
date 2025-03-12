@@ -97,7 +97,7 @@
     pkgs.vimPlugins.nvim-dap
     pkgs.vimPlugins.nvim-dap-ui
     pkgs.vimPlugins.nvim-dap-virtual-text
-    (pkgs.callPackage ../plugins/nvim-dap-rr.nix {})
+    pkgs.vimPlugins.nvim-dap-rr
     pkgs.vimPlugins.nvim-dap-python
   ];
   extraConfigLua = ''

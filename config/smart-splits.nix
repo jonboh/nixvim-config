@@ -1,5 +1,8 @@
 {pkgs, ...}: {
-  extraPlugins = [(pkgs.callPackage ../plugins/smart-splits.nix {})];
+  extraPlugins = [
+    # (pkgs.callPackage ../plugins/smart-splits.nix {})
+    pkgs.vimPlugins.smart-splits-nvim
+  ];
 
   extraConfigLua = ''
         require("smart-splits").setup({

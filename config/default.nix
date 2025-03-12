@@ -37,7 +37,7 @@
   ];
   extraAppearance = [
     ./noice.nix
-    ./dressing.nix
+    ./snacks.nix
     ./lualine.nix
     ./ufo-fold.nix
   ];
