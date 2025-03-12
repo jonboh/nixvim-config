@@ -237,7 +237,7 @@ in {
       return capabilities
     end
 
-    require('lspconfig').ruff_lsp.setup {
+    require('lspconfig').ruff.setup {
       on_attach = function(client, bufnr)
           ${onAttach}
         end,
