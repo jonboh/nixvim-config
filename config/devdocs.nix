@@ -27,12 +27,12 @@
   keymaps = [
     {
       mode = "n";
-      key = "<C-h>";
+      key = "<leader>doc";
       action = "<cmd>DevdocsOpenCurrent<cr>";
     }
     {
       mode = "n";
-      key = "<CS-h>";
+      key = "<leader><leader>doc";
       action = "<cmd>DevdocsOpen<cr>";
     }
   ];
