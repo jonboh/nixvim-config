@@ -187,6 +187,12 @@
     }
     {
       mode = "n";
+      key = "<A-backspace>";
+      action = "<C-W>q";
+      options = {desc = "Close window";};
+    }
+    {
+      mode = "n";
       key = "<AS-Left>";
       action = "<C-W>H";
       options = {desc = "Move window Left";};
