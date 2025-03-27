@@ -79,6 +79,7 @@
         map('n', 'jv', gs.preview_hunk)
         map('n', 'jb', function() gs.blame_line{full=true} end)
         map('n', 'jB', gs.toggle_current_line_blame)
+        map('n', 'jj', gs.setqflist)
 
         -- Text object
         -- map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
