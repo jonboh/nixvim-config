@@ -197,6 +197,7 @@ in {
         };
         clangd = {
           enable = true;
+          filetypes = ["c" "cpp" "h" "hpp" "cuda"];
         };
       };
       inherit onAttach;
@@ -237,6 +238,12 @@ in {
       return capabilities
     end
 
+    require'lspconfig'.protols.setup{
+      on_attach = function(client, bufnr)
+          ${onAttach}
+        end,
+      capabilities = lspCapabilities()
+      }
     require('lspconfig').ruff.setup {
       on_attach = function(client, bufnr)
           ${onAttach}
