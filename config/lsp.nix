@@ -213,19 +213,20 @@ in {
         server = {
           on_attach = ''function() ${onAttach} end'';
         };
-        dap = {
-          # NOTE: used to run RustLsp debuggables
-          adapter = ''
-            {
-              type = 'server',
-              port = "''${port}",
-              executable = {
-                  command = "/run/current-system/sw/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb",
-                  args = {"--port", "''${port}"},
-              }
-            }
-          '';
-        };
+        # NOTE: latest versions are able to infer adapter from PATH lldb
+        # dap = {
+        #   # NOTE: used to run RustLsp debuggables
+        #   adapter = ''
+        #     {
+        #       type = 'server',
+        #       port = "''${port}",
+        #       executable = {
+        #           command = "/run/current-system/sw/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb",
+        #           args = {"--port", "''${port}"},
+        #       }
+        #     }
+        #   '';
+        # };
       };
     };
   };
