@@ -75,6 +75,7 @@ in {
             .. "The user provided the additional info about how they would like you to respond:\n\n"
             .. "- If you're unsure don't guess and say you don't know instead.\n"
             .. "- Don't elide any code from your output if the answer requires coding.\n"
+            .. "- When writing math, use $<math>$ instead of \(<math>\)"
             .. "- No yapping.\n"
     local code_system_prompt = "You are an AI working as a code editor.\n\n"
             .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
