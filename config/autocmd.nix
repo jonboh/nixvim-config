@@ -15,8 +15,13 @@
     }
     {
       event = "FileType";
+      pattern = "julia";
+      command = "setlocal formatoptions-=o";
+    }
+    {
+      event = "FileType";
       pattern = "markdown";
-      command = "setlocal conceallevel=2";
+      command = "setlocal conceallevel=1";
     }
     # Set markdown to wrap, it helps with devdocs
     {
