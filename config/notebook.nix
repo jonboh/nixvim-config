@@ -10,13 +10,13 @@
     {
       mode = "n";
       key = "<leader>e";
-      action = "<cmd>ReplRunAndMove<cr>";
+      action = "<cmd>ReplRunCell<cr>";
       options = {desc = "Evaluate cell and move to next";};
     }
     {
       mode = "n";
       key = "<leader>E";
-      action = "<cmd>ReplRunCell<cr>";
+      action = "<cmd>ReplRunAndMove<cr>";
       options = {desc = "Evaluate cell";};
     }
     {
