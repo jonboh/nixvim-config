@@ -25,6 +25,11 @@
     {
       mode = "n";
       key = "<backspace>";
+      action = "x";
+    }
+    {
+      mode = "n";
+      key = "<del>";
       action = "X";
     }
     ## Clear space for leader
