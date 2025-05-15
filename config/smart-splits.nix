@@ -13,6 +13,10 @@
         vim.keymap.set('n', '<AD-Down>', require('smart-splits').resize_down)
         vim.keymap.set('n', '<AD-Up>', require('smart-splits').resize_up)
         vim.keymap.set('n', '<AD-Right>', require('smart-splits').resize_right)
+        vim.keymap.set('t', '<AD-Left>', require('smart-splits').resize_left)
+        vim.keymap.set('t', '<AD-Down>', require('smart-splits').resize_down)
+        vim.keymap.set('t', '<AD-Up>', require('smart-splits').resize_up)
+        vim.keymap.set('t', '<AD-Right>', require('smart-splits').resize_right)
         -- moving between splits
         vim.keymap.set('n', '<A-Left>', require('smart-splits').move_cursor_left)
         vim.keymap.set('n', '<A-Down>', require('smart-splits').move_cursor_down)
