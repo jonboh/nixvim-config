@@ -45,6 +45,16 @@
               }''}"
           ];
         };
+        # NOTE: runic shared env needs to be installed: https://github.com/fredrikekre/Runic.jl?tab=readme-ov-file#quick-start
+        runic = {
+          command = "julia";
+          args = [
+            "--startup-file=no"
+            "--project=@runic"
+            "-e"
+            "using Runic; exit(Runic.main(ARGS))"
+          ];
+        };
       };
       formatters_by_ft = {
         nix = ["alejandra"];
@@ -57,6 +67,7 @@
         html = ["prettier"];
         sql = ["sql-formatter"];
         mysql = ["sql-formatter-mysql"];
+        julia = ["runic"];
         "*" = ["trim_whitespace"];
       };
       format_on_save = ''
@@ -118,6 +129,7 @@
       desc = "Disable autoformat-on-save",
       bang = true,
     })
+
     vim.api.nvim_create_user_command("FormatEnable", function()
       vim.b.disable_autoformat = false
       vim.g.disable_autoformat = false
