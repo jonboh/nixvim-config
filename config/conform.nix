@@ -46,6 +46,7 @@
           ];
         };
         # NOTE: runic shared env needs to be installed: https://github.com/fredrikekre/Runic.jl?tab=readme-ov-file#quick-start
+        # use: `julia --project=@runic -e 'using Pkg; Pkg.add("Runic")'`
         runic = {
           command = "julia";
           args = [

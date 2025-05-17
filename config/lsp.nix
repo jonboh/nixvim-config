@@ -192,6 +192,8 @@ in {
           installGhc = false;
         };
         julials = {
+          # NOTE: needs to be installed manually
+          # `julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer")'`
           enable = true;
           package = null;
         };
