@@ -275,6 +275,24 @@
       action = ''
         <cmd>lua require("telescope").extensions.file_browser.file_browser()<cr>'';
     }
+    {
+      mode = "n";
+      key = "<leader>q";
+      action = ''<cmd>Telescope quickfix<cr>'';
+      options = {
+        silent = true;
+        desc = "Find files";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>Q";
+      action = ''<cmd>Telescope quickfixhistory<cr>'';
+      options = {
+        silent = true;
+        desc = "Find files";
+      };
+    }
   ];
 
   extraConfigLua = ''

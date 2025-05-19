@@ -6,6 +6,7 @@
         lineFoldingOnly = true
     }
   '';
+  # TODO: make a function+mapping to choose TodoComments keyword
   onAttach = ''
     local keymaps = {
       {
@@ -15,6 +16,33 @@
         options = {
           silent = true,
           desc = "Load LSP Diagnostics to qf",
+        },
+      },
+      {
+        mode = "n",
+        key = "h1",
+        action = "<cmd>TodoQuickFix keywords=TODO<cr>",
+        options = {
+          silent = true,
+          desc = "Load TODO to qf",
+        },
+      },
+      {
+        mode = "n",
+        key = "h2",
+        action = "<cmd>TodoQuickFix keywords=FIX<cr>",
+        options = {
+          silent = true,
+          desc = "Load FIX to qf",
+        },
+      },
+      {
+        mode = "n",
+        key = "h0",
+        action = "<cmd>TodoQuickFix<cr>",
+        options = {
+          silent = true,
+          desc = "Load all TodoComments to qf",
         },
       },
       {
