@@ -211,7 +211,7 @@ in {
       servers = {
         lua_ls.enable = true;
         nil_ls.enable = true;
-        ltex.enable = true;
+        # ltex.enable = true; # throws an error about Khmer and Japanese missing common word files
         texlab.enable = true;
         terraformls.enable = true;
         marksman.enable = true;
@@ -238,8 +238,8 @@ in {
 
     rustaceanvim = {
       enable = true;
-      rustAnalyzerPackage = null;
       settings = {
+        rustAnalyzerPackage = null;
         server = {
           on_attach = ''function() ${onAttach} end'';
         };
