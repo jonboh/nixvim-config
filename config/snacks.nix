@@ -2,8 +2,24 @@
   plugins.snacks = {
     enable = true;
     settings = {
-      input.enabled = true;
-      picker.enabled = true;
+      bigfile.enable = true;
+      input.enable = true;
+      picker.enable = true;
+      notifier.enable = true;
     };
   };
+
+  userCommands = {
+    Notifications = {
+      command.__raw = ''Snacks.notifier.show_history'';
+    };
+  };
+
+  keymaps = [
+    {
+      mode = "n";
+      key = "z=";
+      action = "<cmd>lua Snacks.picker.spelling()<cr>";
+    }
+  ];
 }
