@@ -27,6 +27,7 @@
     ./conform.nix
     ./todo-comments.nix
     ./devdocs.nix
+    ./csvview.nix
   ];
   git = [
     ./git.nix
