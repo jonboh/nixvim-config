@@ -79,6 +79,11 @@
       if full
       then integrations
       else []
+    )
+    ++ (
+      if !full
+      then [./light.nix]
+      else []
     );
 in {
   inherit imports;
