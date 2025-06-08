@@ -28,6 +28,7 @@
     ./todo-comments.nix
     ./devdocs.nix
     ./csvview.nix
+    ./coq.nix
   ];
   git = [
     ./git.nix
