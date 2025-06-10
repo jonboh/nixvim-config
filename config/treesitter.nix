@@ -11,7 +11,10 @@
             node_decremental = "-";
           };
         };
-        highlight.enable = true;
+        highlight = {
+          enable = true;
+          disable = ["csv"]; # csv highlight in nvim is better than treesitter
+        };
       };
       nixvimInjections = true;
     };
