@@ -114,6 +114,14 @@
             i(0),
       t {'}', ""},
       }),
+
+      s('boxerror',
+        {t {'Box<dyn std::error::Error>'}}
+      ),
+
+      s('resultboxerror',
+        {t {'Result<'}, i(0), t{', Box<dyn std::error::Error>>'}}
+      ),
     })
 
   '';
