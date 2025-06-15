@@ -65,6 +65,15 @@
     --     })
     --   })
     -- })
+    ls.add_snippets("tex", {
+      s("frame",
+        {
+          t{'\\begin{frame}', ""},
+          i(0),
+          t{"", '\\end{frame}', ""},
+      })
+    })
+
     ls.add_snippets("rust", {
       s('allowfreedom', t '#![allow(clippy::disallowed_names, unused_variables, dead_code)]'),
 
