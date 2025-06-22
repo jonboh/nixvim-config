@@ -124,18 +124,18 @@ in {
           system_prompt = chat_system_prompt
         },
         {
-          name = "ChatGPT4-P",
+          name = "ChatGPT4.1-P",
           chat = true,
           command = false,
-          model = { model = "gpt-4-1106-preview", temperature = 1.1, top_p = 1 },
+          model = { model = "gpt-4.1-2025-04-14", temperature = 1.1, top_p = 1 },
           system_prompt = chat_system_prompt
         },
         {
-          name = "CodeGPT4-P",
+          name = "CodeGPT4.1-P",
           chat = false,
           command = true,
           -- string with model name or table with model name and parameters
-          model = { model = "gpt-4-1106-preview", temperature = 0.8, top_p = 1 },
+          model = { model = "gpt-4.1-2025-04-14", temperature = 0.8, top_p = 1 },
           -- system prompt (use this to specify the persona/role of the AI)
           system_prompt = code_system_prompt
         },
