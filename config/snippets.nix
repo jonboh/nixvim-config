@@ -56,15 +56,20 @@
     local d = ls.dynamic_node
     local r = ls.restore_node
 
-    -- ls.add_snippets("nix", {
-    --   s("test_choice",{
-    --   c(1, {
-    --       t "CHOICE1",
-    --       t "CHOICE2",
-    --       t "CHOICE3",
-    --     })
-    --   })
-    -- })
+    ls.add_snippets("nix", {
+      s("init-flake",{
+        t {"{", ""},
+        t {"  inputs = { nixpkgs.url = \"github:NixOS/nixpkgs/nixos-unstable\";};", ""},
+        t {"  outputs = {self, nixpkgs, ...}@inputs: let pkgs = import nixpkgs {system=\"x86_64-linux\";}; in {", ""},
+        t {"    devShells.x86_64-linux.default = pkgs.mkShell {", ""},
+        t {"      packages = with pkgs; [", ""},
+        i(0),
+        t {"      ];", ""},
+        t {"    };", ""},
+        t {"  };", ""},
+        t {"}"},
+      })
+    })
     ls.add_snippets("tex", {
       s("frame",
         {
