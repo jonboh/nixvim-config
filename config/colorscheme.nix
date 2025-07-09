@@ -19,9 +19,11 @@
     opts = {termguicolors = true;};
     extraConfigLua = ''
       vim.opt.background = "dark"
-      -- vim.api.nvim_set_hl(0, "LineNr", {fg="#3B0909"})
-      vim.api.nvim_set_hl(0, "CursorLineNr", {fg="#af00af"})
       vim.api.nvim_set_hl(0, "CursorLine", {bg="#04260e"})
+
+      vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='#98be65', bold=true })
+      vim.api.nvim_set_hl(0, "CursorLineNr", {fg="#af00af", bold=true})
+      vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='#f7768e', bold=true })
 
       local config = {
           normal_cursor_color = '#bbc2cf',

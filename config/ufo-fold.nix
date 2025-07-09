@@ -5,7 +5,7 @@
       foldenable = true;
       foldlevel = 99;
       foldlevelstart = 99;
-      foldcolumn = "1";
+      foldcolumn = "0";
     };
     extraPlugins = [
       pkgs.vimPlugins.nvim-ufo
