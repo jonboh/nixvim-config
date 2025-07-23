@@ -203,6 +203,20 @@
       map.options["buffer"] = bufnr
       vim.keymap.set(map.mode, map.key, map.action, map.options)
     end
+    -- Add symbol highlighting
+    if client ~= nil and client.server_capabilities.documentHighlightProvider then
+      vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+      vim.api.nvim_create_autocmd('CursorHold', {
+        buffer = bufnr,
+        group = 'lsp_document_highlight',
+        callback = vim.lsp.buf.document_highlight
+      })
+      vim.api.nvim_create_autocmd('CursorMoved', {
+        buffer = bufnr,
+        group = 'lsp_document_highlight',
+        callback = vim.lsp.buf.clear_references
+      })
+    end
   '';
 in {
   plugins = {
