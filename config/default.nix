@@ -35,6 +35,7 @@
   ];
   navigation = [
     ./telescope.nix
+    ./yazi.nix
     ./harpoon.nix
   ];
   extraAppearance = [
