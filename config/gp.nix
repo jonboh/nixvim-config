@@ -145,6 +145,9 @@ in {
       chat_shortcut_delete = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>d" },
       chat_shortcut_stop = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>s" },
       chat_shortcut_new = { modes = { "n", "i", "v", "x" }, shortcut = "${new_chat_shortcut}" },
+      whisper = {
+        whisper_rec_cmd = {"arecord", "-c", "1", "-f", "S16_LE", "-r", "48000", "-d", "3600", "rec.wav"},
+        }
     }
     require("gp").setup(config)
 
@@ -227,5 +230,8 @@ in {
       options = {desc = "Stop response";};
     }
   ];
-  extraPackages = [(pkgs.sox.override {enableLame = true;})];
+  extraPackages = [
+    pkgs.alsa-utils
+    (pkgs.sox.override {enableLame = true;})
+  ];
 }
