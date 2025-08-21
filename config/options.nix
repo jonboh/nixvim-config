@@ -54,5 +54,8 @@
 
       cmdheight = 0;
     };
+    extraConfigLua = ''
+      vim.opt.spelloptions:append("camel")
+    '';
   };
 }
