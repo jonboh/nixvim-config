@@ -29,5 +29,10 @@
       pattern = "markdown";
       command = "setlocal wrap";
     }
+    {
+      event = ["BufRead" "BufNewFile"];
+      pattern = "*.xacro";
+      command = "setfiletype xml";
+    }
   ];
 }
