@@ -243,6 +243,7 @@ in {
           enable = true;
           filetypes = ["c" "cpp" "h" "hpp" "cuda"];
         };
+        lemminx.enable = true;
       };
       inherit onAttach;
       capabilities = extraCapabilities;

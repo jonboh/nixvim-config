@@ -10,7 +10,7 @@
     # Set indentation to 2 spaces for nix files
     {
       event = "FileType";
-      pattern = ["nix" "markdown" "haskell"];
+      pattern = ["nix" "markdown" "haskell" "xml" "json" "sql"];
       command = "setlocal tabstop=2 shiftwidth=2";
     }
     {

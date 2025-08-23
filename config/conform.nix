@@ -11,6 +11,7 @@
         jq.command = "${pkgs.jq}/bin/jq";
         taplo.command = "${pkgs.taplo}/bin/taplo";
         yamlfmt.command = "${pkgs.yamlfmt}/bin/yamlfmt";
+        xmlstarlet.command = "${pkgs.xmlstarlet}/bin/xmlstarlet";
         stylua = {
           command = "${pkgs.stylua}/bin/stylua";
           args = ["--indent-type" "Spaces" "--indent-width" "2" "--column-width" "100" "--sort-requires"];
@@ -68,6 +69,7 @@
         html = ["prettier"];
         sql = ["sql-formatter"];
         mysql = ["sql-formatter-mysql"];
+        xml = ["xmlstarlet"];
         julia = ["runic"];
         "*" = [
           "trim_whitespace"
