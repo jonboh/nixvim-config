@@ -34,5 +34,10 @@
       pattern = "*.xacro";
       command = "setfiletype xml";
     }
+    {
+      event = ["BufRead" "BufNewFile"];
+      pattern = "*.sdf";
+      command = "setfiletype xml";
+    }
   ];
 }
