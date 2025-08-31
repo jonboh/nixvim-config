@@ -403,6 +403,31 @@
             program = find_program, -- unfortunately it seems this is needed due to the debug adapter impl: https://github.com/mfussenegger/nvim-dap/issues/881
             processId = require('dap.utils').pick_process,
         },
+        {
+          name = "(gdb) Attach to server",
+          type = "cppdbg",
+          request = "launch",
+          program = function() return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file") end,
+          args = {},
+          miDebuggerServerAddress = "127.0.0.1:50505",
+          stopAtEntry = true,
+          cwd = vim.fn.getcwd,
+          environment = {},
+          externalConsole = true,
+          MIMode = "gdb",
+          setupCommands = {
+            {
+              description = "Setup to resolve symbols",
+              text = "set sysroot /",
+              ignoreFailures = false,
+            },
+            {
+              description = "Enable pretty-printing for gdb",
+              text = "-enable-pretty-printing",
+              ignoreFailures = false,
+            },
+          },
+        }
     }
       dap.configurations.c = dap.configurations.cpp
 
