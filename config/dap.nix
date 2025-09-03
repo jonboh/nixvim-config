@@ -294,7 +294,18 @@
             local rustlldb= toolchain_location.."/bin/rust-lldb"
             return rustlldb
         end
-
+        gdbSetupCommands = {
+                    {
+                      description = "Setup to resolve symbols",
+                      text = "set sysroot /",
+                      ignoreFailures = false,
+                    },
+                    {
+                       text = '-enable-pretty-printing',
+                       description =  'enable pretty printing',
+                       ignoreFailures = false
+                    },
+                  }
         require('dap').defaults.fallback.exception_breakpoints = {'uncaught', 'rust_panic'}
         dap.configurations.rust = {
         {
@@ -318,6 +329,7 @@
             args = get_debugargs,
             stopAtEntry = false,
             showDisassembly = "never",
+            setupCommands = gdbSetupCommands,
         },
         {
             name = "(lldb) Launch .debug-cmd with .debug-args",
@@ -340,6 +352,7 @@
             args = get_debugargs,
             stopAtEntry = false,
             showDisassembly = "never",
+            setupCommands = gdbSetupCommands,
         },
         {
             -- If you get an "Operation not permitted" error using this, try disabling YAMA:
@@ -350,6 +363,7 @@
             program = find_program, -- unfortunately it seems this is needed due to the debug adapter impl: https://github.com/mfussenegger/nvim-dap/issues/881
             processId = require('dap.utils').pick_process,
             miDebuggerPath = get_rust_gdb_path,
+            setupCommands = gdbSetupCommands,
         },
 
     }
@@ -373,6 +387,7 @@
             args = get_debugargs,
             stopAtEntry = false,
             showDisassembly = "never",
+            setupCommands = gdbSetupCommands,
         },
         {
             name = "(lldb) Launch .debug-cmd with .debug-args",
@@ -393,6 +408,7 @@
             args = get_debugargs,
             stopAtEntry = false,
             showDisassembly = "never",
+            setupCommands = gdbSetupCommands,
         },
         {
             -- If you get an "Operation not permitted" error using this, try disabling YAMA:
@@ -402,6 +418,7 @@
             request = "attach",
             program = find_program, -- unfortunately it seems this is needed due to the debug adapter impl: https://github.com/mfussenegger/nvim-dap/issues/881
             processId = require('dap.utils').pick_process,
+            setupCommands = gdbSetupCommands,
         },
         {
           name = "(gdb) Attach to server",
@@ -415,18 +432,7 @@
           environment = {},
           externalConsole = true,
           MIMode = "gdb",
-          setupCommands = {
-            {
-              description = "Setup to resolve symbols",
-              text = "set sysroot /",
-              ignoreFailures = false,
-            },
-            {
-              description = "Enable pretty-printing for gdb",
-              text = "-enable-pretty-printing",
-              ignoreFailures = false,
-            },
-          },
+          setupCommands = gdbSetupCommands,
         }
     }
       dap.configurations.c = dap.configurations.cpp
