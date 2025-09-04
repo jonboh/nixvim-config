@@ -308,7 +308,7 @@ in {
         end,
       capabilities = lspCapabilities()
       }
-    vim.api.nvim_create_user_command("LspFormat", vim.lsp.buf.format, {})
+    vim.api.nvim_create_user_command("LspFormat", "lua vim.lsp.buf.format()", {})
   '';
 
   extraPlugins = [(pkgs.callPackage ../plugins/nvim-bacon.nix {})];
