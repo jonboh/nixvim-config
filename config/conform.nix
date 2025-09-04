@@ -57,6 +57,9 @@
             "using Runic; exit(Runic.main(ARGS))"
           ];
         };
+        clang-format = {
+          command = "clang-format";
+        };
       };
       formatters_by_ft = {
         nix = ["alejandra"];
@@ -71,6 +74,7 @@
         mysql = ["sql-formatter-mysql"];
         xml = ["xmlstarlet"];
         julia = ["runic"];
+        proto = ["clang-format"];
         "*" = [
           "trim_whitespace"
           "trim_newlines"
@@ -94,7 +98,7 @@
               end
             end
 
-            return { timeout_ms = 200, lsp_fallback = true }, on_format
+            return { timeout_ms = 200, lsp_format = "fallback" }, on_format
            end
         '';
 
@@ -110,7 +114,7 @@
               return
             end
 
-            return { lsp_fallback = true }
+            return { lsp_format = "fallback" }
           end
         '';
 
@@ -131,7 +135,7 @@
           ["end"] = { args.line2, end_line:len() },
         }
       end
-      require("conform").format({ async = true, lsp_fallback = true, range = range })
+      require("conform").format({ async = true, lsp_format = "fallback", range = range })
     end, { range = true })
 
     vim.api.nvim_create_user_command("FormatDisable", function(args)
