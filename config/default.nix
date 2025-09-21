@@ -54,7 +54,6 @@
     ./gp.nix
     ./markdown-preview.nix
     ./dadbod.nix
-    # ./hurl.nix
   ];
   imports =
     basic
