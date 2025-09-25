@@ -54,6 +54,7 @@
     ./gp.nix
     ./markdown-preview.nix
     ./dadbod.nix
+    ./anki.nix
   ];
   imports =
     basic
