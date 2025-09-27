@@ -7,6 +7,9 @@
       models = {
         -- Here you specify which notetype should be associated with which deck
         ["MathematicsBasic"] = "Mathematics",
+        ["DynamicalSystemsBasic"] = "DynamicalSystems",
+        ["StatisticsBasic"] = "Statistics",
+        ["MachineLearningBasic"] = "MachineLearning",
       },
       linters = require("anki.linters").default_linters();
     })
