@@ -11,6 +11,15 @@
         };
         progress.enabled = false;
       };
+      routes = [
+        {
+          view = "split";
+          filter = {
+            event = "msg_show";
+            kind = "shell_out";
+          };
+        }
+      ];
     };
   };
 }
