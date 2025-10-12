@@ -168,7 +168,7 @@
     ## Windows
     {
       mode = "n";
-      key = "<A-v>";
+      key = "<A-g>";
       action = "<C-W><C-v><C-W><C-l>";
       options = {desc = "Split vertically";};
     }
