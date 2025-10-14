@@ -2,7 +2,12 @@
   config = {
     opts = {
       list = true;
-      listchars = "space:⋅";
+      listchars = {
+        space = "⋅";
+        tab = "▸ ";
+        trail = "·";
+        eol = "¬";
+      };
     };
     extraPlugins = [pkgs.vimPlugins.indent-blankline-nvim];
     extraConfigLua = ''
