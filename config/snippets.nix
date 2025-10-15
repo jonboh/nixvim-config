@@ -80,7 +80,7 @@
     })
 
     ls.add_snippets("rust", {
-      s('allowfreedom', t '#![allow(clippy::disallowed_names, unused_variables, dead_code, missing_docs)]'),
+      s('allowfreedom', t '#![allow(clippy::disallowed_names, unused_variables, dead_code, missing_docs, missing_debug_implementations, clippy::unwrap_used, clippy::missing_panics_doc)]'),
 
       s('clippypedantic', t '#![warn(clippy::all, clippy::pedantic)]'),
 
