@@ -53,6 +53,7 @@
     ./markdown-preview.nix
     ./dadbod.nix
     ./anki.nix
+    ./azure-prs.nix
   ];
   imports =
     basic
