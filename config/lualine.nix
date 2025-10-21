@@ -1,4 +1,5 @@
-{
+{pkgs, ...}: {
+  extraPlugins = [pkgs.vimPlugins.lsp-progress-nvim];
   plugins.lualine = {
     enable = true;
     settings.options.icons_enabled = true;
@@ -163,24 +164,9 @@
     }
 
     ins_left {
-      -- Lsp server name .
       function()
-        local msg = 'No Active Lsp'
-        local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-        local clients = vim.lsp.get_clients()
-        if next(clients) == nil then
-          return msg
-        end
-        for _, client in ipairs(clients) do
-          local filetypes = client.config.filetypes
-          if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-            return client.name
-          end
-        end
-        return msg
+          return require("lsp-progress").progress({})
       end,
-      icon = ' LSP:',
-      color = { fg = '#ffffff', gui = 'bold' },
     }
 
     ins_right {
@@ -238,6 +224,67 @@
 
     -- Now don't forget to initialize lualine
     lualine.setup(config)
+
+    require("lsp-progress").setup({
+      max_size = 40,
+      client_format = function(client_name, spinner, series_messages)
+        if #series_messages == 0 then
+          return nil
+        end
+        return {
+          name = client_name,
+          body = spinner .. " " .. table.concat(series_messages, ", "),
+        }
+      end,
+      format = function(client_messages)
+        --- @param name string
+        --- @param msg string?
+        --- @return string
+        local function stringify(name, msg)
+          return msg and string.format("%s %s", name, msg) or name
+        end
+
+        local sign = "" -- nf-fa-gear \uf013
+        local lsp_clients = vim.lsp.get_active_clients()
+        local messages_map = {}
+        for _, climsg in ipairs(client_messages) do
+          messages_map[climsg.name] = climsg.body
+        end
+
+        if #lsp_clients > 0 then
+          table.sort(lsp_clients, function(a, b)
+            return a.name < b.name
+          end)
+          local builder = {}
+          for _, cli in ipairs(lsp_clients) do
+            if
+              type(cli) == "table"
+              and type(cli.name) == "string"
+              and string.len(cli.name) > 0
+            then
+              if messages_map[cli.name] then
+                table.insert(builder, stringify(cli.name, messages_map[cli.name]))
+              else
+                table.insert(builder, stringify(cli.name))
+              end
+            end
+          end
+          if #builder > 0 then
+            return sign .. " " .. table.concat(builder, ", ")
+          end
+        end
+        return ""
+      end,
+    })
+
+    -- NOTE: For lsp-progress: see https://github.com/linrongbin16/lsp-progress.nvim?tab=readme-ov-file#lualinenvim
+    -- listen lsp-progress event and refresh lualine
+    vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
+    vim.api.nvim_create_autocmd("User", {
+      group = "lualine_augroup",
+      pattern = "LspProgressStatusUpdated",
+      callback = require("lualine").refresh,
+    })
 
   '';
 }

@@ -11,13 +11,11 @@
     ./leap.nix
     ./debugging.nix
     ./cloak.nix
-    ./offset_cursorline.nix
     ./scrollbar.nix
   ];
   code = [
     ./lsp.nix
     ./dap.nix
-    ./fidget.nix
     ./treesitter.nix
     ./completion.nix
     ./snippets.nix
