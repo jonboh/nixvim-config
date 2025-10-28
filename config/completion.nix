@@ -13,6 +13,8 @@
 
       cmp = {
         enable = true;
+      };
+      settings.cmp = {
         menu = {
           nvim_lsp = "[LSP]";
           nvim_lua = "[api]";
