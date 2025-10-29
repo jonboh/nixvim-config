@@ -17,21 +17,13 @@ in {
   plugins.obsidian = {
     enable = true;
     settings = {
+      legacy_commands = false;
       workspaces = [
         {
           name = "vault";
           path = "~/vault";
         }
       ];
-      mappings = {
-        # we need to add at least one mapping to clear gf default mapping
-        "<leader>ch" = {
-          action = "require('obsidian').util.toggle_checkbox";
-          opts = {
-            buffer = true;
-          };
-        };
-      }; # remove default mappings
       follow_url_func = ''
         function(url)
           vim.fn.jobstart({"xdg-open", url})
@@ -67,7 +59,7 @@ in {
     {
       mode = "n";
       key = "<leader>of";
-      action = "<cmd>ObsidianQuickSwitch<cr>";
+      action = "<cmd>Obsidian quick_switch<cr>";
     }
     {
       mode = "n";
@@ -82,12 +74,17 @@ in {
     {
       mode = "n";
       key = "<leader>on";
-      action = "<cmd>ObsidianNew<cr>";
+      action = "<cmd>Obsidian new<cr>";
     }
     {
       mode = "n";
       key = "<leader>ob";
-      action = "<cmd>ObsidianBacklinks<cr>";
+      action = "<cmd>Obsidian backlinks<cr>";
+    }
+    {
+      mode = "n";
+      key = "<leader>ch";
+      action = "<cmd>Obsidian toggle_checkbox<cr>";
     }
   ];
   extraConfigLua = ''
@@ -109,7 +106,7 @@ in {
           if (vim.trim(result):match("^directory$")) then
             return "<cmd>e "..target.."<cr>"
           else
-            return "<cmd>ObsidianFollowLink<CR>"
+            return "<cmd>Obsidian follow_link<CR>"
           end
         end
       else

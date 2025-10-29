@@ -284,30 +284,30 @@ in {
       return capabilities
     end
 
-    require'lspconfig'.protols.setup{
+    vim.lsp.config('protols', {
       on_attach = function(client, bufnr)
           ${onAttach}
         end,
       capabilities = lspCapabilities()
-      }
-    require('lspconfig').ruff.setup {
+      })
+    vim.lsp.config('ruff', {
       on_attach = function(client, bufnr)
           ${onAttach}
         end,
       capabilities = lspCapabilities()
-      }
-    require('lspconfig').pyright.setup {
+      })
+    vim.lsp.config('pyright', {
       on_attach = function(client, bufnr)
           ${onAttach}
         end,
       capabilities = lspCapabilities()
-      }
-    require'lspconfig'.jsonnet_ls.setup {
+      })
+    vim.lsp.config('jsonnet_ls', {
       on_attach = function(client, bufnr)
           ${onAttach}
         end,
       capabilities = lspCapabilities()
-      }
+      })
     vim.api.nvim_create_user_command("LspFormat", "lua vim.lsp.buf.format()", {})
   '';
 
