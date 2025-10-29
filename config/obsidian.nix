@@ -35,8 +35,8 @@ in {
           vim.fn.jobstart({"xdg-open", make_absolute_link(url)})
         end
       '';
-      note_id_func = ''
-        function(title)
+      note_id_func.__raw = ''
+        function(title, path)
           -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
           -- In this case a note with the title 'My new note' will be given an ID that looks
           -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
