@@ -64,6 +64,22 @@
       key = "gzz";
       action = "zszH"; # zs (scroll horizontal to cursor) and zH (scorll half left)
     }
+    # Visual Mode
+    {
+      mode = ["n" "v"];
+      key = "<leader>n";
+      action = "v";
+    }
+    {
+      mode = ["n" "v"];
+      key = "<leader>N";
+      action = "V";
+    }
+    {
+      mode = ["n" "v"];
+      key = "<leader><C-n>";
+      action = "<C-v>";
+    }
 
     ## Search
     {
