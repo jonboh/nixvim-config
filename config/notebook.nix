@@ -9,31 +9,31 @@
   keymaps = [
     {
       mode = "n";
-      key = "he";
+      key = "<leader>e";
       action = "<cmd>ReplRunCell<cr>";
       options = {desc = "Evaluate cell and move to next";};
     }
     {
       mode = "n";
-      key = "hE";
+      key = "<leader>E";
       action = "<cmd>ReplRunAndMove<cr>";
       options = {desc = "Evaluate cell";};
     }
     {
       mode = "n";
-      key = "h>";
+      key = "<leader>>";
       action = "<cmd>lua require('notebook-navigator').move_cell('d')<cr>";
       options = {desc = "Evaluate cell";};
     }
     {
       mode = "n";
-      key = "h<";
+      key = "<leader><";
       action = "<cmd>lua require('notebook-navigator').move_cell('u')<cr>";
       options = {desc = "Evaluate cell";};
     }
     {
       mode = "v";
-      key = "he";
+      key = "<leader>e";
       action = "<cmd>ReplSendVisualSelection<cr>";
       options = {desc = "Evaluate Visual Selection";};
     }
