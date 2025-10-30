@@ -67,18 +67,23 @@
     # Visual Mode
     {
       mode = ["n" "v"];
-      key = "<leader>n";
+      key = "l";
       action = "v";
     }
     {
       mode = ["n" "v"];
-      key = "<leader>N";
+      key = "L";
       action = "V";
     }
     {
       mode = ["n" "v"];
-      key = "<leader><C-n>";
+      key = "<C-l>";
       action = "<C-v>";
+    }
+    {
+      mode = ["n"];
+      key = "gl";
+      action = "gv";
     }
 
     ## Search
