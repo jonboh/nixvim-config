@@ -1,6 +1,6 @@
 {full, ...}: let
   basic = [
-    ./visual-mod.nix
+    # ./visual-mod.nix
     ./options.nix
     ./keymaps.nix
     ./autocmd.nix
