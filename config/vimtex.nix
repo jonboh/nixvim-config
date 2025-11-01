@@ -1,10 +1,15 @@
-{lib, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   plugins.vimtex = {
     enable = true;
     settings = {
       view_method = "zathura";
       callback_progpath = lib.mkForce "nixvim";
     };
+    texlivePackage = null;
     zathuraPackage = null; # use system package. that is my fork
   };
   extraConfigVim = ''
