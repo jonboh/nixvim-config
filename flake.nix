@@ -95,5 +95,8 @@
         inherit nixvim-config;
         nixvim-light-config = nixvim-light-config;
       };
+      hydraJobs = {
+        inherit (self) packages;
+      };
     });
 }
