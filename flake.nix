@@ -18,8 +18,10 @@
     flake-utils,
     nixneovimplugins,
     ...
-  } @ inputs:
-    flake-utils.lib.eachDefaultSystem (system: let
+  } @ inputs: let
+    supportedSystems = ["x86_64-linux"];
+  in
+    flake-utils.lib.eachSystem supportedSystems (system: let
       nixvimLib = nixvim.lib.${system};
       pkgs-nightly = import nixpkgs {
         inherit system;
