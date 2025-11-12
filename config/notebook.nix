@@ -39,6 +39,8 @@
     }
   ];
 
+  extraPackages = [pkgs.neovim-remote]; # for julia to handle @edit
+
   extraConfigLua = ''
     require("notebook-navigator").setup({
       activate_hydra_keys = nil,
@@ -50,7 +52,7 @@
     local ipython_id = 73
     local julia_id = 42
     local ipython = Terminal:new({cmd="ipython --no-autoindent", close_on_exit=true, direction="vertical", display_name="ipython", count=ipython_id})
-    local julia = Terminal:new({cmd="julia", close_on_exit=true, direction="vertical", display_name="julia", count=julia_id})
+    local julia = Terminal:new({cmd="julia", env = {VISUAL="nvr -cc vsplit --remote-wait +'set bufhidden=wipe'"}, close_on_exit=true, direction="vertical", display_name="julia", count=julia_id})
 
     function _get_repl_terminal_id()
         if vim.bo.filetype == "python" then
