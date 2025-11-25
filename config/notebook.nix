@@ -108,9 +108,46 @@
         end
     end
 
+    vim.api.nvim_create_user_command('ToggleJuliaWrap', function()
+            vim.g.julia_wrapping_enabled = not vim.g.julia_wrapping_enabled
+        end, {})
+    vim.g.julia_wrapping_enabled = true
+    -- This function controls code run on the beginning of each cell
+    function _cell_init()
+        if vim.bo.filetype == "python" then
+            -- do nothing
+        elseif vim.bo.filetype == "julia"  then
+            if vim.g.julia_wrapping_enabled then
+              send_julia_begin()
+            end
+        else
+           error("Current filetype has no repl associated")
+        end
+    end
+
+    function _cell_finish()
+        if vim.bo.filetype == "python" then
+            -- do nothing
+        elseif vim.bo.filetype == "julia" then
+            if vim.g.julia_wrapping_enabled then
+              send_julia_end()
+            end
+        else
+           error("Current filetype has no repl associated")
+        end
+    end
+
     function send_esc()
       local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
       vim.api.nvim_feedkeys(esc, "x", false)
+    end
+
+
+    function send_julia_begin()
+      require("toggleterm").exec("begin", _get_repl_terminal_id())
+    end
+    function send_julia_end()
+      require("toggleterm").exec("end", _get_repl_terminal_id())
     end
 
     --https://github.com/akinsho/toggleterm.nvim/issues/425#issuecomment-1854373704
@@ -148,13 +185,17 @@
     vim.api.nvim_create_user_command('ReplRunAndMove', function()
         id = _get_repl_terminal_id()
         _repl_spawn()
+        _cell_init()
         require("notebook-navigator").run_and_move({id=id})
+        _cell_finish()
       end,
     {})
     vim.api.nvim_create_user_command('ReplRunCell', function()
         id = _get_repl_terminal_id()
         _repl_spawn()
+        _cell_init()
         require("notebook-navigator").run_cell({id=id})
+        _cell_finish()
       end,
     {})
 
@@ -163,7 +204,9 @@
     vim.api.nvim_create_user_command('ReplSendLine', function()
         id = _get_repl_terminal_id()
         _repl_spawn()
+        _cell_init()
         require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = id })
+        _cell_finish()
       end,
     {})
 
@@ -172,11 +215,13 @@
       id = _get_repl_terminal_id()
       _repl_spawn()
       local toggleterm = require("toggleterm")
+      _cell_init()
       if vim.api.nvim_get_mode().mode == 'V' then
         send_visual_lines()
       else
         toggleterm.send_lines_to_terminal("visual_selection", trim_spaces, { args = id })
       end
+      _cell_finish()
       end,
     {})
   '';
