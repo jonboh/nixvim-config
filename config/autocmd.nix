@@ -36,7 +36,7 @@
     }
     {
       event = ["BufRead" "BufNewFile"];
-      pattern = "*.sdf";
+      pattern = ["*.sdf" "*.xacro"];
       command = "setfiletype xml";
     }
   ];
