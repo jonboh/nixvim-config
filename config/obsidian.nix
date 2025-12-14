@@ -92,7 +92,7 @@ in {
 
     local obsidian = require("obsidian")
     vim.keymap.set("n", "gf", function()
-      if obsidian.util.cursor_on_markdown_link() then
+      if require("obsidian").util.cursor_link() then
         target = obsidian.util.parse_cursor_link()
         if target:sub(-4) == ".tex" then
             return "<cmd>e "..make_absolute_link(target).."<cr>"
