@@ -244,6 +244,11 @@ in {
           filetypes = ["c" "cpp" "h" "hpp" "cuda"];
         };
         lemminx.enable = true;
+        pyright.enable = true;
+        protols.enable = true;
+        ruff.enable = true;
+        jsonnet_ls.enable = true;
+        just.enable = true;
       };
       inherit onAttach;
       capabilities = extraCapabilities;
@@ -258,20 +263,6 @@ in {
         server = {
           on_attach = ''function() ${onAttach} end'';
         };
-        # NOTE: latest versions are able to infer adapter from PATH lldb
-        # dap = {
-        #   # NOTE: used to run RustLsp debuggables
-        #   adapter = ''
-        #     {
-        #       type = 'server',
-        #       port = "''${port}",
-        #       executable = {
-        #           command = "/run/current-system/sw/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb",
-        #           args = {"--port", "''${port}"},
-        #       }
-        #     }
-        #   '';
-        # };
       };
     };
   };
@@ -284,30 +275,6 @@ in {
       return capabilities
     end
 
-    vim.lsp.config('protols', {
-      on_attach = function(client, bufnr)
-          ${onAttach}
-        end,
-      capabilities = lspCapabilities()
-      })
-    vim.lsp.config('ruff', {
-      on_attach = function(client, bufnr)
-          ${onAttach}
-        end,
-      capabilities = lspCapabilities()
-      })
-    vim.lsp.config('pyright', {
-      on_attach = function(client, bufnr)
-          ${onAttach}
-        end,
-      capabilities = lspCapabilities()
-      })
-    vim.lsp.config('jsonnet_ls', {
-      on_attach = function(client, bufnr)
-          ${onAttach}
-        end,
-      capabilities = lspCapabilities()
-      })
     vim.api.nvim_create_user_command("LspFormat", "lua vim.lsp.buf.format()", {})
   '';
 
