@@ -6,6 +6,7 @@
       input.enable = true;
       picker.enable = true;
       notifier.enable = true;
+      terminal.enable = true;
     };
   };
 

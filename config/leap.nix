@@ -9,7 +9,7 @@
   extraConfigLua = ''
     vim.keymap.set({'n', 'x', 'o'}, 'l',  '<Plug>(leap-forward)')
     vim.keymap.set({'n', 'x', 'o'}, 'L',  '<Plug>(leap-backward)')
-    vim.keymap.del({'n', 'x', 'o'}, 's')
-    vim.keymap.del({'n', 'x', 'o'}, 'S')
+    -- vim.keymap.del({'n', 'x', 'o'}, 's')
+    -- vim.keymap.del({'n', 'x', 'o'}, 'S')
   '';
 }

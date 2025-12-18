@@ -169,6 +169,10 @@
       end,
     }
 
+    ins_left {
+      require("opencode").statusline
+    }
+
     ins_right {
             function()
                 local recording = vim.fn.reg_recording()
