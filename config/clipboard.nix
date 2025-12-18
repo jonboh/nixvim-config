@@ -15,8 +15,11 @@
     {
       mode = "v";
       key = "gy";
-      action = ''"+y'';
-      options = {desc = "Copy to system clipboard";};
+      action = ":w !xclip -selection clipboard -i<CR><CR>";
+      options = {
+        desc = "Copy to system clipboard (persistently)";
+        silent = true;
+      };
     }
     {
       mode = "n";
