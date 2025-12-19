@@ -50,7 +50,7 @@
     ./asyncrun.nix
     ./toggle-term.nix
     ./obsidian.nix
-    # ./gp.nix
+    ./gp.nix
     ./opencode.nix
     ./markdown-preview.nix
     ./dadbod.nix

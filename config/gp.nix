@@ -196,30 +196,6 @@ in {
     }
     {
       mode = ["n" "v"];
-      key = "${new_chat_shortcut}";
-      action = "<cmd>GpChatNew<cr>";
-      options = {desc = "New AI Chat";};
-    }
-    {
-      mode = "n";
-      key = "<C-g>z";
-      action = "<cmd>GpNew<cr>";
-      options = {desc = "New AI Chat";};
-    }
-    {
-      mode = "v";
-      key = "<C-g>z";
-      action = ":'<,'>GpNew<cr>";
-      options = {desc = "New AI Chat";};
-    }
-    {
-      mode = ["n" "v"];
-      key = "<C-g>n";
-      action = "<cmd>GpNextAgent<cr>";
-      options = {desc = "Next AI Agent";};
-    }
-    {
-      mode = ["n" "v"];
       key = "<C-g>r";
       action = "<cmd>GpWhisper<cr>";
       options = {desc = "Whisper Transcript";};
