@@ -196,9 +196,21 @@ in {
     }
     {
       mode = ["n" "v"];
-      key = "<C-g>r";
-      action = "<cmd>GpWhisper<cr>";
-      options = {desc = "Whisper Transcript";};
+      key = "${new_chat_shortcut}";
+      action = "<cmd>GpChatNew<cr>";
+      options = {desc = "New AI Chat";};
+    }
+    {
+      mode = "n";
+      key = "<C-g>z";
+      action = "<cmd>GpNew<cr>";
+      options = {desc = "New AI Chat";};
+    }
+    {
+      mode = "v";
+      key = "<C-g>z";
+      action = ":'<,'>GpNew<cr>";
+      options = {desc = "New AI Chat";};
     }
     {
       mode = "n";
