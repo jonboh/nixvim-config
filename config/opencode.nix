@@ -22,7 +22,7 @@
 
     vim.keymap.set({ "v" }, "<leader>z",  function() return require("opencode").operator("@this ") end,        { expr = true, desc = "Add range to opencode" })
 
-    vim.keymap.set("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end,   { desc = "opencode half page up" })
-    vim.keymap.set("n", "<S-C-d>", function() require("opencode").command("session.half.page.down") end, { desc = "opencode half page down" })
+    vim.keymap.set({"n", "t"}, "<S-C-u>", function() require("opencode").command("session.half.page.up") end,   { desc = "opencode half page up" })
+    vim.keymap.set({"n", "t"}, "<S-C-d>", function() require("opencode").command("session.half.page.down") end, { desc = "opencode half page down" })
   '';
 }
