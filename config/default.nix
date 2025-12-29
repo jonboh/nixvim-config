@@ -56,6 +56,7 @@
     ./dadbod.nix
     ./anki.nix
     ./azure-prs.nix
+    ./just.nix
   ];
   imports =
     basic
