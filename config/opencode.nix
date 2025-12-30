@@ -6,8 +6,8 @@
   extraConfigLua = ''
     vim.g.opencode_opts = {
       provider = {
-        enabled = "snacks",
-        snacks = {
+        enabled = "kitty",
+        kitty = {
           -- ...
         }
       }
