@@ -15,7 +15,14 @@
     {
       mode = "v";
       key = "gy";
-      action = ":w !xclip -selection clipboard -i<CR><CR>";
+      action = {
+        __raw = ''
+          function()
+            vim.api.nvim_command('normal! "+y')
+            vim.fn.system('xclip -selection clipboard', vim.fn.getreg('+'))
+          end
+        '';
+      };
       options = {
         desc = "Copy to system clipboard (persistently)";
         silent = true;
