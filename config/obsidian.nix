@@ -2,18 +2,7 @@
   pkgs,
   helpers,
   ...
-}: let
-  make_absolute_link_luafunc_definition = ''
-    local make_absolute_link = function(target)
-      local obsidian = require("obsidian")
-      if target:sub(1,1) == "/" then -- absolute path
-        return target
-      else -- path from vault
-        return obsidian.get_client():vault_root().filename.."/"..target
-      end
-    end
-  '';
-in {
+}: {
   plugins.obsidian = {
     enable = true;
     settings = {
@@ -24,17 +13,9 @@ in {
           path = "~/vault";
         }
       ];
-      follow_url_func = ''
-        function(url)
-          vim.fn.jobstart({"xdg-open", url})
-        end
-      '';
-      follow_img_func.__raw = ''
-        function(url)
-          ${make_absolute_link_luafunc_definition}
-          vim.fn.jobstart({"xdg-open", make_absolute_link(url)})
-        end
-      '';
+      attachments = {
+        folder = "/";
+      };
       note_id_func.__raw = ''
         function(title, path)
           -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
@@ -88,19 +69,25 @@ in {
     }
   ];
   extraConfigLua = ''
-    ${make_absolute_link_luafunc_definition}
+    vault_root = "~/vault"
+    local make_absolute_link = function(target)
+      local obsidian = require("obsidian")
+      if target:sub(1,1) == "/" then -- absolute path
+        return target
+      else -- path from vault
+        return vault_root.."/"..target
+      end
+    end
 
     local obsidian = require("obsidian")
     vim.keymap.set("n", "gf", function()
-      if require("obsidian").util.cursor_link() then
-        target = obsidian.util.parse_cursor_link()
+      link = require("obsidian").util.cursor_link()
+      if link then
+        target = obsidian.util.parse_link(link)
         if target:sub(-4) == ".tex" then
             return "<cmd>e "..make_absolute_link(target).."<cr>"
-        elseif target:sub(-4) == ".pdf" then
-            vim.fn.jobstart({"xdg-open", make_absolute_link(target)})  -- linux
-            return ""
         else
-          local handle = io.popen("${pkgs.file}/bin/file '" .. target .. "' | awk '{print $2}'")
+          local handle = io.popen("${pkgs.file}/bin/file '" .. make_absolute_link(target) .. "' | awk '{print $2}'")
           local result = handle:read("*a")
           handle:close()
           if (vim.trim(result):match("^directory$")) then
