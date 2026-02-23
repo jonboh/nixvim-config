@@ -26,7 +26,6 @@
     ./vimtex.nix
     ./conform.nix
     ./todo-comments.nix
-    ./devdocs.nix
     ./csvview.nix
     ./coq.nix
   ];
