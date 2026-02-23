@@ -68,7 +68,7 @@
     },
   '';
 in {
-  extraPlugins = [pkgs.vimExtraPlugins.gp-nvim];
+  extraPlugins = [pkgs.vimExtraPlugins.gp-nvim-Robitx];
   # extraPlugins = [(pkgs.callPackage ../plugins/gp-nvim.nix {})];
   extraConfigLua = ''
     local chat_system_prompt = "You are a helpful AI assistant.\n\n"
