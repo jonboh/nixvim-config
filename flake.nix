@@ -97,6 +97,26 @@
         inherit nixvim-config;
         nixvim-light-config = nixvim-light-config;
       };
+
+      apps = {
+        default = {
+          type = "app";
+          program = "${nixvim-nightly-config}/bin/nixvim";
+        };
+        nixvim = {
+          type = "app";
+          program = "${nixvim-config}/bin/nixvim";
+        };
+        nixvim-nightly = {
+          type = "app";
+          program = "${nixvim-nightly-config}/bin/nixvim";
+        };
+        nixvim-light = {
+          type = "app";
+          program = "${nixvim-light-config}/bin/nixvim-light";
+        };
+      };
+
       hydraJobs = {
         inherit (self) packages;
       };
