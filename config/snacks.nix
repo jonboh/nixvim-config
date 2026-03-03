@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   plugins.snacks = {
     enable = true;
     settings = {
@@ -37,6 +41,14 @@
   userCommands = {
     Notifications = {
       command.__raw = ''Snacks.notifier.show_history'';
+    };
+    ClearImages = {
+      command.__raw = ''
+        function()
+          vim.fn.system("rm -rf " .. vim.env.HOME .. "/.cache/nvim/snacks/image")
+          Snacks.image.image:clear()
+        end
+      '';
     };
   };
 

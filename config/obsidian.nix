@@ -1,8 +1,4 @@
-{
-  pkgs,
-  helpers,
-  ...
-}: {
+{pkgs, ...}: {
   plugins.obsidian = {
     enable = true;
     settings = {
