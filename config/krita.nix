@@ -7,5 +7,7 @@
         vim.system({'krita', full_project_filename})
     end
     vim.api.nvim_create_user_command('OpenInKrita', async_open_file_krita, {})
+
+    vim.keymap.set({ "n", "x", "o" }, "<leader>gf", async_open_file_krita)
   '';
 }
