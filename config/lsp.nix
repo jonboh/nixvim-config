@@ -262,6 +262,13 @@ in {
         rustAnalyzerPackage = null;
         server = {
           on_attach = ''function() ${onAttach} end'';
+          default_settings = {
+            rust-analyzer = {
+              cargo = {
+                allFeatures = true;
+              };
+            };
+          };
         };
       };
     };
