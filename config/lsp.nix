@@ -267,6 +267,9 @@ in {
               cargo = {
                 allFeatures = true;
               };
+              check = {
+                command = "check";
+              };
             };
           };
         };
@@ -283,6 +286,29 @@ in {
     end
 
     vim.api.nvim_create_user_command("LspFormat", "lua vim.lsp.buf.format()", {})
+
+    -- Rust Analyzer check command toggle
+    local rust_check_command = "check"
+
+    local function toggle_rust_check()
+      if rust_check_command == "check" then
+        rust_check_command = "clippy"
+      else
+        rust_check_command = "check"
+      end
+
+      local config_cmd = string.format(
+        "RustAnalyzer config {cargo={allFeatures=true},check={command=\"%s\"}}",
+        rust_check_command
+      )
+      vim.cmd(config_cmd)
+
+      print("Rust check command toggled to: " .. rust_check_command)
+    end
+
+    vim.api.nvim_create_user_command("RustToggleCheck", toggle_rust_check, {
+      desc = "Toggle between check and clippy for Rust diagnostics"
+    })
   '';
 
   extraPlugins = [(pkgs.callPackage ../plugins/nvim-bacon.nix {})];
@@ -292,6 +318,12 @@ in {
       key = "hL";
       action = "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>";
       options = {desc = "Toggle inlay_hints";};
+    }
+    {
+      mode = "n";
+      key = "hc";
+      action = "<cmd>RustToggleCheck<cr>";
+      options = {desc = "Toggle Rust check/clippy";};
     }
   ];
 }
