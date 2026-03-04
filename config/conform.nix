@@ -6,7 +6,7 @@
       formatters = {
         alejandra.command = "${pkgs.alejandra}/bin/alejandra";
         rustfmt.command = "${pkgs.rustfmt}/bin/rustfmt";
-        isort.command = "${pkgs.python311Packages.isort}/bin/isort";
+        isort.command = "${pkgs.python3Packages.isort}/bin/isort";
         ruff_format.command = "${pkgs.ruff}/bin/ruff";
         jq.command = "${pkgs.jq}/bin/jq";
         taplo.command = "${pkgs.taplo}/bin/taplo";
