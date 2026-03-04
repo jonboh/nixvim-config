@@ -91,18 +91,15 @@
         };
       };
 
-      packages = {
-        default = nixvim-nightly-config;
+      packages = rec {
+        default = nixvim-config;
         inherit nixvim-nightly-config;
         inherit nixvim-config;
-        nixvim-light-config = nixvim-light-config;
+        inherit nixvim-light-config;
       };
 
-      apps = {
-        default = {
-          type = "app";
-          program = "${nixvim-nightly-config}/bin/nixvim";
-        };
+      apps = rec {
+        default = nixvim;
         nixvim = {
           type = "app";
           program = "${nixvim-config}/bin/nixvim";
