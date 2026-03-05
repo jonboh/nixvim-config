@@ -22,7 +22,7 @@
           end'';
 
         doc = {
-          inline = false;
+          inline = true;
           float = true;
         };
 
@@ -47,6 +47,7 @@
         function()
           vim.fn.system("rm -rf " .. vim.env.HOME .. "/.cache/nvim/snacks/image")
           Snacks.image.image:clear()
+          Snacks.image.placement.clean()
         end
       '';
     };
